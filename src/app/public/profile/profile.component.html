@@ -1,11 +1,12 @@
-<div class="flex flex-col items-center p-2">
+<div class="flex flex-col items-center p-2 md:mx-auto md:mt-4">
+    <h1 class="text-2xl font-bold p-2 bg-black text-white w-11/12 md:text-4xl md:max-w-md md:mb-4">Profile Details</h1>
     <div class="image-upload w-[150px] h-[150px] rounded-full bg-lightgrey relative my-6">
         <label class="w-[25px] absolute right-0 bottom-0" for="img-upload">
-            <img class="w-[25px] absolute right-0 bottom-0" src="../../../assets/svg/icons/pen-to-square-solid.svg" alt="edit-icon">
+            <img class="w-[25px] absolute right-0 bottom-0 hover:cursor-pointer" src="../../../assets/svg/icons/pen-to-square-solid.svg" alt="edit-icon">
         </label>
         <input id="img-upload" type="file"/>
     </div>
-    <div class="flex flex-col text-grey w-11/12">
+    <div class="flex flex-col text-grey w-11/12 md:max-w-md">
         <label for="username">Username</label>
         <input class="border-2 mb-4 h-[35px] border-lightgrey rounded-sm w-full" type="text" name="username">
         <label for="fullname">Full Name</label>
@@ -43,5 +44,5 @@
         </div>
 
     </div>
-    <button class="bg-black w-11/12 h-[35px] mt-6 text-white font-bold rounded-sm hover:bg-green hover:text-black">Save</button>
+    <button class="bg-black w-11/12 h-[35px] mt-6 text-white font-bold rounded-sm hover:bg-green hover:text-black md:max-w-md">Save</button>
 </div>
