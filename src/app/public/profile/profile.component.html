@@ -1,1 +1,42 @@
-<p>profile works!</p>
+<div class="flex flex-col items-center p-2">
+    <div class="w-[120px] h-[120px] rounded-full bg-lightgrey"></div>
+    <div class="flex flex-col text-grey w-11/12">
+        <label for="username">Username</label>
+        <input class="border-2 mb-4 h-[35px] border-lightgrey rounded-sm w-full" type="text" name="username">
+        <label for="fullname">Full Name</label>
+        <input class="border-2 mb-4 h-[35px] border-lightgrey rounded-sm w-full" type="text" name="fullname">
+        <label for="location">Location</label>
+        <select class="border-2 mb-4 h-[35px] border-lightgrey rounded-sm w-full" id="location" name="location">
+            <option value="sonnidom-house">Sonnidom House</option>
+            <option value="advantage-place">Advantage Place</option>
+        </select>
+        <label class="mb-1" for="fullname">Office Days</label>
+        <div class="flex flex-row gap-2 justify-between items-center mb-4">
+            <span>
+                <input class="border-2 mr-1 border-lightgrey" type="checkbox" id="mon" value="mon" name="mon">
+                <label for="mon">Mon</label>
+            </span>
+            <span>
+                <input class="border-2 mr-1 border-lightgrey" type="checkbox" id="tue" value="tue" name="'tue">
+                <label for="tue">Tue</label>
+            </span>
+            <span>
+                <input class="border-2 mr-1 border-lightgrey " type="checkbox" id="wed" value="wed" name="wed">
+                <label for="wed">Wed</label>
+            </span>
+            <span>
+                <input class="border-2 mr-1 border-lightgrey rounded-sm" type="checkbox" id="thu" value="thu"
+                    name="thu">
+                <label for="thu">Thu</label>
+            </span>
+            <span>
+                <input class="border-2 mr-1 border-lightgrey rounded-sm" type="checkbox" id="fri" value="fri"
+                    name="fri">
+                <label for="fri">Fri</label>
+            </span>
+
+        </div>
+
+    </div>
+    <button class="bg-black w-11/12 h-[35px] text-white font-bold rounded-sm hover:bg-green hover:text-black">Save</button>
+</div>
