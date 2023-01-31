@@ -5,12 +5,14 @@ import { RouterModule } from '@angular/router';
 import { PublicComponent } from './public.component';
 import { LoginComponent } from './login/login.component';
 import { PublicRoutingModule } from './public-routing.module';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
   declarations: [
     PublicComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
