@@ -10,6 +10,7 @@ import { LoginService } from 'src/app/core/services/login.service';
 })
 export class LoginComponent implements OnInit {
   isAuthenticated = false;
+  isLoading:boolean = false;
 
   constructor(private oidcSecurityService: OidcSecurityService, 
     private router: Router,
@@ -20,7 +21,9 @@ export class LoginComponent implements OnInit {
     this.oidcSecurityService.checkAuth()
     .subscribe(({ isAuthenticated }) => {
       if (isAuthenticated) {
-        //TODO: show loading icon  and redirection messagae and send request to backend http://localhost:8080/api/v1/register
+        //
+        this.isLoading = true;
+
         this.loginService.login()
           .then((data) => {
             data.subscribe({
