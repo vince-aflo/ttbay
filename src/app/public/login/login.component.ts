@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
     this.oidcSecurityService.checkAuth()
     .subscribe(({ isAuthenticated }) => {
       if (isAuthenticated) {
-        //
         this.isLoading = true;
 
         this.loginService.login()
@@ -29,7 +28,7 @@ export class LoginComponent implements OnInit {
             data.subscribe({
               next: (value) => {
                 const {hasFilledUserProfile}:any = value;
-                if (!hasFilledUserProfile) {
+                if (hasFilledUserProfile) {
                   this.router.navigateByUrl('/home');
                 } else {
                   this.router.navigateByUrl('/profile');
