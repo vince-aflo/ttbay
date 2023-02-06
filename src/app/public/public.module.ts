@@ -6,13 +6,15 @@ import { PublicComponent } from './public.component';
 import { LoginComponent } from './login/login.component';
 import { PublicRoutingModule } from './public-routing.module';
 import { ProfileComponent } from './profile/profile.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 
 @NgModule({
   declarations: [
     PublicComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     CommonModule,

@@ -1,18 +1,19 @@
 # ttBayUI
 Angular front end for ttBay
 
-# Folder Structure
-Insight into folder structure [here](https://www.youtube.com/watch?v=-IVlrDP9GUE)
+## Description
+ttBay is an in-office auction website. It's purpose is to provide a safe place to offload unused equipment amongst co-workers. 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
+## Technical Dependencies
+- NodeJS v18
+- Angular 15
+- [TailwindCSS](https://tailwindcss.com/)
+- [Angular Auth OIDC Client](https://angular-auth-oidc-client.com/docs/intro) 
+
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
