@@ -6,11 +6,8 @@ import { PublicComponent } from './public.component';
 import { LoginComponent } from './login/login.component';
 import { PublicRoutingModule } from './public-routing.module';
 import { ProfileComponent } from './profile/profile.component';
-<<<<<<< HEAD
 import { FormsModule } from '@angular/forms';
-=======
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
->>>>>>> feature/ttBay-19-login-page
 
 
 @NgModule({
