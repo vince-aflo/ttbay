@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
 import { Profile } from 'src/app/core/models/profile.model';
 import { FormsModule, NgForm } from '@angular/forms';
+
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
   selector: 'app-profile',
@@ -8,10 +11,11 @@ import { FormsModule, NgForm } from '@angular/forms';
   styleUrls: ['./profile.component.scss']
 })
 
+
 export class ProfileComponent {
   profile!:Profile;
 
-  constructor(){
+  constructor(public oidcSecurityService: OidcSecurityService, private router: Router){
     this.profile = new Profile('', '', '', '', '', [])
   }
 
@@ -24,7 +28,14 @@ export class ProfileComponent {
     }
   }
 
-  saveProfile(formDetails: any){
-    
+  saveProfile(formDetails: any){}
+
+  logout() {
+    console.log('start logoff');
+    this.oidcSecurityService.logoffAndRevokeTokens()
+        .subscribe((result) => console.log(result));
+
+    this.oidcSecurityService.logoffLocal();
+    this.router.navigateByUrl('/login');
   }
 }
