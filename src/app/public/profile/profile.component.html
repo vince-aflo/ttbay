@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div class="flex flex-col items-center p-2 md:mx-auto md:mt-4">
     <h1 class="text-2xl font-bold p-2 bg-black text-white w-11/12 md:text-4xl md:max-w-md md:mb-4">Profile Details</h1>
     
@@ -13,15 +12,15 @@
 
     <!-- Form -->
     <form #profileForm="ngForm" class="flex flex-col text-grey w-11/12 md:max-w-md">
-        {{ profileForm.value | json }}
+        <!-- {{ profileForm.value | json }} -->
         <label for="username">Username</label>
-        <input [ngModel]="profile.username" class="border-2 mb-4 h-[35px] border-lightgrey rounded-sm w-full" type="text" name="username">
+        <input [(ngModel)]="profile.username" class="border-2 mb-4 h-[35px] border-lightgrey rounded-sm w-full" type="text" name="username">
        
         <label for="fullname">Full Name</label>
-        <input (ngModel)="profile.fullName" class="border-2 mb-4 h-[35px] border-lightgrey rounded-sm w-full" type="text" name="fullname">
+        <input [(ngModel)]="profile.fullName" class="border-2 mb-4 h-[35px] border-lightgrey rounded-sm w-full" type="text" name="fullname">
         
         <label for="location">Location</label>
-        <select (ngModel)="profile.officeLocation"class="border-2 mb-4 h-[35px] border-lightgrey rounded-sm w-full" id="location" name="location">
+        <select [(ngModel)]="profile.officeLocation"class="border-2 mb-4 h-[35px] border-lightgrey rounded-sm w-full" id="location" name="location">
             <option value="SONNIDOM_HOUSE">Sonnidom House</option>
             <option value="ADVANTAGE_PLACE">Advantage Place</option>
         </select>
@@ -33,7 +32,7 @@
                 <label for="mon">Mon</label>
             </span>
             <span>
-                <input ngModel class="border-2 mr-1 border-lightgrey" type="checkbox" id="tue" value="TUESDAY" name="'tue">
+                <input ngModel class="border-2 mr-1 border-lightgrey" type="checkbox" id="tue" value="TUESDAY" name="tue">
                 <label for="tue">Tue</label>
             </span>
             <span>
@@ -56,7 +55,3 @@
 
     </form>
 </div>
-=======
-<p>profile works!</p>
-<button (click)="logout()">Log out</button>
->>>>>>> feature/ttBay-19-login-page
