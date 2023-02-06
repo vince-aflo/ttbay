@@ -5,8 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { PublicRoutingModule } from './public/public-routing.module';
-import { PublicModule } from './public/public.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { PublicModule } from './public/public.module';
 
 
 @NgModule({
@@ -18,7 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     CoreModule,
     PublicRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    PublicModule
   ],
   providers: [],
   bootstrap: [AppComponent]
