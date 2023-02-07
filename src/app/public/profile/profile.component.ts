@@ -19,13 +19,14 @@ export class ProfileComponent {
   constructor(public oidcSecurityService: OidcSecurityService, private router: Router, private userService: UserService){
     this.profile = new Profile('', '', '', '', '', []);
     this.profile.email = history.state.email;
-    this.profile.profileUrl = 'asldfkalskdf';
+    this.profile.profileUrl = 'http://default.pro';
   }
 
   showPreview(event:any) {
     if(event.target.files.length > 0) {
       let src = URL.createObjectURL(event.target.files[0]);
       let preview:any = document.getElementById("img-preview");
+      preview.src = src;
     }
   }
 
@@ -58,6 +59,7 @@ export class ProfileComponent {
           console.log('save response', value);
         }
       })
+      this.router.navigateByUrl('/home');
     })
 
   }

@@ -17,6 +17,6 @@ export class UserService {
     const header = {
       headers: new HttpHeaders().set('Authorization', `Bearer ${this.token}`)
     }
-    return this.http.put<any>('http://localhost:8080/api/v1/profile', body)
+    return this.http.put<any>('http://localhost:8080/api/v1/profile', body, header)
   }
 }
