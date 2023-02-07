@@ -6,7 +6,9 @@ import { PublicComponent } from './public.component';
 import { LoginComponent } from './login/login.component';
 import { PublicRoutingModule } from './public-routing.module';
 import { ProfileComponent } from './profile/profile.component';
+import { FormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -14,13 +16,15 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     PublicComponent,
     LoginComponent,
     ProfileComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule,
-    PublicRoutingModule
+    PublicRoutingModule,
+    FormsModule
   ]
 })
 export class PublicModule { }

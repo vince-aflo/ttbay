@@ -28,11 +28,11 @@ export class LoginComponent implements OnInit {
             data.subscribe({
               next: (value) => {
                 const {hasFilledUserProfile}:any = value;
-                if (hasFilledUserProfile) {
-                  this.router.navigateByUrl('/home');
-                } else {
-                  this.router.navigateByUrl('/profile');
-                }
+                // if (!hasFilledUserProfile) {
+                //   this.router.navigateByUrl('/home');
+                // } else {
+                  this.router.navigateByUrl('/profile', { state: value });
+                // }
               }
             });
           })   

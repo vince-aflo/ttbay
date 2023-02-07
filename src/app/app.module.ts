@@ -5,8 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { PublicRoutingModule } from './public/public-routing.module';
-import { PublicModule } from './public/public.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { PublicModule } from './public/public.module';
 import { AuthConfigModule } from './core/auth/auth-config.module';
 
 
@@ -20,6 +21,8 @@ import { AuthConfigModule } from './core/auth/auth-config.module';
     CoreModule,
     PublicRoutingModule,
     HttpClientModule,
+    FormsModule,
+    PublicModule,
     AuthConfigModule
   ],
   providers: [],
