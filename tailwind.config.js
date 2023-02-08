@@ -16,7 +16,8 @@ module.exports = {
       'bg-blue': 'rgba(184, 255, 238, 0.2)',
       'grey': '#6d6e71',
       'lightgrey': '#ededed',
-      'white': '#fff'
+      'white': '#fff',
+      'red': '#f00'
     },
     extend: {},
   },

@@ -12,45 +12,64 @@
 
     <!-- Form -->
     <form #profileForm="ngForm" class="flex flex-col text-grey w-11/12 md:max-w-md">
-        <!-- {{ profileForm.value | json }} -->
-        <label for="username">Username</label>
-        <input [(ngModel)]="profile.username" class="border-2 mb-4 h-[35px] border-lightgrey rounded-sm w-full" type="text" name="username">
-       
-        <label for="fullname">Full Name</label>
-        <input [(ngModel)]="profile.fullName" class="border-2 mb-4 h-[35px] border-lightgrey rounded-sm w-full" type="text" name="fullname">
-        
-        <label for="location">Location</label>
-        <select [(ngModel)]="profile.officeLocation"class="border-2 mb-4 h-[35px] border-lightgrey rounded-sm w-full" id="location" name="location">
-            <option value="SONNIDOM_HOUSE">Sonnidom House</option>
-            <option value="ADVANTAGE_PLACE">Advantage Place</option>
-        </select>
+        <!--Username field-->
+        <!--Check if username already exists-->
+        <div class="flex flex-col h-[80px]"> 
+            <label for="username">Username <small>*</small></label>
+            <input #username=ngModel [(ngModel)]="profile.username" pattern="[a-zA-Z]*" minlength="4"
+                class="pl-2 border-2 h-[35px] border-lightgrey rounded-sm w-full" type="text" 
+                name="username"  placeholder="only alphabets and numbers" required>
+            <small *ngIf="username.invalid && username.dirty" class="text-red self-end pr-2">must be at least 4 alphanumeric characters</small>
+        </div>
+        <!--Fullname field-->
+        <div class="flex flex-col h-[80px]"> 
+            <label for="fullname">Full Name <small>*</small></label>
+            <input #fullName=ngModel [(ngModel)]="profile.fullName" pattern="[a-zA-Z\s\-]*"
+                class="border-2 h-[35px] border-lightgrey rounded-sm w-full" type="text" 
+                name="fullname" required>
+            <small *ngIf="fullName.invalid && fullName.dirty" class="text-red self-end pr-2">can contain only letters, spaces and hyphens</small>
+        </div>
+        <!--Location field-->
+        <div class="flex flex-col h-[80px]"> 
+            <label for="location">Office Location <small>*</small></label>
+            <select #location="ngModel" [(ngModel)]="profile.officeLocation" class="border-2 h-[35px] border-lightgrey rounded-sm w-full" 
+                id="location" name="location" required>
+                <option value="SONNIDOM_HOUSE">Sonnidom House</option>
+                <option value="ADVANTAGE_PLACE">Advantage Place</option>
+            </select>
+            <small *ngIf="location.invalid" class="text-grey self-end pr-2">cannot be empty</small>
 
-        <label class="mb-1" for="fullname">Office Days</label>
-        <fieldset class="flex flex-row gap-2 justify-between items-center mb-4">
-            <span>
-                <input ngModel class="border-2 mr-1 border-lightgrey" type="checkbox" id="mon" value="MONDAY" name="mon">
-                <label for="mon">Mon</label>
-            </span>
-            <span>
-                <input ngModel class="border-2 mr-1 border-lightgrey" type="checkbox" id="tue" value="TUESDAY" name="tue">
-                <label for="tue">Tue</label>
-            </span>
-            <span>
-                <input ngModel class="border-2 mr-1 border-lightgrey " type="checkbox" id="wed" value="WEDNESDAY" name="wed">
-                <label for="wed">Wed</label>
-            </span>
-            <span>
-                <input ngModel class="border-2 mr-1 border-lightgrey rounded-sm" type="checkbox" id="thu" value="THURSDAY"
-                    name="thu">
-                <label for="thu">Thu</label>
-            </span>
-            <span>
-                <input ngModel class="border-2 mr-1 border-lightgrey rounded-sm" type="checkbox" id="fri" value="FRIDAY"
-                    name="fri">
-                <label for="fri">Fri</label>
-            </span>
-        </fieldset>
+        </div>
+        <!--Office Days-->
+        <div class="flex flex-col h-[80px]"> 
+            <label class="mb-1" for="fullname">Office Days <small>*</small></label>
+            <fieldset class="flex flex-row gap-2 justify-between items-center">
+                <span>
+                    <input ngModel class="border-2 mr-1 border-lightgrey" type="checkbox" id="mon" value="MONDAY" name="mon">
+                    <label for="mon">Mon</label>
+                </span>
+                <span>
+                    <input ngModel class="border-2 mr-1 border-lightgrey" type="checkbox" id="tue" value="TUESDAY" name="tue">
+                    <label for="tue">Tue</label>
+                </span>
+                <span>
+                    <input ngModel class="border-2 mr-1 border-lightgrey " type="checkbox" id="wed" value="WEDNESDAY" name="wed">
+                    <label for="wed">Wed</label>
+                </span>
+                <span>
+                    <input ngModel class="border-2 mr-1 border-lightgrey rounded-sm" type="checkbox" id="thu" value="THURSDAY"
+                        name="thu">
+                    <label for="thu">Thu</label>
+                </span>
+                <span>
+                    <input ngModel class="border-2 mr-1 border-lightgrey rounded-sm" type="checkbox" id="fri" value="FRIDAY"
+                        name="fri">
+                    <label for="fri">Fri</label>
+                </span>
+            </fieldset>
+            <small *ngIf="!validateCheckboxes(profileForm.value)" class="text-grey self-end pr-2">at least one day must be selected</small>
 
+        </div>
         <button type="submit" (click)="saveProfile(profileForm)" class="bg-black w-full h-[35px] mt-6 text-white font-bold rounded-sm hover:bg-green hover:text-black md:max-w-md">Save</button>
 
     </form>
