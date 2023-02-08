@@ -32,11 +32,13 @@
         <!--Location field-->
         <div class="flex flex-col h-[80px]"> 
             <label for="location">Office Location <small>*</small></label>
-            <select [(ngModel)]="profile.officeLocation" class="border-2 h-[35px] border-lightgrey rounded-sm w-full" 
+            <select #location="ngModel" [(ngModel)]="profile.officeLocation" class="border-2 h-[35px] border-lightgrey rounded-sm w-full" 
                 id="location" name="location" required>
                 <option value="SONNIDOM_HOUSE">Sonnidom House</option>
                 <option value="ADVANTAGE_PLACE">Advantage Place</option>
             </select>
+            <small *ngIf="location.invalid" class="text-grey self-end pr-2">cannot be empty</small>
+
         </div>
         <!--Office Days-->
         <div class="flex flex-col h-[80px]"> 
