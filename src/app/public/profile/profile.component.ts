@@ -1,10 +1,9 @@
 import { Profile } from 'src/app/core/models/profile.model';
-import { FormsModule, NgForm } from '@angular/forms';
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { UserService } from 'src/app/core/services/user.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -30,38 +29,56 @@ export class ProfileComponent {
     }
   }
 
+  validateCheckboxes(value:any){
+    return (value.mon || value.tue || value.wed || value.thu || value.fri);
+  }
+
+  validateField(element:any):boolean {
+    console.log(element.dirty, element.invalid);
+    return element.dirty && element.invalid;
+  }
+
   saveProfile(formDetails: any){
-    if (formDetails.value.mon == true){
-      this.profile.officeDays.push('MONDAY');
-    }
-    
-    if (formDetails.value.tue == true) {
-      this.profile.officeDays.push('TUESDAY');
-    }
+    if (this.validateCheckboxes(formDetails.value) && formDetails.valid) {
+      if (formDetails.value.mon == true){
+        this.profile.officeDays.push('MONDAY');
+      }
+      
+      if (formDetails.value.tue == true) {
+        this.profile.officeDays.push('TUESDAY');
+      }
 
-    if (formDetails.value.wed == true) {
-      this.profile.officeDays.push('WEDNESDAY');
-    } 
-    
-    if (formDetails.value.thu == true) {
-      this.profile.officeDays.push('THURSDAY');
-    } 
+      if (formDetails.value.wed == true) {
+        this.profile.officeDays.push('WEDNESDAY');
+      } 
+      
+      if (formDetails.value.thu == true) {
+        this.profile.officeDays.push('THURSDAY');
+      } 
 
-    if (formDetails.value.fri == true) {
-      this.profile.officeDays.push('FRIDAY');
-    }
+      if (formDetails.value.fri == true) {
+        this.profile.officeDays.push('FRIDAY');
+      }
 
-    console.log(this.profile);
+      // console.log(this.profile);
 
-    this.userService.saveProfile(this.profile).then((data) => {
-      data.subscribe({
-        next:(value) => {
-          console.log('save response', value);
-        }
+      this.userService.saveProfile(this.profile).then((data) => {
+        data.subscribe(response => {
+          console.log(response);
+          if (response.ok) {
+            this.router.navigateByUrl('/home');
+          } else {
+            alert('something went wrong!');
+            //TODO: add toast to show error message
+          }
+        })
+
       })
-      this.router.navigateByUrl('/home');
-    })
 
+    } else {
+      console.log('form incomplete');
+      //TODO: add toast to notify that something went wrong
+    }
   }
 
   logout() {

@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
                 if (hasFilledUserProfile) {
                   this.router.navigateByUrl('/home');
                 } else {
-                  this.router.navigateByUrl('/profile');
+                  this.router.navigateByUrl('/profile', {state: value});
                 }
               }
             });
