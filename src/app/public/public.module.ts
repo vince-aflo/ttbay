@@ -9,6 +9,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { FormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SearchbarComponent } from './searchbar/searchbar.component';
+import { ButtonComponent } from './button/button.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -17,7 +21,11 @@ import { HomeComponent } from './home/home.component';
     LoginComponent,
     ProfileComponent,
     LoadingSpinnerComponent,
-    HomeComponent
+    HomeComponent,
+    NavbarComponent,
+    SearchbarComponent,
+    ButtonComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

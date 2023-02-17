@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
                 if (hasFilledUserProfile) {
                   this.router.navigateByUrl('/home');
                 } else {
-                  this.router.navigateByUrl('/profile', {state: value});
+                  this.router.navigateByUrl('/profile');
                 }
               }
             });
@@ -44,15 +44,5 @@ export class LoginComponent implements OnInit {
   login() {
     console.log('start login');
     this.oidcSecurityService.authorize();
-  }
-
-  refreshSession() {
-    console.log('start refreshSession');
-    this.oidcSecurityService.authorize();
-  }
-
-  logout() {
-    console.log('start logoff');
-    this.oidcSecurityService.logoff().subscribe((result) => console.log(result));
   }
 }

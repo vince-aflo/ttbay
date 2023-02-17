@@ -1,0 +1,13 @@
+<!-- search button -->
+<!-- search input -->
+<!-- categories dropdown -->
+<div class="flex w-full mt-2 px-2 justify-center gap-1 items-center">
+    <div class="w-full md:flex">
+        <input class="rounded-l-sm pl-2 max-w-[800px] w-full h-[36px] border-grey border-[1px]" placeholder="Search for anything">
+        <select class="hidden md:block rounded-r-sm bg-white border-grey border-[1px] pl-2 max-w-[160px] h-[36px]">
+            <option class="" value="">All Categories</option>
+            <option *ngFor="let category of categories" value="">{{category}}</option>
+        </select>
+    </div>
+    <app-button class="max-w-[160px] md:w-1/5" [buttonText]="'Search'"></app-button>
+</div>
