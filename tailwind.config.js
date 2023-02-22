@@ -7,6 +7,11 @@ module.exports = {
     fontFamily: {
       sans: ['Work Sans', 'sans-serif']
     },
+    borderRadius: {
+      'full': '9999px',
+      'lg': '0.5rem',
+      'xlg': '1.5rem',
+    },
     colors: {
       'black': '#000',
       'green': '#bdff00',
@@ -19,7 +24,8 @@ module.exports = {
       'lightgrey': '#ededed',
       'transwhite': 'rgba(255, 255, 255, 0.95)',
       'white': '#fff',
-      'red': '#f00'
+      'red': '#f00',
+      'slate' : 'rgb(248 250 252)'
     },
     extend: {},
   },

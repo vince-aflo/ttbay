@@ -24,4 +24,8 @@ export class NavbarComponent {
     this.loginService.logout()
     this.router.navigateByUrl('/login');
   }
+
+  settings(){
+    this.router.navigateByUrl('/account-settings');
+  }
 }

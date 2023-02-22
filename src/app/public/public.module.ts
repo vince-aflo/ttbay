@@ -13,7 +13,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { ButtonComponent } from './button/button.component';
 import { FooterComponent } from './footer/footer.component';
-
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { ToastService, AngularToastifyModule } from 'angular-toastify';
+import { DeleteAccountModalComponent } from './delete-account-modal/delete-account-modal.component'; 
+import { HttpClientModule } from "@angular/common/http";
+import { RedirectComponent } from './redirect/redirect.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,10 @@ import { FooterComponent } from './footer/footer.component';
     NavbarComponent,
     SearchbarComponent,
     ButtonComponent,
-    FooterComponent
+    FooterComponent,
+    AccountSettingsComponent,
+    DeleteAccountModalComponent,
+    RedirectComponent
   ],
   imports: [
     CommonModule,
@@ -33,6 +40,8 @@ import { FooterComponent } from './footer/footer.component';
     RouterModule,
     PublicRoutingModule,
     FormsModule,
+    AngularToastifyModule,
+    HttpClientModule,
     ReactiveFormsModule
   ]
 })
