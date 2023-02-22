@@ -1,32 +1,24 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { firstValueFrom } from 'rxjs';
+import { Profile } from '../models/profile.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  token!:any
-
-  constructor(private http:HttpClient, private oidcSecurityService: OidcSecurityService) { 
+  constructor(private http:HttpClient) { 
   }
 
-  async saveProfile(body: any) {
-    this.token = await firstValueFrom(this.oidcSecurityService.getIdToken())
-    // console.log('token', this.token);
-    
-    const header = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
- 
-    return this.http.put<any>('http://localhost:8080/api/v1/profile', body, {headers: header, observe: 'response', responseType: 'json'})
+  async saveProfile(body: any) { 
+    return this.http.put<any>('http://localhost:8080/api/v1/profile', body, {observe: 'response', responseType: 'json'})
   }
 
   async getProfile(path:string){
-    this.token = await firstValueFrom(this.oidcSecurityService.getIdToken())
-    // console.log('token', this.token);
-    
-    const header = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    return this.http.get('http://localhost:8080/api/v1/profile/' + path, {headers: header, observe: 'response', responseType: 'json'} )
+    return this.http.get<Profile>('http://localhost:8080/api/v1/profile/' + path)
+  }
 
+  checkUsernameAvailability(path:string){
+    return this.http.get('http://localhost:8080/api/v1/profile/username/' + path, {observe: 'response', responseType: 'text'})
   }
 }

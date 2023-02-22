@@ -6,7 +6,7 @@ import { PublicComponent } from './public.component';
 import { LoginComponent } from './login/login.component';
 import { PublicRoutingModule } from './public-routing.module';
 import { ProfileComponent } from './profile/profile.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -32,7 +32,8 @@ import { FooterComponent } from './footer/footer.component';
     SharedModule,
     RouterModule,
     PublicRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PublicModule { }
