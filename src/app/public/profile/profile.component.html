@@ -21,7 +21,7 @@
                 <small *ngIf="!profileForm.get('username')!.valid && profileForm.get('username')!.touched" class="text-red self-end pr-2">
                     must be at least 5 alphanumeric characters
                 </small>
-                <small *ngIf="profileForm.get('username')!.valid  && usernameNotTaken" class="text-red self-end pr-2">
+                <small *ngIf="profileForm.get('username')!.valid  && !usernameNotTaken" class="text-red self-end pr-2">
                     username is already taken
                 </small>
             </div>

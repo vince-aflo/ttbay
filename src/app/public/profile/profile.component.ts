@@ -91,10 +91,10 @@ export class ProfileComponent implements OnInit {
       this.userService.checkUsernameAvailability(username)
       .subscribe({
         next:(data) => {
-          this.usernameNotTaken = false;
+          this.usernameNotTaken = true;
         },
         error:(err) => {
-          this.usernameNotTaken = true;
+          this.usernameNotTaken = false;
         }
       })
   }
