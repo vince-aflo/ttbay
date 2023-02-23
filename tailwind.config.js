@@ -7,11 +7,11 @@ module.exports = {
     fontFamily: {
       sans: ['Work Sans', 'sans-serif']
     },
-    borderRadius: {
-      'full': '9999px',
-      'lg': '0.5rem',
-      'xlg': '1.5rem',
-    },
+    // borderRadius: {
+    //   'full': '9999px',
+    //   'lg': '0.5rem',
+    //   'xlg': '1.5rem',
+    // },
     colors: {
       'black': '#000',
       'green': '#bdff00',

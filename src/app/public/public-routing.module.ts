@@ -6,6 +6,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import {AccountSettingsComponent} from './account-settings/account-settings.component'
 import {RedirectComponent} from './redirect/redirect.component'
+import { AuctionComponent } from './auction/auction.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -13,9 +14,8 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'home', component: HomeComponent},
   {path: 'account-settings', component: AccountSettingsComponent},
-  {path: 'redirect', component: RedirectComponent}
-
-
+  {path: 'redirect', component: RedirectComponent},
+  {path: 'auction', component: AuctionComponent}
 ];
 
 @NgModule({

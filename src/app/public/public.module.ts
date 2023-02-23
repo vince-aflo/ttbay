@@ -18,6 +18,7 @@ import { ToastService, AngularToastifyModule } from 'angular-toastify';
 import { DeleteAccountModalComponent } from './delete-account-modal/delete-account-modal.component'; 
 import { HttpClientModule } from "@angular/common/http";
 import { RedirectComponent } from './redirect/redirect.component';
+import { AuctionComponent } from './auction/auction.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { RedirectComponent } from './redirect/redirect.component';
     FooterComponent,
     AccountSettingsComponent,
     DeleteAccountModalComponent,
-    RedirectComponent
+    RedirectComponent,
+    AuctionComponent
   ],
   imports: [
     CommonModule,

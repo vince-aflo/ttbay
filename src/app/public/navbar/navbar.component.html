@@ -4,10 +4,13 @@
         <span class="">tt</span>
         <span class="text-green">Bay</span>
     </h1>
-    <div class="flex pr-2 relative justify-between gap-4 items-center">
-        <a class="text-lg" routerLink="">Help</a>
+    <div class="flex pr-2 relative justify-between gap-6 items-center">
+        <a class="text-lg font-bold" routerLink="/auction">Sell</a>
         <!--Menu icon doubles as profile image-->
-        <img (click)="toggleMenu()" data-testid="menuIcon" class="w-[32px] h-[32px] rounded-full hover:border-2 hover:border-lightgrey" src="../../../assets/svg/icons/user-tie-solid.svg" alt="avatar">
+        <div (click)="toggleMenu()" data-testid="menuIcon" class="flex justify-center items-center hover:cursor-pointer">
+            <p class="text-lg font-bold">Menu</p>
+            <img class="w-[32px] h-[32px] pb-1" src="../../../assets/svg/icons/caret-down-solid.svg" alt="avatar">
+        </div>
         <!--Menu items-->
         <ul (click)="toggleMenu()" *ngIf="showMenu" class=" absolute top-[41px] right-0 w-[120px] text-center text-grey rounded-b-md bg-transwhite">
             <li (click)="settings()" class="hover:bg-bg-blue flex items-center justify-between py-1 px-2 border-b-[1px] border-grey">Settings<img class="w-[16x] h-[16px]" src="../../../assets/svg/icons/gears-solid.svg"></li>
