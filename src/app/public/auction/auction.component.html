@@ -1,1 +1,53 @@
-<p>auction works!</p>
+<div class="Selling-container p-8">
+  <div class="heading-div flex gap-3 items-center mb-2">
+    <h1 class="text-3xl">Selling</h1>
+    <img
+      src="../../../assets/images/material-symbols_add-box.png"
+      alt="add box icon"
+      class="h-7 w-7"
+    />
+  </div>
+
+  <div class="selling-summary w-full mb-4">
+    <ul class="w-full flex justify-around bg-lightgrey h-24">
+      <li class="flex flex-col items-center justify-center">
+        <div class="number text-5xl">0</div>
+        <div class="label">Active</div>
+      </li>
+      <li class="flex flex-col items-center justify-center">
+        <div class="number text-5xl">0</div>
+        <div class="label">Sold</div>
+      </li>
+      <li class="flex flex-col items-center justify-center">
+        <div class="number text-5xl">0</div>
+        <div class="label">Unsold</div>
+      </li>
+    </ul>
+  </div>
+  <div class="filter-dropdown flex justify-end">
+    <select
+      name="filter"
+      id="filter"
+      class="w-48 pl-3 border-2 border-lightgrey mb-12"
+    >
+      <option value="">Filters</option>
+    </select>
+  </div>
+
+  <!-- <div
+    class="items-container w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center"
+  >
+    <div class="bg-lightgrey aspect-square w-3/4 md:w-full"></div>
+    <div class="bg-lightgrey aspect-square w-3/4 md:w-full"></div>
+    <div class="bg-lightgrey aspect-square w-3/4 md:w-full"></div>
+    <div class="bg-lightgrey aspect-square w-3/4 md:w-full"></div>
+  </div> -->
+
+  <app-item-list
+    *ngIf="dummyData.length !== 0"
+    [title]="title"
+    [items]="dummyData"
+  ></app-item-list>
+
+  <p *ngIf="dummyData.length === 0">There are currently no auction items</p>
+</div>

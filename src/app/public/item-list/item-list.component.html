@@ -1,0 +1,12 @@
+<div>
+  <h2 class="text-3xl mb-5">{{ title }}</h2>
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 justify-items-center"
+  >
+    <!-- <div *ngFor="let item of items">
+      <app-item-card [item]="item"></app-item-card>
+    </div> -->
+
+    <app-item-card *ngFor="let item of items" [item]="item"></app-item-card>
+  </div>
+</div>

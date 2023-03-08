@@ -18,7 +18,11 @@ import { ToastService, AngularToastifyModule } from 'angular-toastify';
 import { DeleteAccountModalComponent } from './delete-account-modal/delete-account-modal.component'; 
 import { HttpClientModule } from "@angular/common/http";
 import { RedirectComponent } from './redirect/redirect.component';
+import { PendingAuctionsPopComponent } from './pending-auctions-pop/pending-auctions-pop.component';
 import { AuctionComponent } from './auction/auction.component';
+
+import { ItemCardComponent } from './item-card/item-card.component';
+import { ItemListComponent } from './item-list/item-list.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,10 @@ import { AuctionComponent } from './auction/auction.component';
     AccountSettingsComponent,
     DeleteAccountModalComponent,
     RedirectComponent,
-    AuctionComponent
+    PendingAuctionsPopComponent,
+    AuctionComponent,
+    ItemCardComponent,
+    ItemListComponent,
   ],
   imports: [
     CommonModule,
@@ -44,7 +51,7 @@ import { AuctionComponent } from './auction/auction.component';
     FormsModule,
     AngularToastifyModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class PublicModule { }

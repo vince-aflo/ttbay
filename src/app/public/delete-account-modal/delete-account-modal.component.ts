@@ -3,7 +3,8 @@ import {Router} from '@angular/router';
 import { ToastService, AngularToastifyModule } from 'angular-toastify';
 import { UserService } from 'src/app/core/services/user.service';
 import {AccountSettingsComponent} from '../account-settings/account-settings.component'
-import {LoginService} from '../../core/services/login.service'
+import {LoginService} from '../../core/services/login.service';
+
 
 @Component({
   selector: 'app-delete-account-modal',
@@ -23,13 +24,12 @@ export class DeleteAccountModalComponent {
   email_input: string = '';
   showEmptyFieldError = false;
   timerId: any;
+  showPendingAuctionModal = false;
 
   openModal(){
     this.showModal = true;
     
   }
-
-  
 
   logoutAndRoute(){
     this.timerId = setTimeout(() => {
@@ -41,13 +41,24 @@ export class DeleteAccountModalComponent {
       }, 5000); // 5s
         
   }
+  checkForPendingAuctions(){
+    //TODO: Check for live auctions 
+
+    //TODO: Have a conditional statement
+    this.showPendingAuctionModal= true;
+  }
 
   deleteAccount(){ 
-  
+    //CHECK FOR EMPTY FIELD 
     if (this.email_input === '') {
       this.showEmptyFieldError = true;
+      this.checkForPendingAuctions();
+      
     }
     else{
+      //CHECK FOR PENDING AUCTIONS 
+   //  this.checkForPendingAuctions();
+
       //MAKE DELETE REQUEST 
       this.userService.deleteAccount(this.email_input).then(data => {
         data.subscribe(
