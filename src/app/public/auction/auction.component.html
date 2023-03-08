@@ -1,7 +1,10 @@
-<div class="Selling-container p-8">
+<div class="Selling-container p-8 relative w-full">
+  <app-item-form class="absolute z-10 h-full backdrop-blur pt-8 top-0 left-0 right-0 mx-auto bg-transdark" (cancel)="hideAllForms()" (setToFalse)="hideItemForm($event)" *ngIf="showItemForm"></app-item-form>
+  <app-auction-form class="absolute z-10 h-full backdrop-blur-sm left-0 right-0 mx-auto" (setToFalse)="hideAllForms()" *ngIf="showAuctionForm"></app-auction-form>
+
   <div class="heading-div flex gap-3 items-center mb-2">
     <h1 class="text-3xl">Selling</h1>
-    <img
+    <img (click)="revealItemForm()"
       src="../../../assets/images/material-symbols_add-box.png"
       alt="add box icon"
       class="h-7 w-7"

@@ -7,7 +7,16 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class ItemService {
-  constructor(private httpClient: HttpClient) { }
+
+  constructor(private http:HttpClient) { }
+
+  addItem(item:any){
+    return this.http.post('http://localhost:8080/api/v1/items/add', item, {observe: 'response', responseType:'text'});
+  }
+
+  getCategories() {
+    return this.http.get('http://localhost:8080/api/v1/category/categories')
+  }
 
   private apiUrl = 'http://localhost:8080/api/v1/auctions';
 
@@ -40,6 +49,6 @@ export class ItemService {
   }
 
   async getAllUserItemsOnAuction():Promise<Observable<Item[]>>{
-    return this.httpClient.get<Item[]>('http://localhost:8080/api/v1/auction/items/on-auction' )
+    return this.http.get<Item[]>('http://localhost:8080/api/v1/auction/items/on-auction' )
   }
 }

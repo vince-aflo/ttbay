@@ -7,7 +7,7 @@ import { Observable, of, throwError } from 'rxjs';
 import {UserService} from '../../core/services/user.service'
 import { ProfileComponent } from './profile.component';
 
-fdescribe('ProfileComponent', () => {
+describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
   const mockReturnValue = 'token'

@@ -10,7 +10,7 @@ import { LoginComponent } from '../login/login.component';
 
 import { NavbarComponent } from './navbar.component';
 
-fdescribe('NavbarComponent', () => {
+describe('NavbarComponent', () => {
   const mockReturnValue = 'success'
   const loginServiceSpy = jasmine.createSpyObj('LoginService', ['logout'])
   loginServiceSpy.logout.and.returnValue(of(mockReturnValue));

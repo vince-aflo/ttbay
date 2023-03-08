@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 
 describe('LoginService', () => {
   const mockReturnValue = 'token'
-  const oidcSpy = jasmine.createSpyObj('OidcSecurityService', ['getIdToken'])
+  const oidcSpy = jasmine.createSpyObj('OidcSecurityService', ['getIdToken', 'logoffLocal'])
   oidcSpy.getIdToken.and.returnValue(of(mockReturnValue));
   const expectedUrl = 'http://localhost:8080/api/v1/register';
   const expectedResult = {"message": "Already resgistered"}
@@ -44,5 +44,11 @@ describe('LoginService', () => {
     controller.verify();
 
     expect(loginResult).toEqual(expectedResult);
+  })
+
+  it('should call logout() function', () => {
+    service.logout()
+
+    expect(oidcSpy.logoffLocal).toHaveBeenCalled()
   })
 });

@@ -2,6 +2,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { of } from 'rxjs';
+import { Profile } from '../models/profile.model';
 
 import { UserService } from './user.service';
 
@@ -31,12 +32,12 @@ describe('UserService', () => {
     expect(service).toBeTruthy();
   });
 
-    it('should save profile', async () => {
+  it('should save profile', async () => {
     let saveResult:any | undefined;
     await service.saveProfile(requestBody).then((response) => {
       response.subscribe({
         next:(value) => {
-          saveResult = value
+          saveResult = value.body
         }
       });
     });
@@ -47,5 +48,53 @@ describe('UserService', () => {
 
     expect(saveResult).toEqual(expectedSaveResponse);
   })
+
+  it('should get profile', async () => {
+    const expectedResponse = new Profile(
+      'johndoe@gmail.com',
+      'johndoe',
+      'John Doe',
+      'https://dummy.com',
+      'SONNIDOM_HOUSE',
+      [{id: 1, weekday: 'MONDAY'}, {id: 2, weekday: 'TUESDAY'}],
+      'USER'
+    )
+
+    let profile:Profile | undefined;
+    await service.getProfile('johndoe@gmail.com').then((response) => {
+      response.subscribe({
+        next:(value) => {
+          profile = value;
+        }
+      })
+    })
+
+    const request = controller.expectOne(expectedUrl+'/johndoe@gmail.com');
+    request.flush(expectedResponse);
+    controller.verify();
+
+    expect(profile).toEqual(expectedResponse)
+  })
+
+  it('should check username availabiltity', () => {
+    const expectedResponse = 'available';
+    let result:string | null = '';
+    service.checkUsernameAvailability('johndoe').subscribe({
+      next:(value) => {
+        result = value.body;
+      }
+    })
+
+    const request = controller.expectOne(expectedUrl+'/username/johndoe')
+    request.flush(expectedResponse)
+    controller.verify()
+
+    expect(result).toEqual(expectedResponse)
+  })
+
+  it('should delete account', async () => {
+
+  })
+
 
 });

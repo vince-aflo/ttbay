@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { SearchbarComponent } from './searchbar.component';
 
-fdescribe('SearchbarComponent', () => {
+describe('SearchbarComponent', () => {
   let component: SearchbarComponent;
   let fixture: ComponentFixture<SearchbarComponent>;
 

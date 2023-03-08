@@ -1,4 +1,4 @@
-
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastService } from 'angular-toastify';
 import { Item } from 'src/app/core/models/item.model';
@@ -73,7 +73,9 @@ export class AuctionComponent implements OnInit {
     },
   ];
 
-  constructor(private itemService:ItemService, private toastify:ToastService){
+  constructor(private itemService:ItemService, 
+    private toastify:ToastService,
+    private http:HttpClient){
     
   }
 
@@ -97,10 +99,27 @@ export class AuctionComponent implements OnInit {
           }
         }
       })
-   
-    
-  
-      
   }
 
+  showItemForm:boolean = false;
+  showAuctionForm:boolean = false;
+
+  revealItemForm(){
+    this.showItemForm = true;
+  }
+
+  hideAllForms() {
+    this.showItemForm = false;
+    this.showAuctionForm = false;
+  }
+
+  hideItemForm(status:boolean):void {
+    this.showItemForm = status;
+    this.showAuctionForm = !status;
+  }
+
+  hideAuctionForm(status:boolean):void {
+    this.showAuctionForm = status
+  }
 }
+

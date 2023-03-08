@@ -25,7 +25,8 @@ module.exports = {
       'transwhite': 'rgba(255, 255, 255, 0.95)',
       'white': '#fff',
       'red': '#f00',
-      'slate' : 'rgb(248 250 252)'
+      'slate' : 'rgb(248 250 252)',
+      'transdark': 'rgba(0, 0, 0, 0.5)'
     },
     extend: {},
   },
