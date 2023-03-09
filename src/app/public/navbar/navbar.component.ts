@@ -18,6 +18,9 @@ export class NavbarComponent {
 
   toggleMenu() {
     this.showMenu = !this.showMenu;
+    setTimeout(() => {
+      this.showMenu = false;
+    }, 3000)
   }
 
   logout(){

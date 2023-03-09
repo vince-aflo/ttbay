@@ -7,6 +7,7 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class ItemService {
+  private apiUrl1 = 'http://localhost:8080/api/v1/auctions/all-by-user';
 
   constructor(private http:HttpClient) { }
 
@@ -21,26 +22,7 @@ export class ItemService {
   private apiUrl = 'http://localhost:8080/api/v1/auctions';
 
   
-  private items: Item[] = [
-    {
-      id: 1,
-      name: "Office chair",
-      imageUrl: "https://www.ulcdn.net/images/products/497793/original/Charles_Metal_Study_Chair_In_Black_Colour_LP.jpg?1674560816",
-      startingPrice: 1200,
-      condition: "new",
-      description: "Good"
-    },
-    {
-      id: 2,
-      name: "Office table",
-      imageUrl: "https://stylesatlife.com/wp-content/uploads/2019/11/best-office-table-designs.jpg",
-      startingPrice: 2500,  
-      condition: "new",
-      description: "Good"
-    },
-
-
-  ];
+  private items: Item[] = [];
 
 
   getLiveAuctions(): Observable<Item[]> {
@@ -50,5 +32,9 @@ export class ItemService {
 
   async getAllUserItemsOnAuction():Promise<Observable<Item[]>>{
     return this.http.get<Item[]>('http://localhost:8080/api/v1/auction/items/on-auction' )
+  }
+
+  getAllUserItems(){
+    return this.http.get<Item[]>('http://localhost:8080/api/v1/items/all-by-user')
   }
 }

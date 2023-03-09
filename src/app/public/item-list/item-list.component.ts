@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import {Item} from '../../core/models/item.model'
+import {Item} from '../../core/models/item.model';
+import { Auction} from '../../core/models/auction';
 
 @Component({
   selector: 'app-item-list',
@@ -9,4 +10,6 @@ import {Item} from '../../core/models/item.model'
 export class ItemListComponent {
   @Input() title?: string;
   @Input() items?: Item[];
+  @Input() auctions?: Auction[];
+
 }

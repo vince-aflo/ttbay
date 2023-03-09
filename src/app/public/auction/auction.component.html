@@ -1,8 +1,10 @@
-<div class="Selling-container p-8 relative w-full">
-  <app-item-form class="absolute z-10 h-full backdrop-blur pt-8 top-0 left-0 right-0 mx-auto bg-transdark" (cancel)="hideAllForms()" (setToFalse)="hideItemForm($event)" *ngIf="showItemForm"></app-item-form>
-  <app-auction-form class="absolute z-10 h-full backdrop-blur-sm left-0 right-0 mx-auto" (setToFalse)="hideAllForms()" *ngIf="showAuctionForm"></app-auction-form>
 
-  <div class="heading-div flex gap-3 items-center mb-2">
+<div class="Selling-container p-8 relative w-full">
+  <app-navbar class="absolute top-0 left-0 w-full"></app-navbar>
+  <app-item-form class="absolute h-full backdrop-blur pt-8 top-0 left-0 right-0 mx-auto bg-transdark" (cancel)="hideAllForms()" (setToFalse)="hideItemForm($event)" *ngIf="showItemForm"></app-item-form>
+  <app-auction-form class="absolute h-full backdrop-blur pt-8 top-0 left-0 right-0 mx-auto bg-transdark" (setToFalse)="hideAllForms()" *ngIf="showAuctionForm"></app-auction-form>
+
+  <div class="heading-div flex gap-3 items-center mt-8 mb-2">
     <h1 class="text-3xl">Selling</h1>
     <img (click)="revealItemForm()"
       src="../../../assets/images/material-symbols_add-box.png"
@@ -14,7 +16,7 @@
   <div class="selling-summary w-full mb-4">
     <ul class="w-full flex justify-around bg-lightgrey h-24">
       <li class="flex flex-col items-center justify-center">
-        <div class="number text-5xl">0</div>
+        <div class="number text-5xl">{{auctions.length}}</div>
         <div class="label">Active</div>
       </li>
       <li class="flex flex-col items-center justify-center">
@@ -46,11 +48,20 @@
     <div class="bg-lightgrey aspect-square w-3/4 md:w-full"></div>
   </div> -->
 
-  <app-item-list
-    *ngIf="dummyData.length !== 0"
+  <app-item-list class=""
+    *ngIf="auctions.length !== 0"
     [title]="title"
-    [items]="dummyData"
+    [auctions]="auctions"
   ></app-item-list>
 
-  <p *ngIf="dummyData.length === 0">There are currently no auction items</p>
+  <p *ngIf="auctions.length === 0">There are currently no auction items</p>
 </div>
+
+  <!-- <app-item-list class=""
+  *ngIf="allItems.length !== 0"
+  [title]="'My Items'"
+  [allItems]="allItems"
+></app-item-list>
+
+  <p *ngIf="auctions.length === 0">There are currently no auction items</p>
+</div> -->

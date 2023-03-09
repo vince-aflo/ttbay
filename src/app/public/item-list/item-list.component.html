@@ -7,6 +7,6 @@
       <app-item-card [item]="item"></app-item-card>
     </div> -->
 
-    <app-item-card *ngFor="let item of items" [item]="item"></app-item-card>
+    <app-item-card class="-z-10" *ngFor="let auction of auctions" [auction]="auction"></app-item-card>
   </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="z-10 flex h-[50px] bg-white border-b-2 justify-between items-center border-lightgrey drop-shadow-sm">
+<div class="z-50 flex h-[50px] bg-white border-b-2 justify-between items-center border-lightgrey drop-shadow-sm">
     <!--Logo-->
     <h1 routerLink="/home" class="text-3xl pl-2 font-bold">
         <span class="">tt</span>
@@ -12,7 +12,7 @@
             <img class="w-[32px] h-[32px] pb-1" src="../../../assets/svg/icons/caret-down-solid.svg" alt="avatar">
         </div>
         <!--Menu items-->
-        <ul (click)="toggleMenu()" *ngIf="showMenu" class=" absolute top-[41px] right-0 w-[120px] text-center text-grey rounded-b-md bg-transwhite">
+        <ul (click)="toggleMenu()" *ngIf="showMenu" class="z-50 absolute top-[41px] right-0 w-[120px] text-center text-grey rounded-b-md bg-transwhite">
             <li (click)="settings()" class="hover:bg-bg-blue flex items-center justify-between py-1 px-2 border-b-[1px] border-grey">Settings<img class="w-[16x] h-[16px]" src="../../../assets/svg/icons/gears-solid.svg"></li>
             <li routerLink="/profile"  class="hover:bg-bg-blue flex items-center justify-between py-1 px-2 border-b-[1px] border-grey">Profile<img class="w-[16px] h-[16px]" src="../../../assets/svg/icons/id-badge-solid.svg"></li>
             <li data-testid="logoutButton" (click)="logout()" class="hover:bg-bg-blue flex rounded-b-md items-center justify-between py-1 px-2">Sign out<img class="w-[16px] h-[16px]" src="../../../assets/svg/icons/arrow-right-from-bracket-solid.svg"></li>

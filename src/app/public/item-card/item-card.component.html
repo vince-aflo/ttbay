@@ -7,14 +7,14 @@
 
 <div class="w-full max-w-sm bg-white rounded-lg shadow">
   <!-- <div class="relative h-64 w-full"> -->
-  <div class="relative aspect-square w-full" div>
+  <div class="relative aspect-square w-full">
     <!-- <img
       [src]="item.imageUrl"
       alt="Item image"
       class="h-full w-full object-cover rounded-lg"
     /> -->
     <img
-      [src]="item.imageUrl"
+      [src]="auction.item.imageList[0].imageUrl"
       alt="Item image"
       class="aspect-square w-full object-cover rounded-lg"
     />
@@ -25,13 +25,13 @@
   </div>
 
   <div class="px-5 py-4">
-    <h5 class="text-l tracking-tight text-gray-900 dark:text-white">
-      {{ item.name }}
+    <h5 class="tracking-tight text-gray-900 dark:text-white">
+      {{ auction.item.name }}
     </h5>
 
     <div class="flex items-center justify-between">
       <span class="text-xl font-bold text-black"
-        >Gh¢ {{ item.startingPrice }}</span
+        >Gh¢ {{ auction.reservedPrice }}</span
       >
     </div>
   </div>

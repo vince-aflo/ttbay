@@ -4,6 +4,8 @@ import { ToastService, AngularToastifyModule } from 'angular-toastify';
 import { UserService } from 'src/app/core/services/user.service';
 import {AccountSettingsComponent} from '../account-settings/account-settings.component'
 import {LoginService} from '../../core/services/login.service';
+import { AuctionService } from 'src/app/core/services/auction.service';
+
 
 
 @Component({
@@ -16,6 +18,7 @@ export class DeleteAccountModalComponent {
   constructor( 
     private accountSettingsComponent : AccountSettingsComponent,
     private router: Router,
+    private auctionService: AuctionService,
     private userService: UserService, 
     private _toastService: ToastService,
     private loginService: LoginService){}
@@ -41,11 +44,18 @@ export class DeleteAccountModalComponent {
       }, 5000); // 5s
         
   }
+
   checkForPendingAuctions(){
     //TODO: Check for live auctions 
-
-    //TODO: Have a conditional statement
-    this.showPendingAuctionModal= true;
+    this.auctionService.getAllAuctionsByUser().subscribe({
+      next:(value) => {
+        if(value !== null){
+          console.log
+          this.showPendingAuctionModal= true;
+        }
+      }
+    })
+    
   }
 
   deleteAccount(){ 
@@ -57,35 +67,23 @@ export class DeleteAccountModalComponent {
     }
     else{
       //CHECK FOR PENDING AUCTIONS 
-   //  this.checkForPendingAuctions();
+       this.checkForPendingAuctions();
 
       //MAKE DELETE REQUEST 
-      this.userService.deleteAccount(this.email_input).then(data => {
-        data.subscribe(
-          response => {
-             console.log(response.body);
+      this.userService.deleteAccount(this.email_input).subscribe(response => {
+          console.log(response.body);
 
-             //DELETE SUCCESS TOAST
-              if (response.status == 200){
-                this._toastService.success('Account deleted successfully');
-                this.logoutAndRoute();
-                }
-               }, 
-           error =>{
-               switch(error.status){ 
-                  case 401: { 
-                  this._toastService.error('Email does not match');
-                  break; 
-                } case 403: { 
-                  this._toastService.error('Email does not match');
-                  break; 
-                }
-                  default: { 
-                    this._toastService.error('Process failed'); 
-                    break; 
-                }        
-             }}
-        );
+          //DELETE SUCCESS TOAST
+          if (response.status == 200) {
+             this._toastService.success('Account deleted successfully');
+             this.logoutAndRoute();
+          } else if (response.status == 401) {
+            this._toastService.error('Email does not match');
+          } else if (response.status == 403) {
+            this._toastService.error('Email does not match');
+          } else {
+            this._toastService.error('Process failed'); 
+          }
       })
     } 
   }

@@ -22,7 +22,7 @@ export class UserService {
     return this.http.get('http://localhost:8080/api/v1/profile/username/' + path, {observe: 'response', responseType: 'text'})
   }
 
-  async deleteAccount(email:string){
-    return this.http.delete('http://localhost:8080/api/v1/account/user/' + email, { observe: 'response', responseType: 'text'})
+  deleteAccount(email:string){
+    return this.http.delete('http://localhost:8080/api/v1/account/user/' + email, { observe: 'response', responseType: 'json'})
   }
 }
