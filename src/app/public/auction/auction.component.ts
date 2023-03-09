@@ -11,10 +11,12 @@ import { ItemService } from 'src/app/core/services/item.service';
   styleUrls: ['./auction.component.scss']
 })
 export class AuctionComponent implements OnInit {
-  title:string = "My Live Auctions";
+  showAuctions:boolean = true;
+  showItemForm:boolean = false;
+  showAuctionForm:boolean = false;
 
   auctions:Auction[] = [];
-  allItems:Item[] = [];
+  items:Item[] = [];
 
 
   constructor(private itemService:ItemService, 
@@ -26,39 +28,18 @@ export class AuctionComponent implements OnInit {
   ngOnInit(): void {
     this.itemService.getAllUserItems().subscribe({
       next:(data) => {
-        this.allItems = data;
-        // console.log(data);
+        this.items = data;
       }
     })
 
     this.auctionService.getAllAuctionsByUser().subscribe({
       next:(data) => {
         this.auctions = data;
-        console.log(data)
       }
     })
-
   }
 
-  // public async getAllUserAuctionItems() {
-    
-  //     let response = await this.itemService.getAllUserItemsOnAuction()
-  //     response.subscribe({
-  //       next: (response) => {
-  //         this.liveAuctions = response;
-  //       },
-  //       error:(error) => {
-  //         if(error.error === "User currently has no items" || error.error === "User has no items on auction"){
-  //           this.liveAuctions = [];
-  //         } else{
-  //           this.toastify.error(error.error)
-  //         }
-  //       }
-  //     })
-  // }
 
-  showItemForm:boolean = false;
-  showAuctionForm:boolean = false;
 
   revealItemForm(){
     this.showItemForm = true;
@@ -76,6 +57,14 @@ export class AuctionComponent implements OnInit {
 
   hideAuctionForm(status:boolean):void {
     this.showAuctionForm = status
+  }
+
+  activateAuctionsTab(){
+    this.showAuctions = true;
+  }
+
+  activateDraftsTab(){
+    this.showAuctions = false;
   }
 }
 

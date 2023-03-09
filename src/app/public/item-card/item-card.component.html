@@ -14,7 +14,7 @@
       class="h-full w-full object-cover rounded-lg"
     /> -->
     <img
-      [src]="auction.item.imageList[0].imageUrl"
+      [src]="item.imageList[0].imageUrl"
       alt="Item image"
       class="aspect-square w-full object-cover rounded-lg"
     />
@@ -25,13 +25,13 @@
   </div>
 
   <div class="px-5 py-4">
-    <h5 class="tracking-tight text-gray-900 dark:text-white">
-      {{ auction.item.name }}
+    <h5 class="tracking-tight font-semibold text-gray-900 dark:text-white">
+      {{ item.name }}
     </h5>
 
     <div class="flex items-center justify-between">
-      <span class="text-xl font-bold text-black"
-        >Gh¢ {{ auction.reservedPrice }}</span
+      <span class="text-black"
+        >Condition: {{ item.condition | categoryName }}</span
       >
     </div>
   </div>

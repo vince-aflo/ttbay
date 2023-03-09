@@ -27,6 +27,8 @@ import { CategoryNamePipe } from './pipes/category-name.pipe';
 
 import { ItemCardComponent } from './item-card/item-card.component';
 import { ItemListComponent } from './item-list/item-list.component';
+import { AuctionListComponent } from './auction-list/auction-list.component';
+import { AuctionCardComponent } from './auction-card/auction-card.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { ItemListComponent } from './item-list/item-list.component';
     AuctionComponent,
     ItemCardComponent,
     ItemListComponent,
+    AuctionListComponent,
+    AuctionCardComponent,
   ],
   imports: [
     CommonModule,

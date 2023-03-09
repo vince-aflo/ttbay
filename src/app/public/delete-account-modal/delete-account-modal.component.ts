@@ -46,7 +46,7 @@ export class DeleteAccountModalComponent {
   }
 
   checkForPendingAuctions(){
-    //TODO: Check for live auctions 
+    //Check for live auctions 
     this.auctionService.getAllAuctionsByUser().subscribe({
       next:(value) => {
         if(value !== null){
@@ -62,7 +62,6 @@ export class DeleteAccountModalComponent {
     //CHECK FOR EMPTY FIELD 
     if (this.email_input === '') {
       this.showEmptyFieldError = true;
-      this.checkForPendingAuctions();
       
     }
     else{

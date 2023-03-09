@@ -1,60 +1,54 @@
 
-<div class="Selling-container p-8 relative w-full">
+<div class="Selling-container flex flex-col gap-4 p-8 relative w-full">
   <app-navbar class="absolute top-0 left-0 w-full"></app-navbar>
-  <app-item-form class="absolute h-full backdrop-blur pt-8 top-0 left-0 right-0 mx-auto bg-transdark" (cancel)="hideAllForms()" (setToFalse)="hideItemForm($event)" *ngIf="showItemForm"></app-item-form>
-  <app-auction-form class="absolute h-full backdrop-blur pt-8 top-0 left-0 right-0 mx-auto bg-transdark" (setToFalse)="hideAllForms()" *ngIf="showAuctionForm"></app-auction-form>
+  <app-item-form class="absolute z-30 h-full backdrop-blur pt-8 top-0 left-0 right-0 mx-auto bg-transdark" (cancel)="hideAllForms()" (setToFalse)="hideItemForm($event)" *ngIf="showItemForm"></app-item-form>
+  <app-auction-form class="absolute z-30 h-full backdrop-blur pt-8 top-0 left-0 right-0 mx-auto bg-transdark" (setToFalse)="hideAllForms()" *ngIf="showAuctionForm"></app-auction-form>
 
-  <div class="heading-div flex gap-3 items-center mt-8 mb-2">
-    <h1 class="text-3xl">Selling</h1>
-    <img (click)="revealItemForm()"
-      src="../../../assets/images/material-symbols_add-box.png"
-      alt="add box icon"
-      class="h-7 w-7"
-    />
+  <div class="heading-div flex flex-col gap-3 mt-8 mb-2">
+    <h1 class="text-3xl self-left font-bold">Selling</h1>
+    <div class="w-full h-[150px] flex flex-col rounded-md justify-center p-4 bg-gradient-to-r from-violet to-blue">
+      <h1 class="text-3xl font-semibold mb-4">Have a new item to sell?</h1>
+      <app-button (click)="revealItemForm()" [buttonText]="'List an item'"></app-button>
+    </div>
   </div>
 
-  <div class="selling-summary w-full mb-4">
-    <ul class="w-full flex justify-around bg-lightgrey h-24">
-      <li class="flex flex-col items-center justify-center">
-        <div class="number text-5xl">{{auctions.length}}</div>
-        <div class="label">Active</div>
-      </li>
-      <li class="flex flex-col items-center justify-center">
-        <div class="number text-5xl">0</div>
-        <div class="label">Sold</div>
-      </li>
-      <li class="flex flex-col items-center justify-center">
-        <div class="number text-5xl">0</div>
-        <div class="label">Unsold</div>
-      </li>
-    </ul>
-  </div>
-  <div class="filter-dropdown flex justify-end">
-    <select
-      name="filter"
-      id="filter"
-      class="w-48 pl-3 border-2 border-lightgrey mb-12"
-    >
-      <option value="">Filters</option>
-    </select>
+  <!-- Tabs -->
+  <div class="flex relative w-[220px] h-[40px] shadow-[inset_1px_2px_2px_0_rgba(0,0,0,0.25)] bg-lightgrey rounded-xl">
+      <div (click)="activateAuctionsTab()" [ngClass]="showAuctions ? 'bg-black text-white' : ''" 
+        class="flex absolute justify-center font-semibold items-center w-[120px] h-[40px] rounded-xl hover:cursor-pointer">
+        Auctions</div>
+      <div (click)="activateDraftsTab()" [ngClass]="showAuctions ? '' : 'bg-black text-white'" 
+        class="absolute right-0 flex z-10 bg-neutral-200 justify-center font-semibold items-center w-[120px] h-[40px] rounded-xl hover:cursor-pointer">
+        Drafts</div>
   </div>
 
-  <!-- <div
-    class="items-container w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center"
-  >
-    <div class="bg-lightgrey aspect-square w-3/4 md:w-full"></div>
-    <div class="bg-lightgrey aspect-square w-3/4 md:w-full"></div>
-    <div class="bg-lightgrey aspect-square w-3/4 md:w-full"></div>
-    <div class="bg-lightgrey aspect-square w-3/4 md:w-full"></div>
-  </div> -->
+  <app-auction-list
+    *ngIf="auctions.length !== 0 && showAuctions"
+    [title]="'My Auctions'"
+    [auctions]="auctions"
+    ></app-auction-list>
+
+    <div *ngIf="auctions.length === 0 && showAuctions" class="flex flex-col items-center">
+      <p >There are currently no items on auctions</p>
+      <img  src="https://cdn.dribbble.com/users/721524/screenshots/4117132/untitled-1-_1_.png"
+       alt="no items in auction">
+
+    </div>
+
 
   <app-item-list class=""
-    *ngIf="auctions.length !== 0"
-    [title]="title"
-    [auctions]="auctions"
+    *ngIf="items.length !== 0 && !showAuctions"
+    [title]="'My Drafts'"
+    [items]="items"
   ></app-item-list>
 
-  <p *ngIf="auctions.length === 0">There are currently no auction items</p>
+  <div class="flex flex-col items-center" *ngIf="items.length === 0 && !showAuctions">
+    <p >
+      There are currently no drafts
+    </p>
+    <img  src="https://cdni.iconscout.com/illustration/premium/thumb/out-of-stock-5100752-4264526.png?f=webp" alt="no drafts">
+  </div>
+  
 </div>
 
   <!-- <app-item-list class=""
