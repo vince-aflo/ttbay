@@ -7,27 +7,18 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class ItemService {
-  private apiUrl1 = 'http://localhost:8080/api/v1/auctions/all-by-user';
-
   constructor(private http:HttpClient) { }
 
   addItem(item:any){
     return this.http.post('http://localhost:8080/api/v1/items/add', item, {observe: 'response', responseType:'text'});
   }
 
-  getCategories() {
-    return this.http.get('http://localhost:8080/api/v1/category/categories')
+  getItem(id:number){
+    return this.http.get<Item>(`http://localhost:8080/api/v1/items/${id}`)
   }
 
-  private apiUrl = 'http://localhost:8080/api/v1/auctions';
-
-  
-  private items: Item[] = [];
-
-
-  getLiveAuctions(): Observable<Item[]> {
-    //return this.httpClient.get<Item[]>(this.apiUrl);
-    return of(this.items);
+  getCategories() {
+    return this.http.get('http://localhost:8080/api/v1/category/categories')
   }
 
   async getAllUserItemsOnAuction():Promise<Observable<Item[]>>{

@@ -23,13 +23,13 @@ export class HomeComponent {
     //    this.auctions = my_auctions
       
     // );
-    this.getAllUserAuctionItems();
+    // this.getAllUserAuctionItems();
     // Get live items from the ItemService
-    this.itemService.getLiveAuctions().subscribe((items: Item[]) => {
-      // Assign the items to the liveAuction's array
-      this.liveAuctions = items;
+    // this.itemService.getLiveAuctions().subscribe((items: Item[]) => {
+    //   // Assign the items to the liveAuction's array
+    //   this.liveAuctions = items;
       
-    });
+    // });
    
   }
 

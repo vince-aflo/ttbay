@@ -27,6 +27,7 @@ import { ItemCardComponent } from './item-card/item-card.component';
 import { ItemListComponent } from './item-list/item-list.component';
 import { AuctionListComponent } from './auction-list/auction-list.component';
 import { AuctionCardComponent } from './auction-card/auction-card.component';
+import { ItemDetailComponent } from './item-detail/item-detail.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { AuctionCardComponent } from './auction-card/auction-card.component';
     ItemListComponent,
     AuctionListComponent,
     AuctionCardComponent,
+    ItemDetailComponent,
   ],
   imports: [
     CommonModule,

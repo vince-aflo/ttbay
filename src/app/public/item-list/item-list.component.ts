@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import {Item} from '../../core/models/item.model';
 import { Auction} from '../../core/models/auction';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-item-list',
@@ -11,4 +12,5 @@ export class ItemListComponent {
   @Input() title?: string;
   @Input() items?: Item[];
 
+  constructor(){}
 }
