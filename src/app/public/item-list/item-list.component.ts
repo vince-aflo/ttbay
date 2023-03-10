@@ -10,6 +10,5 @@ import { Auction} from '../../core/models/auction';
 export class ItemListComponent {
   @Input() title?: string;
   @Input() items?: Item[];
-  @Input() auctions?: Auction[];
 
 }

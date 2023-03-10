@@ -19,12 +19,10 @@ import { DeleteAccountModalComponent } from './delete-account-modal/delete-accou
 import { HttpClientModule } from "@angular/common/http";
 import { RedirectComponent } from './redirect/redirect.component';
 import { PendingAuctionsPopComponent } from './pending-auctions-pop/pending-auctions-pop.component';
-import { AuctionComponent } from './auction/auction.component';
+import { SellingComponent } from './selling/selling.component';
 import { ItemFormComponent } from './item-form/item-form.component';
 import { AuctionFormComponent } from './auction-form/auction-form.component';
 import { CategoryNamePipe } from './pipes/category-name.pipe';
-
-
 import { ItemCardComponent } from './item-card/item-card.component';
 import { ItemListComponent } from './item-list/item-list.component';
 import { AuctionListComponent } from './auction-list/auction-list.component';
@@ -44,12 +42,11 @@ import { AuctionCardComponent } from './auction-card/auction-card.component';
     AccountSettingsComponent,
     DeleteAccountModalComponent,
     RedirectComponent,
-    AuctionComponent,
     ItemFormComponent,
     AuctionFormComponent,
     CategoryNamePipe,
     PendingAuctionsPopComponent,
-    AuctionComponent,
+    SellingComponent,
     ItemCardComponent,
     ItemListComponent,
     AuctionListComponent,

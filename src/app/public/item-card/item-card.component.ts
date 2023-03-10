@@ -12,8 +12,7 @@ import {ItemService} from '../../core/services/item.service'
 export class ItemCardComponent {
   @Input()
   item!: Item;
-  @Input() auction!:Auction;
-  
+
   constructor(private itemService: ItemService) {}
   
 }

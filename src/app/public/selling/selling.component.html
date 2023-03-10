@@ -1,5 +1,5 @@
 
-<div class="Selling-container flex flex-col gap-4 p-8 relative w-full">
+<div class="Selling-container flex flex-col gap-4 p-8 relative min-h-screen w-full">
   <app-navbar class="absolute top-0 left-0 w-full"></app-navbar>
   <app-item-form class="absolute z-30 h-full backdrop-blur pt-8 top-0 left-0 right-0 mx-auto bg-transdark" (cancel)="hideAllForms()" (setToFalse)="hideItemForm($event)" *ngIf="showItemForm"></app-item-form>
   <app-auction-form class="absolute z-30 h-full backdrop-blur pt-8 top-0 left-0 right-0 mx-auto bg-transdark" (setToFalse)="hideAllForms()" *ngIf="showAuctionForm"></app-auction-form>
@@ -22,18 +22,14 @@
         Drafts</div>
   </div>
 
+  <!-- Definitely need to set a router here for child routes -->
+
   <app-auction-list
     *ngIf="auctions.length !== 0 && showAuctions"
     [title]="'My Auctions'"
     [auctions]="auctions"
     ></app-auction-list>
-
-    <div *ngIf="auctions.length === 0 && showAuctions" class="flex flex-col items-center">
-      <p >There are currently no items on auctions</p>
-      <img  src="https://cdn.dribbble.com/users/721524/screenshots/4117132/untitled-1-_1_.png"
-       alt="no items in auction">
-
-    </div>
+    <p *ngIf="auctions.length === 0">There are currently no items on auctions</p>
 
 
   <app-item-list class=""
@@ -42,13 +38,7 @@
     [items]="items"
   ></app-item-list>
 
-  <div class="flex flex-col items-center" *ngIf="items.length === 0 && !showAuctions">
-    <p >
-      There are currently no drafts
-    </p>
-    <img  src="https://cdni.iconscout.com/illustration/premium/thumb/out-of-stock-5100752-4264526.png?f=webp" alt="no drafts">
-  </div>
-  
+  <p *ngIf="items.length === 0 && !showAuctions">There are currently no drafts</p>
 </div>
 
   <!-- <app-item-list class=""

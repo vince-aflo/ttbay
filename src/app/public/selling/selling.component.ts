@@ -6,11 +6,11 @@ import { AuctionService } from 'src/app/core/services/auction.service';
 import { ItemService } from 'src/app/core/services/item.service';
 
 @Component({
-  selector: 'app-auction',
-  templateUrl: './auction.component.html',
-  styleUrls: ['./auction.component.scss']
+  selector: 'app-selling',
+  templateUrl: './selling.component.html',
+  styleUrls: ['./selling.component.scss']
 })
-export class AuctionComponent implements OnInit {
+export class SellingComponent implements OnInit {
   showAuctions:boolean = true;
   showItemForm:boolean = false;
   showAuctionForm:boolean = false;
