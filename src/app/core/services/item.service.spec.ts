@@ -1,19 +1,12 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-=======
->>>>>>> origin/develop
->>>>>>> origin/develop
 import { TestBed } from '@angular/core/testing';
 
 import { ItemService } from './item.service';
 
 describe('ItemService', () => {
   let service: ItemService;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
   let controller: HttpTestingController;
 
   beforeEach(() => {
@@ -24,25 +17,11 @@ describe('ItemService', () => {
 
     service = TestBed.inject(ItemService);
     controller = TestBed.inject(HttpTestingController);
-  
-=======
->>>>>>> origin/develop
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(ItemService);
-<<<<<<< HEAD
-=======
->>>>>>> origin/develop
->>>>>>> origin/develop
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
   it('should add an item', () => {
     const expectedResponse = 'success';
@@ -77,7 +56,4 @@ describe('ItemService', () => {
 
     expect(result).toEqual(expectedResponse)
   })
-=======
->>>>>>> origin/develop
->>>>>>> origin/develop
-});
+})

@@ -1,41 +1,40 @@
-<app-navbar></app-navbar>
-<div class="flex flex-col gap-2 w-full p-4 md:flex-row md:items-center md:gap-6">
-    <!-- <div class="relative h-64 w-full"> -->
-    <h1 class="tracking-tight mb-2 text-xl font-semibold text-gray-900 dark:text-white md:hidden">
-        {{item.name}}
-    </h1>
-    <div class="relative aspect-square w-full md:max-w-[300px] ">
-      <img
-        src="{{item.imageList[currentImagePosition].imageUrl}}"
-        alt="Item image"
-        class="aspect-square w-full object-cover rounded-lg"
-      />
-      <img (click)="previousImage()" src="../../../assets/svg/icons/chevron-left-solid.svg" 
-      class="absolute inset-y-1/2 left-2 p-2 w-10 h-10 object-fit 
-        bg-bg-blue rounded-full hover:bg-white">
-      <img (click)="nextImage()" src="../../../assets/svg/icons/chevron-right-solid.svg" 
-      class="absolute inset-y-1/2 right-2 p-2 w-10 h-10 object-fit
-         bg-bg-blue rounded-full hover:bg-white">
-      <!-- <div
-        class="absolute inset-0 rounded-lg"
-        style="mask-image: url(item.imageUrl)"
-      ></div> -->
-    </div>
-    <div class="md:flex md:flex-col md:justify-center md:gap-4 md:min-h-[300px] md:max-h-[300px]">
-        <h1 class="hidden tracking-tight text-xl font-semibold text-gray-900 dark:text-white md:block">
-            {{item.name}}
-        </h1>
-        <div class="py-4 md:py-0">
-            <h2 class="text-lg font-semibold">Condition: {{item.condition | categoryName}}</h2>
-            <h2 class="text-lg font-semibold">Description</h2>
-            <p class="overflow-y-scroll pb-2 max-w-[700px] md:max-h-[120px]">{{item.description}}</p>
-        </div>
-        <div class="flex gap-2">
-            <app-button [buttonText]="'Auction'"></app-button>
-            <app-button [buttonText]="'Edit'"></app-button>
-            <app-button [buttonText]="'Delete'"></app-button>
-        </div>
-    </div>  
+<!-- <div class="min-h-screen w-full"> -->
 
+<div class="flex flex-col gap-2 min-h-full w-full p-4 mt-12 md:flex-row md:gap-6">
+  <app-navbar class="absolute top-0 left-0 z-10 w-full"></app-navbar>
+  <div *ngIf="showAuctionForm" class="fixed backdrop-blur top-0 left-0 w-full bg-transdark min-h-full z-20"></div>
+  <app-auction-form [itemToAuction]="item"
+    class="absolute z-30 h-full pt-8 top-0 left-0 right-0 mx-auto"
+    (setToFalse)="toggleAuctionFormVisibility()" *ngIf="showAuctionForm"></app-auction-form>
+
+    <!-- <div class="relative h-64 w-full"> -->
+  <h1 class="tracking-tight mb-2 text-xl font-semibold text-gray-900 dark:text-white md:hidden">
+    {{item && item.name}}
+  </h1>
+  <div class="relative aspect-square w-full md:max-h-[300px] md:max-w-[300px] ">
+    <img src="{{item && item.imageList[currentImagePosition].imageUrl}}" alt="Item image"
+      class="aspect-square w-full object-cover rounded-lg" />
+    <img (click)="previousImage()" src="../../../assets/svg/icons/chevron-left-solid.svg" class="absolute inset-y-1/2 left-2 p-2 w-10 h-10 object-fit 
+      bg-bg-blue rounded-full hover:bg-white">
+    <img (click)="nextImage()" src="../../../assets/svg/icons/chevron-right-solid.svg" class="absolute inset-y-1/2 right-2 p-2 w-10 h-10 object-fit
+        bg-bg-blue rounded-full hover:bg-white">
+  </div>
+  <div class="md:flex md:flex-col md:justify-center md:gap-4 md:min-h-[300px] md:max-h-[300px]">
+    <h1 class="hidden tracking-tight text-xl font-semibold text-gray-900 dark:text-white md:block">
+      {{item && item.name}}
+    </h1>
+    <div class="py-4 md:py-0">
+      <h2 class="text-lg font-semibold">Condition: {{item && (item.condition | categoryName)}}</h2>
+      <h2 class="text-lg font-semibold">Description</h2>
+      <p class="overflow-y-auto truncate pb-2 max-w-[700px] md:max-h-[120px]">{{item && item.description}}</p>
+    </div>
+    <div class="flex gap-2">
+      <app-button (click)="toggleAuctionFormVisibility()" [buttonText]="'Auction'"></app-button>
+      <app-button [buttonText]="'Edit'"></app-button>
+      <app-button [buttonText]="'Delete'"></app-button>
+    </div>
+  </div>
 </div>
-  
+
+
+<!-- </div> -->

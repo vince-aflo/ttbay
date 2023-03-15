@@ -1,33 +1,41 @@
-<div class="flex flex-col text-lg gap-6 w-[90%] max-w-[450px] border border-lightgrey bg-white shadow-sm mx-auto my-6 p-4 rounded-md">
-    <h1 class="text-2xl font-semibold self-center pb-2 border-b">Getting ready to auction</h1>
-    <section class="flex items-center gap-2 p-3 rounded-md h-[120px] bg-lightgrey">
-        <img class="w-[100px] h-[100px] rounded-md bg-black inline-block" src="#" alt="">
-        <span class="">Item title</span>
+<div class="relative flex flex-col text-lg gap-6 w-[90%] max-w-[450px] border border-lightgrey bg-white shadow-sm mx-auto my-6 rounded-md">
+    <img (click)="sendHideEvent()" class="absolute w-8 h-8 p-2 top-2 right-2 bg-grey rounded-full hover:bg-red" src="../../../assets/svg/icons/xmark-solid.svg" alt="">
+    <h1 class="text-2xl mt-8 mx-8 font-semibold self-center pb-2 border-b">Getting ready to auction</h1>
+    <section class="flex items-center gap-4 mx-8 rounded-md h-[120px] bg-lightgrey">
+        <img class="h-[100%] aspect-square object-cover rounded-lg bg-black inline-block" src="{{itemToAuction.imageList[0].imageUrl}}" alt="">
+        <div class="">
+            <h2 class="text-ellipsis font-semibold">{{itemToAuction.name}}</h2>
+            <span class="text-sm">Condition: {{itemToAuction.condition | categoryName }}</span>
+        </div>
     </section>
-    <section >
-        <form class="flex flex-col gap-6" [formGroup]="auctionForm">
+    <section class="mx-8 mb-8" >
+        <form #myauctionForm="ngForm" class="flex flex-col gap-4" [formGroup]="auctionForm" (ngSubmit)="scheduleAuction()">
             <!-- Price -->
-            <div class="flex flex-row justify-between items-center">
-                <label class="" for="price">Name a starting price</label>
-                <input class="h-[30px] max-w-[90px] pl-2 border rounded-md" type="number" formControlName="price"> 
+            <div class="flex flex-col gap-1">
+                <label class="leading-tight" for="price">Name a starting price</label>
+                <input class="h-[40px] pl-2 border rounded-md" type="number" formControlName="price"> 
+                <small class="text-xs text-red" *ngIf="auctionForm.get('price')!.hasError('required') && myauctionForm.submitted">This field cannot be empty</small>
             </div>
 
             <!-- Auction date -->
-            <div>
-                <label for="start-date">When do you want to start the auction?</label>
-                <input class="h-[30px] w-full border pl-2 rounded-md" type="datetime-local" min="" formControlName="startDate">
+            <div class="flex flex-col gap-1">
+                <label class="leading-tight" for="start-date">When do you want to start the auction?</label>
+                <input class="h-[40px] w-full border pl-2 rounded-md" type="datetime-local" min="" formControlName="startDate">
+                <small class="text-xs text-red" *ngIf="auctionForm.get('startDate')!.hasError('required') && myauctionForm.submitted">This field cannot be empty</small>
             </div>
 
             <!-- Auction duration -->
-            <div>
-                <label for="duration">How long should the auction last?</label>
-                <input class="h-[30px] w-full border pl-2 rounded-md" type="number" min="3" max="15">
+            <div class="flex flex-col gap-1">
+                <label class="leading-tight" for="duration">When do you want to end the auction?</label>
+                <input class="h-[40px] w-full border pl-2 rounded-md" type="datetime-local" min="" formControlName="endDate">
+                <small class="text-xs text-red" *ngIf="auctionForm.get('endDate')!.hasError('required') && myauctionForm.submitted">This field cannot be empty</small>
+
             </div>
 
-            <div class="flex gap-4">
-                <app-button (click)="scheduleAuction()" [buttonText]="'Schedule'"></app-button>
-                <app-button (click)="sendHideEvent()" [buttonText]="'Maybe Later'"></app-button>
-            </div>
+
+            <!-- Schedule button -->
+            <app-button class="mt-4" type="submit" [buttonText]="'Schedule'"></app-button>
+
         </form>
     </section>
 </div>

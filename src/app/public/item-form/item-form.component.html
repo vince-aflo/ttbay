@@ -15,6 +15,7 @@
             <label for="category">Choose a category for your item</label>
             <select class="h-[30px] w-full border pl-2 rounded-md" name="" id="" formControlName="category">
                 <option id="categoryname" *ngFor="let category of categories" value="{{category}}">{{ category | categoryName }}</option>
+                <!-- <option id="categoryname" value="ELECTRONICS">Electronics</option> -->
             </select>
             <small *ngIf="!itemForm.get('category')!.valid && itemForm.get('category')!.touched" class="text-red self-end pr-2">
                 cannot be empty

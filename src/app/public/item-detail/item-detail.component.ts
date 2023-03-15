@@ -11,6 +11,7 @@ import { ItemService } from 'src/app/core/services/item.service';
 export class ItemDetailComponent implements OnInit {
   item!:Item;
   currentImagePosition:number = 0
+  showAuctionForm:boolean = false;
 
   constructor(private itemService: ItemService,
     private router:Router){}
@@ -26,6 +27,10 @@ export class ItemDetailComponent implements OnInit {
         console.error(error);
       }
     })
+  }
+
+  toggleAuctionFormVisibility(){
+    this.showAuctionForm = !this.showAuctionForm;
   }
 
   previousImage(){

@@ -16,4 +16,8 @@ export class AuctionService {
   getAllAuctionsByUser(): Observable<Auction[]> {
     return this.http.get<Auction[]>(this.apiUrl);
   }
+
+  createAuction(body:any){
+    return this.http.post('http://localhost:8080/api/v1/auctions/add', body, {observe: 'response', responseType: 'text'})
+  }
 }
