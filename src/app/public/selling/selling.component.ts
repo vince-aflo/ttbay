@@ -14,6 +14,7 @@ export class SellingComponent implements OnInit {
   showAuctions:boolean = true;
   showItemForm:boolean = false;
   showAuctionForm:boolean = false;
+  
 
   auctions:Auction[] = [];
   items:Item[] = [];

@@ -1,26 +1,43 @@
-
-<div class="Selling-container flex flex-col gap-4 p-8 relative min-h-screen w-full">
+<div class="Selling-container flex flex-col gap-4 pt-8 relative min-h-screen w-full">
   <app-navbar class="absolute top-0 left-0 w-full"></app-navbar>
   <app-item-form class="absolute z-30 h-full backdrop-blur pt-8 top-0 left-0 right-0 mx-auto bg-transdark" (cancel)="hideAllForms()" (setToFalse)="hideItemForm($event)" *ngIf="showItemForm"></app-item-form>
   <app-auction-form class="absolute z-30 h-full backdrop-blur pt-8 top-0 left-0 right-0 mx-auto bg-transdark" (setToFalse)="hideAllForms()" *ngIf="showAuctionForm"></app-auction-form>
 
-  <div class="heading-div flex flex-col gap-3 mt-8 mb-2">
-    <h1 class="text-3xl self-left font-bold">Selling</h1>
-    <div class="w-full h-[150px] flex flex-col rounded-md justify-center p-4 bg-gradient-to-r from-violet to-blue">
-      <h1 class="text-3xl font-semibold mb-4">Have a new item to sell?</h1>
+  <!-- hero banner -->
+  <div class=" flex flex-row bg-green">
+    
+    <div>
+      <img  class ="sm:pt-2 justify-center  lg:pt-8 lg:ml-24" src="../../../assets/images/lady-shopping.png" alt="">
+    </div>
+    <div class=" sm:mt-24  mt-16 lg:mt-24 lg:ml-24">
+      <h1 class=" sm:text-2xl md:text-2xl font-normal md:ml-8x mb-4 lg:text-4xl">Have a <span class="font-bold">new item</span> to sell?</h1>
       <app-button (click)="revealItemForm()" [buttonText]="'List an item'"></app-button>
     </div>
+  
   </div>
+ 
 
+
+  <div class="px-8 pb-12">
+
+  <!-- row -->
+  <div class="mt-4 flex flex-row lg:mb-4">
   <!-- Tabs -->
-  <div class="flex relative w-[220px] h-[40px] shadow-[inset_1px_2px_2px_0_rgba(0,0,0,0.25)] bg-lightgrey rounded-xl">
+  <div class="flex relative w-[175px] h-[40px] shadow-[inset_1px_2px_2px_0_rgba(0,0,0,0.25)] hover:shadow-[inset_1px_4px_4px_0_rgba(0,0,0,0.25)] bg-white rounded-lg">
       <div (click)="activateAuctionsTab()" [ngClass]="showAuctions ? 'bg-black text-white' : ''" 
-        class="flex absolute justify-center font-semibold items-center w-[120px] h-[40px] rounded-xl hover:cursor-pointer">
+        class="flex absolute justify-center  items-center w-[95px] h-[40px] rounded-md hover:cursor-pointer">
         Auctions</div>
       <div (click)="activateDraftsTab()" [ngClass]="showAuctions ? '' : 'bg-black text-white'" 
-        class="absolute right-0 flex z-10 bg-neutral-200 justify-center font-semibold items-center w-[120px] h-[40px] rounded-xl hover:cursor-pointer">
+        class="absolute right-0 flex z-10 bg-neutral-200 justify-center items-center w-[85px] h-[40px] rounded-md hover:cursor-pointer">
         Drafts</div>
   </div>
+
+  <!-- filter -->
+  <div class=" items-center ml-auto ">
+    <app-filter-button></app-filter-button>
+  </div>
+</div>
+
 
   <!-- Definitely need to set a router here for child routes -->
 
@@ -29,8 +46,12 @@
     [title]="'My Auctions'"
     [auctions]="auctions"
     ></app-auction-list>
-    <p *ngIf="auctions.length === 0">There are currently no items on auctions</p>
 
+    <div *ngIf="auctions.length === 0 && showAuctions" class="sm:flex-row flex flex-col justify-center items-center " >
+      <img src="../../../assets/images/no auctions.avif" alt="">
+      <p class="text-grey"> There are currently <span class="text-xl font-semibold">no items on auctions. </span>   </p>
+    </div>
+    
 
   <app-item-list class=""
     *ngIf="items.length !== 0 && !showAuctions"
@@ -38,9 +59,15 @@
     [items]="items"
   ></app-item-list>
 
-  <p *ngIf="items.length === 0 && !showAuctions">There are currently no drafts</p>
-</div>
+  <div *ngIf="items.length === 0 && !showAuctions" class="sm:flex-row pt- flex flex-col justify-center items-center " >
+    <img  src="../../../assets/images/no auctions.avif" alt="">
+    <p class="text-grey">There are currently <span class="font-semibold text-xl"> no drafts </span></p>
+  </div>
 
+
+</div>
+<app-footer></app-footer>
+</div>
   <!-- <app-item-list class=""
   *ngIf="allItems.length !== 0"
   [title]="'My Items'"

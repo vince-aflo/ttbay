@@ -28,6 +28,7 @@ import { ItemListComponent } from './item-list/item-list.component';
 import { AuctionListComponent } from './auction-list/auction-list.component';
 import { AuctionCardComponent } from './auction-card/auction-card.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
+import { FilterButtonComponent } from './filter-button/filter-button.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ItemDetailComponent } from './item-detail/item-detail.component';
     AuctionListComponent,
     AuctionCardComponent,
     ItemDetailComponent,
+    FilterButtonComponent,
   ],
   imports: [
     CommonModule,
