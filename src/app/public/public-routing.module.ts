@@ -8,6 +8,8 @@ import {AccountSettingsComponent} from './account-settings/account-settings.comp
 import {RedirectComponent} from './redirect/redirect.component'
 import { SellingComponent } from './selling/selling.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
+import { AuctionListComponent } from './auction-list/auction-list.component';
+import { ItemListComponent } from './item-list/item-list.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -16,7 +18,11 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'account-settings', component: AccountSettingsComponent},
   {path: 'redirect', component: RedirectComponent},
-  {path: 'sell', component: SellingComponent},
+  {path: 'sell', component: SellingComponent, children: [
+    {path: '', redirectTo: 'auctions', pathMatch: "full"},
+    {path: 'auctions', component: AuctionListComponent},
+    {path: 'drafts', component: ItemListComponent}
+  ]},
   {path: 'item-detail/:id', component: ItemDetailComponent}
 ];
 

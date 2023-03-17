@@ -53,7 +53,7 @@
         </div>
 
         <div class="flex gap-4">
-            <app-button (click)="saveItem()" [buttonText]="'Save Item'"></app-button>
+            <app-button (click)="saveItem()" [buttonText]="isSaving ? 'Saving...' : 'Save Item'"></app-button>
             <app-button (click)="cancelProcess()" [buttonText]="'Cancel'"></app-button>
         </div>
     </form>

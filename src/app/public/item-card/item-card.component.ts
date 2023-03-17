@@ -14,7 +14,6 @@ export class ItemCardComponent {
   constructor(private router:Router) {}
   
   showItemDetails(){
-    console.log('item clicked')
     this.router.navigateByUrl(`/item-detail/${this.item.id}`)
   }
 }

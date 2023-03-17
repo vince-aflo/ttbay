@@ -1,13 +1,13 @@
 <div class="z-50 flex px-6 h-[50px] bg-white border-b-2 justify-between items-center border-lightgrey drop-shadow-sm">
     <!--Logo-->
-    <h1 routerLink="/home" class="text-3xl pl-2 font-bold cursor-default">
+    <h1 routerLink="/home" class="text-3xl font-bold cursor-default">
         <span class="">tt</span>
         <span class="text-green">Bay</span>
     </h1>
-    <div class="flex pr-2 relative justify-between gap-6 items-center">
+    <div class="flex relative justify-between gap-6 items-center">
         <a class="text-lg font-bold" routerLink="/sell">Sell</a>
         <!--Menu icon doubles as profile image-->
-        <div (click)="toggleMenu()" data-testid="menuIcon" class="flex justify-center items-center hover:cursor-pointer">
+        <div (click)="toggleMenu()" data-testid="menuIcon" class="flex justify-between items-center hover:cursor-pointer">
             <p class="text-lg font-bold">Menu</p>
             <img class="w-[32px] h-[32px] pb-1" src="../../../assets/svg/icons/caret-down-solid.svg" alt="avatar">
         </div>

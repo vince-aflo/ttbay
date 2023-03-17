@@ -1,12 +1,10 @@
-<div>
-  <h2 class="text-2xl font-semibold mb-1">{{ title }}</h2>
-  <div
-    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 justify-items-center"
-  >
-    <!-- <div *ngFor="let item of items">
-      <app-item-card [item]="item"></app-item-card>
-    </div> -->
+<div class="mx-6">
+  <div *ngIf="items.length === 0" class="sm:flex-row flex flex-col justify-center items-center " >
+    <img src="../../../assets/images/no drafts.avif" alt="">
+    <p class="text-grey"> There are currently <span class="text-xl font-semibold">no items in drafts. </span>   </p>
+  </div>
 
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 justify-items-center">
     <app-item-card class="" *ngFor="let item of items" [item]="item"></app-item-card>
   </div>
 </div>

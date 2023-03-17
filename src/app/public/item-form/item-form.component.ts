@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastService } from 'angular-toastify';
+import { Item } from 'src/app/core/models/item.model';
 import { ImageUploadService } from 'src/app/core/services/image-upload.service';
 import { ItemService } from 'src/app/core/services/item.service';
 
@@ -14,7 +15,10 @@ export class ItemFormComponent implements OnInit {
   categories!:string[]
   itemForm!:FormGroup;
   invalidForm:boolean = false;
-  
+
+  isSaving:boolean = false;
+
+  @Output() savedItemComplete: EventEmitter<Item> = new EventEmitter<Item>();
   @Output() setToFalse: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() cancel: EventEmitter<boolean> = new EventEmitter<boolean>()
 
@@ -35,7 +39,6 @@ export class ItemFormComponent implements OnInit {
     this.itemService.getCategories().subscribe({
       next: (data) => {
         this.categories = Object.values(data);
-        console.log('categories: ', this.categories)
       }
     })
   }
@@ -77,9 +80,17 @@ export class ItemFormComponent implements OnInit {
         this.itemService.addItem(this.itemForm.value).subscribe(response => {
           if (response) {
             console.log('request response: ', response)
-            this.sendHideEvent();
+            this.isSaving = true;
+            setTimeout(() => {
+              this.savedItemComplete.emit(response);
+            }, 1500)
+          } else {
+            this.toastService.error("Something went wrong. Please try again!")
           }
         })
+      }).then(() => {
+        this.isSaving = false;
+        this.sendHideEvent()
       })
     } else {
       this.toastService.error("Invalid form");

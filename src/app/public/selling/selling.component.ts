@@ -1,46 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastService } from 'angular-toastify';
-import { Auction } from 'src/app/core/models/auction';
+
 import { Item } from 'src/app/core/models/item.model';
-import { AuctionService } from 'src/app/core/services/auction.service';
-import { ItemService } from 'src/app/core/services/item.service';
 
 @Component({
   selector: 'app-selling',
   templateUrl: './selling.component.html',
   styleUrls: ['./selling.component.scss']
 })
-export class SellingComponent implements OnInit {
-  showAuctions:boolean = true;
+
+export class SellingComponent {
   showItemForm:boolean = false;
   showAuctionForm:boolean = false;
-  
+  savedItem!:Item;
 
-  auctions:Auction[] = [];
-  items:Item[] = [];
-
-
-  constructor(private itemService:ItemService, 
-    private toastify:ToastService,
-    private auctionService:AuctionService){
+  constructor(private router:Router){
     
   }
 
-  ngOnInit(): void {
-    this.itemService.getAllUserItems().subscribe({
-      next:(data) => {
-        this.items = data;
-      }
-    })
-
-    this.auctionService.getAllAuctionsByUser().subscribe({
-      next:(data) => {
-        this.auctions = data;
-      }
-    })
+  showAuctions(){
+    return this.router.url.includes('auctions')
   }
 
-
+  setSavedItem(item:Item){
+    this.savedItem = item;
+    this.showItemForm = false;
+    this.showAuctionForm = !this.showItemForm;
+  }
 
   revealItemForm(){
     this.showItemForm = true;
@@ -49,23 +36,12 @@ export class SellingComponent implements OnInit {
   hideAllForms() {
     this.showItemForm = false;
     this.showAuctionForm = false;
-  }
-
-  hideItemForm(status:boolean):void {
-    this.showItemForm = status;
-    this.showAuctionForm = !status;
+    window.location.reload();
   }
 
   hideAuctionForm(status:boolean):void {
     this.showAuctionForm = status
-  }
-
-  activateAuctionsTab(){
-    this.showAuctions = true;
-  }
-
-  activateDraftsTab(){
-    this.showAuctions = false;
+    window.location.reload()
   }
 }
 

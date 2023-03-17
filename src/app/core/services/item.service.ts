@@ -10,7 +10,7 @@ export class ItemService {
   constructor(private http:HttpClient) { }
 
   addItem(item:any){
-    return this.http.post('http://localhost:8080/api/v1/items/add', item, {observe: 'response', responseType:'text'});
+    return this.http.post<Item>('http://localhost:8080/api/v1/items/add', item);
   }
 
   getItem(id:number){
@@ -18,11 +18,11 @@ export class ItemService {
   }
 
   getCategories() {
-    return this.http.get('http://localhost:8080/api/v1/category/categories')
+    return this.http.get('http://localhost:8080/api/v1/categories/all')
   }
 
   async getAllUserItemsOnAuction():Promise<Observable<Item[]>>{
-    return this.http.get<Item[]>('http://localhost:8080/api/v1/auction/items/on-auction' )
+    return this.http.get<Item[]>('http://localhost:8080/api/v1/items/on-auction' )
   }
 
   getAllUserItems(){
