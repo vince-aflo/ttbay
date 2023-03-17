@@ -64,7 +64,7 @@ import { FilterButtonComponent } from './filter-button/filter-button.component';
     FormsModule,
     AngularToastifyModule,
     HttpClientModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PublicModule { }

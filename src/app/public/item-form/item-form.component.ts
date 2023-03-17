@@ -65,6 +65,7 @@ export class ItemFormComponent implements OnInit {
 
   async saveItem(){
     //display loading animation
+    this.isSaving = true;
 
     if (this.validateForm()) {
       //upload images, TODO: this feature should be moved to the backend for better security.
@@ -76,14 +77,10 @@ export class ItemFormComponent implements OnInit {
       } 
                                         
       Promise.all(setURLs()).then((values) => {
-         //call service to save item
+        // console.log('promise.all values: ', values)
         this.itemService.addItem(this.itemForm.value).subscribe(response => {
           if (response) {
-            console.log('request response: ', response)
-            this.isSaving = true;
-            setTimeout(() => {
-              this.savedItemComplete.emit(response);
-            }, 1500)
+            this.savedItemComplete.emit(response);
           } else {
             this.toastService.error("Something went wrong. Please try again!")
           }
@@ -94,6 +91,7 @@ export class ItemFormComponent implements OnInit {
       })
     } else {
       this.toastService.error("Invalid form");
+      this.isSaving = false;
       this.invalidForm = true;
       setTimeout(() => {
         this.invalidForm = false;
