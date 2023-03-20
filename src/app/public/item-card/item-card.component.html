@@ -1,18 +1,5 @@
-<!-- <div class="m-4">
-  <img [src]="item.imageUrl" alt="Item Image">
-  <h2>{{ item.name }}</h2>
-  <p>Gh¢ {{ item.startingPrice }}</p>
-</div>
- -->
-
 <div (click)="showItemDetails()" class="w-full max-w-sm bg-white rounded-lg shadow">
-  <!-- <div class="relative h-64 w-full"> -->
   <div class="relative aspect-square w-full">
-    <!-- <img
-      [src]="item.imageUrl"
-      alt="Item image"
-      class="h-full w-full object-cover rounded-lg"
-    /> -->
     <img
       [src]="item.imageList[0].imageUrl"
       alt="Item image"
@@ -26,7 +13,7 @@
 
   <div class="px-5 py-4">
     <h5 class="tracking-tight font-semibold text-gray-900 dark:text-white">
-      {{ item.name }}
+      {{ item.itemName }}
     </h5>
 
     <div class="flex items-center justify-between">

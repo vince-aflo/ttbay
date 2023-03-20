@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Auction } from 'src/app/core/models/auction';
+import { Auction } from 'src/app/core/models/auction.model';
 
 @Component({
   selector: 'app-auction-card',

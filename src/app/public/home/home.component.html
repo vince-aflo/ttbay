@@ -1,24 +1,18 @@
 <app-navbar class=""></app-navbar>
 <app-searchbar class="md:absolute md:min-w-fit md:top-0 md:inset-x-1/4"></app-searchbar>
 
-<div class="flex-col">
-    <div class="container mx-auto flex p-2 ">
-        <div class="p-2 bg-blue md:absolute md:h-[300px] md:w-[50vw] md:flex md:flex-col md:justify-center md:pl-8">
-            <h1 class="text-3xl md:text-5xl font-bold">Today's Prime Auction</h1>
-            <p class="md:text-3xl">Office Chair <br /> GHS 1500</p>
-            <app-button class="w-[120px] md:w-[160px]" [buttonText]="'Place Bid'"></app-button>
+<div class="flex flex-col">
+    <div class="bg-green h-56 mb-6"></div>
+    <h1 class="text-3xl font-bold ml-6">Live Auctions</h1>
+    <div class="mx-6 my-6">
+        <div *ngIf="auctions && auctions.length === 0" class="sm:flex-row flex flex-col justify-center items-center">
+            <img class="" src="../../../assets/images/no auctions.avif" alt="">
+            <p class="text-grey"> There are currently <span class="text-xl font-semibold">no items on auction.</span>   </p>
         </div>
-        <img class="md:h-[300px]" src="../../../assets/images/ttBay-demo-banner.png" alt="">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 justify-items-center">
+            <app-auction-card class="-z-10" *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+        </div>
     </div>
-    <div class="px-10 py-10 mb-24">
-        <!-- <app-item-list [title]="'Live Auctions'" [auctions]="auctions"></app-item-list> -->
-        <!-- <app-item-list [title]="'Live Auctions'" [items]="liveAuctions"></app-item-list> -->
-    </div>
-
-
 </div>
-
-    
-<!-- footer -->
-<!-- <app-footer class="fixed w-full bottom-0"></app-footer> -->
 

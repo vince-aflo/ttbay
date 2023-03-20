@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Auction } from 'src/app/core/models/auction';
+import { Auction } from 'src/app/core/models/auction.model';
 import { AuctionService } from 'src/app/core/services/auction.service';
 
 @Component({
@@ -16,6 +16,9 @@ export class AuctionListComponent implements OnInit{
     this.auctionService.getAllAuctionsByUser().subscribe({
       next:(data) => {
         this.auctions = data;
+      },
+      error:(err) => {
+        console.error(err)
       }
     })
   }

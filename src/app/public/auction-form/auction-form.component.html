@@ -4,7 +4,7 @@
     <section class="flex items-center gap-4 mx-8 rounded-md h-[120px] bg-lightgrey">
         <img class="h-[100%] aspect-square object-cover rounded-lg bg-black inline-block" src="{{ itemToAuction && itemToAuction.imageList[0].imageUrl}}" alt="">
         <div class="">
-            <h2 class="text-ellipsis font-semibold">{{itemToAuction.name}}</h2>
+            <h2 class="text-ellipsis font-semibold">{{itemToAuction && itemToAuction.itemName}}</h2>
             <span class="text-sm">Condition: {{itemToAuction.condition | categoryName }}</span>
         </div>
     </section>

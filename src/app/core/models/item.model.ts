@@ -1,17 +1,28 @@
 export class Item {
-    id:number;
-    name: string;
+    itemId:number;
+    itemName: string;
     imageList: {id: number, imageUrl:string}[];
-    startingPrice : number;
+    category: string;
     condition: string;
-    description?: string;
+    description: string;
+    onAuction: boolean;
+    isSold: boolean;
   
-    constructor(id: number, name: string, imageList: {id: number, imageUrl:string}[], startingPrice: number,  condition: string,  description?: string){
-      this.id= id;
-      this.name = name;
-      this.imageList = imageList;
-      this.startingPrice = startingPrice; 
-      this.condition = condition;
-      this.description = description;
-    }
+    constructor (
+        itemId: number, itemName: string, 
+        imageList: {id: number, imageUrl:string}[], 
+        category: string,  
+        condition: string, 
+        description: string,
+        onAuction: boolean,
+        isSold: boolean) {
+          this.itemId = itemId;
+          this.itemName = itemName;
+          this.imageList = imageList;
+          this.category = category;
+          this.condition = condition;
+          this.description = description;
+          this.onAuction = onAuction;
+          this.isSold = isSold;
+      }
 }

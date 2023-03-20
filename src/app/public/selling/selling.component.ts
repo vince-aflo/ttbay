@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastService } from 'angular-toastify';
+import { Auction } from 'src/app/core/models/auction.model';
 
 import { Item } from 'src/app/core/models/item.model';
+import { AuctionService } from 'src/app/core/services/auction.service';
 
 @Component({
   selector: 'app-selling',
@@ -10,13 +12,26 @@ import { Item } from 'src/app/core/models/item.model';
   styleUrls: ['./selling.component.scss']
 })
 
-export class SellingComponent {
+export class SellingComponent implements OnInit{
   showItemForm:boolean = false;
   showAuctionForm:boolean = false;
   savedItem!:Item;
+  userAuctions!:Auction[];
 
-  constructor(private router:Router){
+  constructor(private router:Router,
+    private auctionService:AuctionService){
     
+  }
+
+  ngOnInit(): void {
+    this.auctionService.getAllAuctionsByUser().subscribe({
+      next:(data) => {
+        this.userAuctions = data;
+      },
+      error: (err) => {
+        console.error(err)
+      }
+    })
   }
 
   showAuctions(){
@@ -27,6 +42,7 @@ export class SellingComponent {
     this.savedItem = item;
     this.showItemForm = false;
     this.showAuctionForm = !this.showItemForm;
+    console.log(this.savedItem)
   }
 
   revealItemForm(){

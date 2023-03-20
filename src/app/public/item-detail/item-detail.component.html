@@ -10,7 +10,7 @@
       <!-- <div class="relative h-64 w-full"> -->
     <!-- <img class="w-10 h-10" src="../../../assets/svg/icons/chevron-left-solid.svg" alt=""> -->
     <h1 class="tracking-tight mb-2 text-xl font-semibold text-gray-900 dark:text-white md:hidden">
-      {{item && item.name}}
+      {{item && item.itemName}}
     </h1>
     <div class="relative aspect-square w-full md:max-h-[300px] md:max-w-[300px] ">
       <img src="{{item && item.imageList[currentImagePosition].imageUrl}}" alt="Item image"
@@ -22,7 +22,7 @@
     </div>
     <div class="md:flex md:flex-col md:justify-center md:gap-4 md:min-h-[300px] md:max-h-[300px]">
       <h1 class="hidden tracking-tight text-xl font-semibold text-gray-900 dark:text-white md:block">
-        {{item && item.name}}
+        {{item && item.itemName}}
       </h1>
       <div class="py-4 md:py-0">
         <h2 class="text-lg font-semibold">Condition: {{item && (item.condition | categoryName)}}</h2>
@@ -38,7 +38,7 @@
   </div>
   <div class="w-full h-64 bg-lightgrey p-4 rounded-md">
     <h2 class="text-lg font-semibold">Description</h2>
-    <p>{{item.description}}</p>
+    <p>{{item && item.description}}</p>
   </div>
 
 </div>

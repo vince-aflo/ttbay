@@ -14,6 +14,6 @@ export class ItemCardComponent {
   constructor(private router:Router) {}
   
   showItemDetails(){
-    this.router.navigateByUrl(`/item-detail/${this.item.id}`)
+    this.router.navigateByUrl(`/item-detail/${this.item.itemId}`)
   }
 }

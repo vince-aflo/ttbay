@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuctionStatus } from 'src/app/core/enums/auctionStatus';
 import { Item } from 'src/app/core/models/item.model';
 import { AuctionService } from 'src/app/core/services/auction.service';
 
@@ -18,10 +19,11 @@ export class AuctionFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.auctionForm = new FormGroup({
-      itemId: new FormControl(this.itemToAuction.id, [Validators.required]),
+      itemId: new FormControl(this.itemToAuction.itemId, [Validators.required]),
       price: new FormControl(null, [Validators.required, Validators.pattern('[0-9]*(\.[0-9]{0,2})?')]),
       startDate: new FormControl(null, [Validators.required, dateValidator()]),
-      endDate: new FormControl(null, [Validators.required, dateValidator()])
+      endDate: new FormControl(null, [Validators.required, dateValidator()]),
+      status: new FormControl('DRAFT')
     })
   }
 
@@ -36,7 +38,7 @@ export class AuctionFormComponent implements OnInit {
 
 
   scheduleAuction(){
-    // console.log(this.auctionForm)
+    console.log(this.auctionForm.value)
     if(this.auctionForm.valid){
       this.auctionService.createAuction(this.auctionForm.value)
       .subscribe({
