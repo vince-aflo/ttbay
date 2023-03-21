@@ -4,8 +4,9 @@
     <p class="text-grey"> There are currently <span class="text-xl font-semibold">no items on auction.</span>   </p>
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 justify-items-center">
-    <app-auction-card class="-z-10" *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
+    <app-auction-card class="" *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
   </div>
 </div>
+<lib-toastify-toast-container></lib-toastify-toast-container>
   

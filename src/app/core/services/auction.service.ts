@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {Auction} from "../models/auction.model"
-import { Item } from '../models/item.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +22,9 @@ export class AuctionService {
 
   getAllAuctions(){
     return this.http.get<Auction[]>('http://localhost:8080/api/v1/auctions/all')
+  }
+
+  getAuction(id:number){
+    return this.http.get<Auction>(`http://localhost:8080/api/v1/auctions/${id}`);
   }
 }

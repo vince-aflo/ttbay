@@ -4,6 +4,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { UserService } from 'src/app/core/services/user.service';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastService } from 'angular-toastify';
 
 @Component({
   selector: 'app-profile',
@@ -15,6 +16,10 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   profileForm!: FormGroup;
   usernameNotTaken:boolean = true;
+
+  constructor(public oidcSecurityService: OidcSecurityService,
+    private router: Router, private userService: UserService,
+    private toastService: ToastService) {}
 
   ngOnInit(): void {
     //initialize form
@@ -36,54 +41,64 @@ export class ProfileComponent implements OnInit {
 
     //fill profile form with data from backend
     this.userService.getProfile(this.profileForm.get('email')!.value).then(data => {
-      data.subscribe(response => {
-        this.profileForm.patchValue({
-          username: response.username,
-          fullName: response.fullName,
-          profileUrl: response.profileUrl,
-          officeLocation: response.officeLocation,
-        })
-
+      data.subscribe({
+        next: (response) => {
+          this.profileForm.patchValue({
+            username: response.username,
+            fullName: response.fullName,
+            profileUrl: response.profileUrl,
+            officeLocation: response.officeLocation,
+          })
+          
         //fill chosen days field with data from backend
-        const chosenDays = response.officeDays.map(e => e.weekday);
-        chosenDays.forEach((element) => {
-          (<FormArray>this.profileForm.get('officeDays')).push(new FormControl(element));
-        })
+          const chosenDays = response.officeDays.map(e => e.weekday);
+          chosenDays.forEach((element) => {
+            (<FormArray>this.profileForm.get('officeDays')).push(new FormControl(element));
+          })          
+        },
+        error:(err) => {
+          this.toastService.error('Could not get profile information');
+          console.error(err);
+        }
       })
+    }).catch((err) => {
+      this.toastService.error('Could not ger profile information')
+      console.error(err);
     })
 
     //set check on username field
     this.profileForm.get('username')?.valueChanges
       .pipe(debounceTime(700), distinctUntilChanged())
-      .subscribe( response => (this.checkUsernameAvailability(this.profileForm.get('username')!.value)))
+      .subscribe({
+        next:(response) => {
+          this.checkUsernameAvailability(this.profileForm.get('username')!.value)
+        }, 
+        error:(err) => {
+          this.toastService.error('Failed to check username availability')
+          console.error(err)
+        }
+      })
   }
-
-  constructor(public oidcSecurityService: OidcSecurityService,
-    private router: Router, private userService: UserService) {}
-
-  //preview for new selected profile picture TODO: Setup Amazon bucket to upload images
-  // showPreview(event: any) {
-  //   if (event.target.files.length > 0) {
-  //     let src = URL.createObjectURL(event.target.files[0]);
-  //     let preview: any = document.getElementById("img-preview");
-  //     preview.src = src;
-  //   } else {
-  //     console.debug('No file selected')
-  //   }
-  // }
 
   saveProfile(form:FormGroup) {
     if (form.valid && this.usernameNotTaken) {
       this.userService.saveProfile(form.value).then(data => {
         data.subscribe({
           next:(response) => {
-            response.ok ? this.router.navigateByUrl('/home') : alert('something went wrong!')
+            response.ok ? this.router.navigateByUrl('/home') : this.toastService.error('Something went wrong')
+          },
+          error: (err) => {
+            this.toastService.error('Could not save profile')
+            console.error(err)
           }
         })
+      }).catch((err) => {
+        this.toastService.error(err.message)
+        console.error(err)
       })
     } else {
+      this.toastService.error('Invalid form')
       console.error('Invalid form')
-      // notify with toast message that form is invalid
     }
   }
 
@@ -95,6 +110,7 @@ export class ProfileComponent implements OnInit {
         },
         error:(err) => {
           this.usernameNotTaken = false;
+          this.toastService.error('Username taken')
         }
       })
   }

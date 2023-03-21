@@ -29,6 +29,9 @@ import { AuctionListComponent } from './auction-list/auction-list.component';
 import { AuctionCardComponent } from './auction-card/auction-card.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { FilterButtonComponent } from './filter-button/filter-button.component';
+import { LiveAuctionCardComponent } from './live-auction-card/live-auction-card.component';
+import { UserAuctionDetailComponent } from './user-auction-detail/user-auction-detail.component';
+import { AuctionDetailComponent } from './auction-detail/auction-detail.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +58,9 @@ import { FilterButtonComponent } from './filter-button/filter-button.component';
     AuctionCardComponent,
     ItemDetailComponent,
     FilterButtonComponent,
+    LiveAuctionCardComponent,
+    UserAuctionDetailComponent,
+    AuctionDetailComponent,
   ],
   imports: [
     CommonModule,

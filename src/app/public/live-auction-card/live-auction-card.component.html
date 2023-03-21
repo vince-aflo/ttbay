@@ -1,0 +1,28 @@
+<div (click)="showAuctionDetails()" class="w-full max-w-sm bg-white rounded-lg shadow">
+    <div class="relative aspect-square w-full">
+      <img
+        [src]="liveAuction.item.imageList[0].imageUrl"
+        alt="Item image"
+        class="aspect-square w-full object-cover rounded-lg"
+      />
+      <div
+        class="absolute inset-0 rounded-lg"
+        style="mask-image: url(item.imageUrl)"
+      ></div>
+    </div>
+  
+    <div class="px-5 py-4">
+      <h5 class="tracking-tight text-gray-900 dark:text-white">
+        {{ liveAuction.item.itemName }}
+      </h5>
+  
+      <div class="flex flex-col justify-between">
+        <span class="text-xl font-semibold text-black"
+          >{{ liveAuction.reservedPrice | currency:'GHS ' }}</span
+        >
+        <span>Ends on: {{ liveAuction.endDate | date:'medium'}}</span>
+        <span>Current Bid: {{ liveAuction.currentHighestBid && (liveAuction.currentHighestBid | currency:'GHS ') || 0 | currency:'GHS ' }}</span>
+
+    </div>
+    </div>
+  </div>

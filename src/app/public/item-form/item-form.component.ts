@@ -39,6 +39,10 @@ export class ItemFormComponent implements OnInit {
     this.itemService.getCategories().subscribe({
       next: (data) => {
         this.categories = Object.values(data);
+      },
+      error: (err) => {
+        this.toastService.error('Could not fetch categories')
+        console.error(err)
       }
     })
   }

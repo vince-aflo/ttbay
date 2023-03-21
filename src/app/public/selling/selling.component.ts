@@ -19,7 +19,8 @@ export class SellingComponent implements OnInit{
   userAuctions!:Auction[];
 
   constructor(private router:Router,
-    private auctionService:AuctionService){
+    private auctionService:AuctionService,
+    private toastService: ToastService){
     
   }
 
@@ -29,6 +30,7 @@ export class SellingComponent implements OnInit{
         this.userAuctions = data;
       },
       error: (err) => {
+        this.toastService.error('Could not fetch user auctions')
         console.error(err)
       }
     })
@@ -42,7 +44,6 @@ export class SellingComponent implements OnInit{
     this.savedItem = item;
     this.showItemForm = false;
     this.showAuctionForm = !this.showItemForm;
-    console.log(this.savedItem)
   }
 
   revealItemForm(){

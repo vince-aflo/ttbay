@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastService } from 'angular-toastify';
 import { AuctionStatus } from 'src/app/core/enums/auctionStatus';
 import { Item } from 'src/app/core/models/item.model';
 import { AuctionService } from 'src/app/core/services/auction.service';
@@ -15,7 +16,9 @@ export class AuctionFormComponent implements OnInit {
   @Input() itemToAuction!:Item
   @Output() setToFalse: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private router:Router, private auctionService: AuctionService){}
+  constructor(private router:Router, 
+    private auctionService: AuctionService,
+    private toastService: ToastService){}
 
   ngOnInit(): void {
     this.auctionForm = new FormGroup({
@@ -38,7 +41,6 @@ export class AuctionFormComponent implements OnInit {
 
 
   scheduleAuction(){
-    console.log(this.auctionForm.value)
     if(this.auctionForm.valid){
       this.auctionService.createAuction(this.auctionForm.value)
       .subscribe({
@@ -47,9 +49,12 @@ export class AuctionFormComponent implements OnInit {
           this.router.navigateByUrl('/sell')
         },
         error: (err) => {
+          this.toastService.error('Could not create auction')
           console.log(err)
         }
       })
+    } else {
+      this.toastService.error("Invalid form")
     }
   }
 

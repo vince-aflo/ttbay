@@ -7,12 +7,13 @@
     <div class="mx-6 my-6">
         <div *ngIf="auctions && auctions.length === 0" class="sm:flex-row flex flex-col justify-center items-center">
             <img class="" src="../../../assets/images/no auctions.avif" alt="">
-            <p class="text-grey"> There are currently <span class="text-xl font-semibold">no items on auction.</span>   </p>
+            <p class="text-grey"> There are currently <span class="text-xl font-semibold">no items on auction.</span></p>
         </div>
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 justify-items-center">
-            <app-auction-card class="-z-10" *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-10">
+            <app-live-auction-card class="" *ngFor="let auction of auctions" [liveAuction]="auction"></app-live-auction-card>
         </div>
     </div>
 </div>
 
+<lib-toastify-toast-container></lib-toastify-toast-container>

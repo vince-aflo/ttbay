@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { OidcSecurityService} from 'angular-auth-oidc-client';
+import { ToastService } from 'angular-toastify';
 import { LoginService } from 'src/app/core/services/login.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private oidcSecurityService: OidcSecurityService, 
     private router: Router,
-    private loginService: LoginService){
+    private loginService: LoginService,
+    private toastService: ToastService){
 
   }
   ngOnInit(): void {
@@ -33,6 +35,11 @@ export class LoginComponent implements OnInit {
                 } else {
                   this.router.navigateByUrl('/profile');
                 }
+              },
+              error: (err) => {
+                this.toastService.error('Login failed')
+                console.error(err);
+                this.isLoading = false;
               }
             });
           })   
