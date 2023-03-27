@@ -18,7 +18,8 @@ export class ItemListComponent implements OnInit {
   ngOnInit(): void {
     this.itemService.getAllUserItems().subscribe({
       next:(data) => {
-        this.items = data;
+        console.log(data)
+        this.items = data.filter(datum => datum.onAuction === false );
       },
       error: (err) => {
         this.toastService.error('Could not fetch data')

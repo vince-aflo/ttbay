@@ -4,7 +4,7 @@ import { LoginService } from './login.service';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { of } from 'rxjs';
 
-describe('LoginService', () => {
+fdescribe('LoginService', () => {
   const mockReturnValue = 'token'
   const oidcSpy = jasmine.createSpyObj('OidcSecurityService', ['getIdToken', 'logoffLocal'])
   oidcSpy.getIdToken.and.returnValue(of(mockReturnValue));

@@ -3,25 +3,25 @@ import { User } from "./user.model";
 
 export class Auction {
   auctionId: number;
-  currentHighestBid: number;
+  currentHighestBid: number | null;
   endDate: Date;
   reservedPrice: number;
-  startDate: Date;
-  status: boolean;
+  startDate: Date ;
+  status: string;
   auctioner_email : string;
-  item : Item;
-  winner : User;
+  item : Item ;
+  winner : User | null;
 
   constructor (
     auctionId: number, 
-    currentHighestBid: number, 
+    currentHighestBid: number | null, 
     endDate: Date, 
     reservedPrice: number, 
     startDate: Date, 
-    status: boolean, 
+    status: string, 
     auctioner_email : string, 
     item : Item, 
-    winner: User
+    winner: User | null
     ) {
     this.auctionId = auctionId;
     this.currentHighestBid = currentHighestBid;

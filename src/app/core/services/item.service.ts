@@ -21,7 +21,7 @@ export class ItemService {
     return this.http.get('http://localhost:8080/api/v1/categories/all')
   }
 
-  async getAllUserItemsOnAuction():Promise<Observable<Item[]>>{
+  getAllUserItemsOnAuction(){
     return this.http.get<Item[]>('http://localhost:8080/api/v1/items/on-auction' )
   }
 

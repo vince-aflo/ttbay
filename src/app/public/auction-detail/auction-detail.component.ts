@@ -41,6 +41,6 @@ export class AuctionDetailComponent {
   }
 
   nextImage(){
-    if(this.currentImagePosition < this.auction.item.imageList.length - 1) this.currentImagePosition++
+    if(this.currentImagePosition < this.auction.item!.imageList.length - 1) this.currentImagePosition++
   }
 }

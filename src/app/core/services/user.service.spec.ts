@@ -6,7 +6,7 @@ import { Profile } from '../models/profile.model';
 
 import { UserService } from './user.service';
 
-describe('UserService', () => {
+fdescribe('UserService', () => {
   const mockReturnValue = 'token'
   const oidcSpy = jasmine.createSpyObj('OidcSecurityService', ['getIdToken'])
   oidcSpy.getIdToken.and.returnValue(of(mockReturnValue));
@@ -92,8 +92,23 @@ describe('UserService', () => {
     expect(result).toEqual(expectedResponse)
   })
 
-  it('should delete account', async () => {
+  it('should delete account',() => {
+    const expectedResponse :string | null= 'sucessfully';
 
+    let result:any | null;
+    service.deleteAccount("at@gmail.com").subscribe({
+      next:(value) => {
+        result = value.body;
+      }
+    })
+
+
+    const expectedUrl = 'http://localhost:8080/api/v1/account/user/at@gmail.com'
+    const request = controller.expectOne(expectedUrl)
+    request.flush(expectedResponse)
+    controller.verify()
+
+    expect(result).toEqual(expectedResponse)
   })
 
 

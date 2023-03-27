@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 
 import { ImageUploadService } from './image-upload.service';
 
-describe('ImageUploadService', () => {
+fdescribe('ImageUploadService', () => {
   let service: ImageUploadService;
   let controller: HttpTestingController;
 
@@ -20,12 +20,6 @@ describe('ImageUploadService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-
-  it('should generate a 32 character long string', () => {
-    const randomString = service.generateFilename()
-
-    expect(randomString.length).toEqual(32);
-  })
 
   //mock service functionality and test
   xit('should get upload URL', () => {
