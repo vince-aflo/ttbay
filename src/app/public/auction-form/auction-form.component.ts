@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastService } from 'angular-toastify';
-import { AuctionStatus } from 'src/app/core/enums/auctionStatus';
 import { Item } from 'src/app/core/models/item.model';
 import { AuctionService } from 'src/app/core/services/auction.service';
 
@@ -19,6 +18,7 @@ export class AuctionFormComponent implements OnInit {
   constructor(private router:Router, 
     private auctionService: AuctionService,
     private toastService: ToastService){}
+
 
   ngOnInit(): void {
     this.auctionForm = new FormGroup({
@@ -39,8 +39,18 @@ export class AuctionFormComponent implements OnInit {
     return value
   }
 
+  setEndDate(event:any){
+    const days = event.target.value
+    const result = new Date(this.auctionForm.get('startDate')!.value)
+    result.setDate(result.getDate() + parseInt(days))
+    const dateString = result.toISOString().slice(0, result.toISOString().lastIndexOf(':'))
+    this.auctionForm.get('endDate')!.patchValue(dateString)
+    //set or patch the auctionForm
+  }
+
 
   scheduleAuction(){
+    // console.log(this.auctionForm.value)
     if(this.auctionForm.valid){
       this.auctionService.createAuction(this.auctionForm.value)
       .subscribe({

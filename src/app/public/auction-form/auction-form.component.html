@@ -14,7 +14,7 @@
             <div class="flex flex-col gap-1">
                 <label class="leading-tight" for="price">Name a starting price</label>
                 <input class="h-[40px] pl-2 border rounded-md" type="number" formControlName="price"> 
-                <small class="text-xs text-red" *ngIf="auctionForm.get('price')!.errors && myauctionForm.submitted">The price should be set and have a maxiumum of two decimal places</small>
+                <small class="text-xs text-red" *ngIf="auctionForm.get('price')!.errors && myauctionForm.submitted">The price should be set and have a maximum of two decimal places</small>
             </div>
 
             <!-- Auction date -->
@@ -26,10 +26,17 @@
 
             <!-- Auction duration -->
             <div class="flex flex-col gap-1">
-                <label class="leading-tight" for="duration">When do you want to end the auction?</label>
-                <input class="h-[40px] w-full border pl-2 rounded-md" type="datetime-local" min="{{getMinDate()}}" formControlName="endDate">
-                <small class="text-xs text-red" *ngIf="auctionForm.get('endDate')!.errors && myauctionForm.submitted">This field cannot be empty or refer to a time in the past</small>
-
+                <label class="leading-tight" for="duration">How many days should the auction go on for?</label>
+                <select #duration (change)="setEndDate($event)" [disabled]="!auctionForm.get('startDate')?.value ? true : null" class="h-[40px] w-full border pl-2 rounded-md bg-white" required>
+                    <option value="">Select a duration</option>     
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="7">7</option>
+                    <option value="10">10</option>
+                    <option value="14">14</option>                    
+                </select>
+                <small class="text-xs text-red" *ngIf="duration.value == '' && myauctionForm.submitted">This field cannot be empty</small>
             </div>
 
 

@@ -12,7 +12,7 @@
     <h1 class="tracking-tight mb-2 text-xl font-semibold text-gray-900 dark:text-white md:hidden">
       {{item && item.itemName}}
     </h1>
-    <div class="relative aspect-square w-full md:max-h-[300px] md:max-w-[300px] ">
+    <div class="relative aspect-square w-full md:min-w-[300px] md:max-w-[300px] ">
       <img src="{{item && item.imageList[currentImagePosition].imageUrl}}" alt="Item image"
         class="aspect-square w-full object-cover rounded-lg" />
       <img (click)="previousImage()" src="../../../assets/svg/icons/chevron-left-solid.svg" class="absolute inset-y-1/2 left-2 p-2 w-10 h-10 object-fit 
