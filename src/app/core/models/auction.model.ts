@@ -9,8 +9,8 @@ export class Auction {
   startDate: Date ;
   status: string;
   auctioner_email : string;
-  item : Item ;
-  winner : User | null;
+  item : Item;
+  winner : User|null;
 
   constructor (
     auctionId: number, 

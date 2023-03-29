@@ -32,6 +32,7 @@ import { FilterButtonComponent } from './filter-button/filter-button.component';
 import { LiveAuctionCardComponent } from './live-auction-card/live-auction-card.component';
 import { UserAuctionDetailComponent } from './user-auction-detail/user-auction-detail.component';
 import { AuctionDetailComponent } from './auction-detail/auction-detail.component';
+import { PendingBidsPopComponent } from './pending-bids-pop/pending-bids-pop.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,8 @@ import { AuctionDetailComponent } from './auction-detail/auction-detail.componen
     LiveAuctionCardComponent,
     UserAuctionDetailComponent,
     AuctionDetailComponent,
+    PendingBidsPopComponent
+   
   ],
   imports: [
     CommonModule,

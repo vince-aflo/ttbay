@@ -28,4 +28,13 @@ export class ItemService {
   getAllUserItems(){
     return this.http.get<Item[]>('http://localhost:8080/api/v1/items/all-by-user')
   }
+
+  deleteItem(id:number){
+    return this.http.delete(`http://localhost:8080/api/v1/items/${id}`,{responseType:'text'})
+
+  }
+
+  deleteItemOnAuction(id:number){
+    return this.http.delete(`http://localhost:8080/api/v1/items/on-auction/${id}`,{responseType:'text'})
+  }
 }
