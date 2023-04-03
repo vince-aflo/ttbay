@@ -33,7 +33,7 @@
           <p>Category: {{auction && auction.item.category}}</p>
           <p>Ends on: {{auction && auction.endDate | date:'medium'}}</p>
           <p>Reserved price: {{auction && auction.reservedPrice | currency:'GHS '}}</p>
-          <p>Highest bid: {{auction && (auction.currentHighestBid | currency:'GHS ') || 0 | currency:'GHS '}}</p>
+          <p>Highest bid: {{auction && (auction.currentHighestBid  || 0 )| currency:'GHS '}}</p>
 
         </div>
       </div>

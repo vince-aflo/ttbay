@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'angular-toastify';
 import { Auction } from 'src/app/core/models/auction.model';
-import { Item } from 'src/app/core/models/item.model';
 import { AuctionService } from 'src/app/core/services/auction.service';
 import { ItemService } from 'src/app/core/services/item.service';
 
@@ -11,6 +10,7 @@ import { ItemService } from 'src/app/core/services/item.service';
   templateUrl: './user-auction-detail.component.html',
   styleUrls: ['./user-auction-detail.component.scss']
 })
+
 export class UserAuctionDetailComponent {
   auction!:Auction;
   currentImagePosition:number = 0
@@ -38,6 +38,11 @@ export class UserAuctionDetailComponent {
     })
 
     this.currentAuctionId = +this.thisRoute.snapshot.params['id'];
+  }
+
+  hideAllForms() {
+    this.showAuctionForm = false;
+    window.location.reload();
   }
 
   toggleAuctionFormVisibility(){
@@ -71,34 +76,11 @@ export class UserAuctionDetailComponent {
         }
       }
     )
-    // console.log("Request has been made");
-    // this.itemService.deleteItemOnAuction(this.auctionId).subscribe(
-    //   (success) => {
-    //     this.toastify.success("Item has been deleted successfully");
-    //   },
-    //   (error) => {
-    //     switch (error.error) {
-    //       case "Item isn't on auction":
-    //         this.toastify.error("Item isn't on auction");
-    //         break;
-    //       case "Item isn't on auction":
-    //         this.toastify.error("Item isn't on auction");
-    //         break;
-    //       case "You don't have access to this action":
-    //         this.toastify.error("You don't have access to this action");
-    //         break;
-    //       case "Item on auction has bid(s)":
-    //         this.toastify.error("Item on auction has bid(s)");
-    //         break;
-          
-    //     };
-    //   }
-    // );
   }
 
 
   changeModalStatus(status:boolean){
-this.showPendingBidPopUp = status
+    this.showPendingBidPopUp = status
   }
 }
 

@@ -11,29 +11,31 @@ import { ToastService } from 'angular-toastify';
 export class PendingBidsPopComponent implements OnInit {
   @Input() itemId!:number
   @Output() showModal:EventEmitter<boolean> = new EventEmitter()
+
   constructor(private itemService: ItemService,  private router:Router, private toastService:ToastService){}
+  
   ngOnInit(): void {
    
   }
 
-    deleteItem(){
-        PendingBidsPopComponent
-        console.log("i was called")
-        this.itemService.deleteItem(this.itemId).subscribe(
-          {next:(value) => 
-            {
-              console.log(value)
-              this.toastService.success("Item successfully deleted")
-              this.router.navigateByUrl('/sell/auctions')
-          } , 
-          error : (error) => 
-          {this.toastService.error("Could not delete item")
-        }})
-    }
+  deleteItem(){
+    // PendingBidsPopComponent
+    console.log("i was called")
+    // this.itemService.deleteItem(this.itemId).subscribe(
+    //   {next:(value) => 
+    //     {
+    //       console.log(value)
+    //       this.toastService.success("Item successfully deleted")
+    //       this.router.navigateByUrl('/sell/auctions')
+    //   }, 
+    //   error : (error) => 
+    //   {this.toastService.error("Could not delete item")
+    // }})
+  }
 
-    cancel() {
-      this.showModal.emit(false)
-    }
+  cancel() {
+    this.showModal.emit(false)
+  }
 
 
 }

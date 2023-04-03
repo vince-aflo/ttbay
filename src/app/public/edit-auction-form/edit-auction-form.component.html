@@ -1,0 +1,40 @@
+<div class="relative flex flex-col text-lg gap-6 w-[90%] max-w-[450px] border border-lightgrey bg-white shadow-sm mx-auto my-6 rounded-md">
+    <img (click)="sendHideEvent()" class="absolute w-8 h-8 p-2 top-2 right-2 bg-grey rounded-full hover:bg-red" src="../../../assets/svg/icons/xmark-solid.svg" alt="">
+    <h1 class="text-2xl mt-8 mx-8 font-semibold self-center pb-2 border-b">Edit Auction</h1>
+    <section class="flex items-center gap-4 mx-8 rounded-md h-[120px] bg-lightgrey">
+        <img class="h-[100%] aspect-square object-cover rounded-lg bg-black inline-block" src="{{ auctionToEdit && auctionToEdit.item.imageList[0].imageUrl}}" alt="">
+        <div class="">
+            <h2 class="text-ellipsis font-semibold">{{auctionToEdit && auctionToEdit.item.itemName}}</h2>
+            <span class="text-sm">Condition: {{auctionToEdit.item.condition | categoryName }}</span>
+        </div>
+    </section>
+    <section class="mx-8 mb-8" >
+        <form #myauctionForm="ngForm" class="flex flex-col gap-4" [formGroup]="editAuctionForm" (ngSubmit)="editAuction()">
+            <small class="text-xs text-red" *ngIf="editAuctionForm.get('reservedPrice')?.value == null 
+            && editAuctionForm.get('endDate')?.value == null && myauctionForm.submitted">
+            At least one field must be filled</small>
+            <!-- Price -->
+            <div class="flex flex-col gap-1">
+                <label class="leading-tight" for="price">Set a new price</label>
+                <input class="h-[40px] pl-2 border rounded-md" type="number" formControlName="reservedPrice"> 
+            </div>
+
+            <!-- Auction duration -->
+            <div class="flex flex-col gap-1">
+                <label class="leading-tight" for="duration">Number of days to extend auction</label>
+                <select #duration (change)="setEndDate($event)" class="h-[40px] w-full border pl-2 rounded-md bg-white">
+                    <option value="">Select a duration</option>
+                    <option value="">0</option>     
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="5">7</option>                 
+                </select>
+            </div>
+            <!-- Submit button -->
+            <app-button class="mt-4" type="submit" [buttonText]="'Submit'"></app-button>
+
+        </form>
+    </section>
+</div>
+<lib-toastify-toast-container></lib-toastify-toast-container>

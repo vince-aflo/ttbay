@@ -142,4 +142,34 @@ fdescribe('AuctionService', () => {
     expect(result).toEqual(expectedResponse)    
   })
 
+  it('should return an auction given the auctionId, and either price or duration', () => {
+    const expectedResponse = new Auction(
+      1, 
+      0, 
+      new Date(), 
+      10, new Date(), 
+      'DRAFT', 
+      'h@h.com',
+      new Item (
+        1, 'Java for dummies', 
+        [{id: 1, imageUrl: 'asdfsad.jpg'}], 'BOOKS', 'NEW', 
+        'This is a good book', false, false
+      ),
+      null      
+    )
+    const expectedUrl = 'http://localhost:8080/api/v1/auctions'
+    let result!:Auction
+    service.updateAuction({auctionId: 1, reservedPrice: 200, endDate: null}).subscribe({
+      next:(value) => {
+        result = value
+      }
+    })
+    
+    const request = controller.expectOne(expectedUrl)
+    request.flush(expectedResponse)
+    controller.verify()
+
+    expect(result).toEqual(expectedResponse)
+
+  })
 });

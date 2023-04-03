@@ -27,4 +27,8 @@ export class AuctionService {
   getAuction(id:number){
     return this.http.get<Auction>(`http://localhost:8080/api/v1/auctions/${id}`);
   }
+
+  updateAuction(body:any){
+    return this.http.put<Auction>('http://localhost:8080/api/v1/auctions', body)
+  }
 }

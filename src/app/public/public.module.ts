@@ -33,6 +33,7 @@ import { LiveAuctionCardComponent } from './live-auction-card/live-auction-card.
 import { UserAuctionDetailComponent } from './user-auction-detail/user-auction-detail.component';
 import { AuctionDetailComponent } from './auction-detail/auction-detail.component';
 import { PendingBidsPopComponent } from './pending-bids-pop/pending-bids-pop.component';
+import { EditAuctionFormComponent } from './edit-auction-form/edit-auction-form.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { PendingBidsPopComponent } from './pending-bids-pop/pending-bids-pop.com
     LiveAuctionCardComponent,
     UserAuctionDetailComponent,
     AuctionDetailComponent,
-    PendingBidsPopComponent
+    PendingBidsPopComponent,
+    EditAuctionFormComponent
    
   ],
   imports: [
