@@ -21,7 +21,9 @@
           >{{ liveAuction.reservedPrice | currency:'GHS ' }}</span
         >
         <span>Ends on: {{ liveAuction.endDate | date:'medium'}}</span>
-        <span>Current Bid: {{ liveAuction.currentHighestBid && (liveAuction.currentHighestBid | currency:'GHS ') || 0 | currency:'GHS ' }}</span>
+        <span>Current Bid: {{
+           liveAuction && (liveAuction.currentHighestBid || 0) | currency:'GHS ' 
+          }}</span>
 
     </div>
     </div>

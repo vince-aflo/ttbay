@@ -11,8 +11,9 @@ import { AuctionService } from 'src/app/core/services/auction.service';
 })
 export class AuctionDetailComponent {
   auction!:Auction;
-  currentImagePosition:number = 0
+  currentImagePosition:number = 0;
   showAuctionForm:boolean = false;
+  showBidForm:boolean = false;
 
   constructor(private auctionService: AuctionService,
     private router:Router,
@@ -42,5 +43,9 @@ export class AuctionDetailComponent {
 
   nextImage(){
     if(this.currentImagePosition < this.auction.item!.imageList.length - 1) this.currentImagePosition++
+  }
+
+  toggleBidForm(){
+    this.showBidForm = !this.showBidForm
   }
 }

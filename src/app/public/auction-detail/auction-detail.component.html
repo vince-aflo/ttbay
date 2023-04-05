@@ -1,40 +1,82 @@
 <!-- <div class="min-h-screen w-full"> -->
-    <div class="flex flex-col gap-4 p-6 mb-4">
-        <div class="flex flex-col gap-2 min-h-full w-full mt-12 md:flex-row md:gap-6">
-          <app-navbar class="absolute top-0 left-0 z-10 w-full"></app-navbar>
-          <h1 class="tracking-tight mb-2 text-xl font-semibold text-gray-900 dark:text-white md:hidden">
-            {{ auction && auction.item.category}}
-          </h1>
-          <div class="relative aspect-square w-full md:max-h-[300px] md:max-w-[300px] ">
-            <img src="{{auction && auction.item.imageList[currentImagePosition].imageUrl}}" alt="Item image"
-              class="aspect-square w-full object-cover rounded-lg" />
-            <img (click)="previousImage()" src="../../../assets/svg/icons/chevron-left-solid.svg" class="absolute inset-y-1/2 left-2 p-2 w-10 h-10 object-fit 
-              bg-bg-blue rounded-full hover:bg-white">
-            <img (click)="nextImage()" src="../../../assets/svg/icons/chevron-right-solid.svg" class="absolute inset-y-1/2 right-2 p-2 w-10 h-10 object-fit
-                bg-bg-blue rounded-full hover:bg-white">
-          </div>
-          <div class="md:flex md:flex-col md:justify-center md:gap-4 md:min-h-[300px] md:max-h-[300px]">
-            <h1 class="hidden tracking-tight text-xl font-semibold text-gray-900 dark:text-white md:block">
-              {{auction && auction.item.itemName}}
-            </h1>
-            <div class="py-4 md:py-0">
-              <h2 class="text-lg font-semibold">Condition: {{auction && (auction.item.condition | categoryName)}}</h2>
-              <h2 class="text-lg font-semibold">Description</h2>
-              <p class="overflow-y-auto truncate pb-2 max-w-[700px] md:max-h-[120px]">{{auction && auction.item.description}}</p>
-            </div>
-            <div class="flex gap-2">
-              <app-button [buttonText]="'Place Bid'"></app-button>
-            </div>
-          </div>
-        </div>
-        <div class="w-full h-64 bg-lightgrey p-4 rounded-md">
-          <h2 class="text-lg font-semibold">Details</h2>
-          <p>Description: {{auction && auction.item.description}}</p>
-          <p>Category: {{auction && auction.item.category}}</p>
-          <p>Ends on: {{auction && auction.endDate | date:'medium'}}</p>
-          <p>Reserved price: {{auction && auction.reservedPrice | currency:'GHS '}}</p>
-          <p>Highest bid: {{auction && (auction.currentHighestBid  || 0 )| currency:'GHS '}}</p>
-
-        </div>
+<div
+  *ngIf="showBidForm"
+  class="fixed backdrop-blur min-w-full min-h-full z-20 bg-transdark"
+></div>
+<div class="flex flex-col gap-4 p-6 mb-4">
+  <app-bid-form
+    [currentAuction]="auction"
+    (cancel)="toggleBidForm()"
+    *ngIf="showBidForm"
+    class="absolute z-30 h-full pt-8 top-0 left-0 right-0 mx-auto"
+  ></app-bid-form>
+  <div class="flex flex-col gap-2 min-h-full w-full mt-12 md:flex-row md:gap-6">
+    <app-navbar class="absolute top-0 left-0 z-10 w-full"></app-navbar>
+    <h1
+      class="tracking-tight mb-2 text-xl font-semibold text-gray-900 dark:text-white md:hidden"
+    >
+      {{ auction && auction.item.category }}
+    </h1>
+    <div
+      class="relative aspect-square w-full md:max-h-[300px] md:max-w-[300px]"
+    >
+      <img
+        src="{{
+          auction && auction.item.imageList[currentImagePosition].imageUrl
+        }}"
+        alt="Item image"
+        class="aspect-square w-full object-cover rounded-lg"
+      />
+      <img
+        (click)="previousImage()"
+        src="../../../assets/svg/icons/chevron-left-solid.svg"
+        class="absolute inset-y-1/2 left-2 p-2 w-10 h-10 object-fit bg-bg-blue rounded-full hover:bg-white"
+      />
+      <img
+        (click)="nextImage()"
+        src="../../../assets/svg/icons/chevron-right-solid.svg"
+        class="absolute inset-y-1/2 right-2 p-2 w-10 h-10 object-fit bg-bg-blue rounded-full hover:bg-white"
+      />
+    </div>
+    <div
+      class="md:flex md:flex-col md:justify-center md:gap-4 md:min-h-[300px] md:max-h-[300px]"
+    >
+      <h1
+        class="hidden tracking-tight text-xl font-semibold text-gray-900 dark:text-white md:block"
+      >
+        {{ auction && auction.item.itemName }}
+      </h1>
+      <div class="py-4 md:py-0">
+        <h2 class="text-lg font-semibold">
+          Condition: {{ auction && (auction.item.condition | categoryName) }}
+        </h2>
+        <h2 class="text-lg font-semibold">Description</h2>
+        <p class="overflow-y-auto truncate pb-2 max-w-[700px] md:max-h-[120px]">
+          {{ auction && auction.item.description }}
+        </p>
       </div>
-      <lib-toastify-toast-container></lib-toastify-toast-container>
+      <div class="flex gap-2">
+        <app-button
+          [buttonText]="'Place Bid'"
+          (click)="toggleBidForm()"
+        ></app-button>
+      </div>
+    </div>
+  </div>
+  <div class="w-full h-64 bg-lightgrey p-4 rounded-md">
+    <h2 class="text-lg font-semibold">Details</h2>
+    <p>Description: {{ auction && auction.item.description }}</p>
+    <p>Category: {{ auction && auction.item.category }}</p>
+    <p>Ends on: {{ auction && auction.endDate | date : "medium" }}</p>
+    <p>
+      Reserved price: {{ auction && auction.reservedPrice | currency : "GHS " }}
+    </p>
+    <p>
+      Highest bid:
+      {{
+        auction && (auction.currentHighestBid || 0) | currency : "GHS "
+      }}
+    </p>
+  </div>
+</div>
+<lib-toastify-toast-container></lib-toastify-toast-container>

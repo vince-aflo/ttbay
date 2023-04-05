@@ -46,14 +46,21 @@
         </div>
       </div>
     </div>
-    <div class="w-full h-64 bg-lightgrey p-4 rounded-md">
-      <h2 class="text-lg font-semibold">Details</h2>
-      <p>Description: {{auction && auction.item.description}}</p>
-      <p>Category: {{auction && auction.item.category}}</p>
-      <p>Ends on: {{auction && auction.endDate | date:'medium'}}</p>
-      <p>Reserved price: {{auction && auction.reservedPrice | currency:'GHS '}}</p>
-      <p>Highest bid: {{auction && (auction.currentHighestBid | currency:'GHS ') || 0 | currency:'GHS '}}</p>
-    </div>
-</div>
-<app-loading-spinner *ngIf="isLoading" class="fixed top-0"></app-loading-spinner>
+  </div>
+
+  <div class="w-full h-64 bg-lightgrey p-4 rounded-md">
+    <h2 class="text-lg font-semibold">Details</h2>
+    <p>Description: {{ auction && auction.item.description }}</p>
+    <p>Category: {{ auction && auction.item.category }}</p>
+    <p>Ends on: {{ auction && auction.endDate | date : "medium" }}</p>
+    <p>
+      Reserved price: {{ auction && auction.reservedPrice | currency : "GHS " }}
+    </p>
+    <p>
+      Highest bid:
+      {{
+        auction && (auction.currentHighestBid || 0) | currency : "GHS "
+      }}
+    </p>
+  </div>
 <lib-toastify-toast-container></lib-toastify-toast-container>
