@@ -11,6 +11,7 @@ import { ToastService } from 'angular-toastify';
 export class PendingBidsPopComponent implements OnInit {
   @Input() itemId!:number
   @Output() showModal:EventEmitter<boolean> = new EventEmitter()
+  
 
   constructor(private itemService: ItemService,  private router:Router, private toastService:ToastService){}
   

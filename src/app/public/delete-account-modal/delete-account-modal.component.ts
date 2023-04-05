@@ -68,7 +68,7 @@ export class DeleteAccountModalComponent {
       //CHECK FOR PENDING AUCTIONS 
        this.checkForPendingAuctions();
 
-      //MAKE DELETE REQUEST 
+      //delete account
       this.userService.deleteAccount(this.email_input).subscribe(response => {
           console.log(response.body);
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'angular-toastify';
+import { timer } from 'rxjs';
 import { Auction } from 'src/app/core/models/auction.model';
 import { AuctionService } from 'src/app/core/services/auction.service';
 import { ItemService } from 'src/app/core/services/item.service';
@@ -15,6 +16,10 @@ export class UserAuctionDetailComponent {
   auction!:Auction;
   currentImagePosition:number = 0
   showAuctionForm:boolean = false;
+  routeInfo = this.router.url.split('/');
+  id = parseInt(this.routeInfo[this.routeInfo.length - 1]);
+  timerId! :any;
+  isLoading:boolean = false;
   showPendingBidPopUp:boolean = false;
   currentAuctionId:number = 0;
 
@@ -25,9 +30,8 @@ export class UserAuctionDetailComponent {
     private itemService: ItemService){}
 
   ngOnInit(): void {
-    const routeInfo = this.router.url.split('/');
-    const id = parseInt(routeInfo[routeInfo.length - 1])
-    this.auctionService.getAuction(id).subscribe({
+    // this.showPendingBidPopUp =true;
+    this.auctionService.getAuction(this.id).subscribe({
       next:(data) => {
         this.auction = data;
       },
@@ -40,6 +44,9 @@ export class UserAuctionDetailComponent {
     this.currentAuctionId = +this.thisRoute.snapshot.params['id'];
   }
 
+  showModal(){
+    this.showPendingBidPopUp =true;
+  }
   hideAllForms() {
     this.showAuctionForm = false;
     window.location.reload();
@@ -82,6 +89,46 @@ export class UserAuctionDetailComponent {
   changeModalStatus(status:boolean){
     this.showPendingBidPopUp = status
   }
+
+  cancelAuction(){
+    this.isLoading =true;
+    this.auctionService.cancelAuctionWithBidCheck(this.id).subscribe(
+      {
+      next:(data) =>{
+        this.toastService.success(data.body!);
+        console.log(data);
+
+        this.timerId = setTimeout(() => {
+          this.router.navigateByUrl('sell');
+        }, 5000)
+      
+      },
+      error:(err) =>{
+        switch (err.status) {
+          case 404:
+            // handle ResourceNotFoundException
+            this.toastService.error("The requested resource was not found")
+            break;
+          case 401:
+            // handle MismatchedEmailException
+            this.toastService.error(`You don\'t have access to perform this action`)
+            break;
+
+          case 500:
+            // handle bids on auction exception
+             if (err.error.message === 'Auction has bid(s), cannot be deleted') {
+              this.showPendingBidPopUp= true; } 
+              else{this.toastService.error("An unexpected error occurred")}
+            break;
+
+          default: 
+            this.toastService.error("An unexpected error occured");
+            break;
+        }
+      }     
+    })  
+  }
+
 }
 
 

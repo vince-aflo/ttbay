@@ -23,6 +23,13 @@
         <img (click)="nextImage()" src="../../../assets/svg/icons/chevron-right-solid.svg" class="absolute inset-y-1/2 right-2 p-2 w-10 h-10 object-fit
             bg-bg-blue rounded-full hover:bg-white">
       </div>
+      <div class="flex gap-2">
+        <app-button [buttonText]="'Edit'"></app-button>
+        <app-button (click) = "cancelAuction()" [buttonText]="'Cancel'"></app-button>
+        <app-button
+          (click)="deleteItemOnAuction()"
+          [buttonText]="'Delete'"
+        ></app-button>
       <div class="md:flex md:flex-col md:justify-center md:gap-4 md:min-h-[300px] md:max-h-[300px]">
         <h1 class="hidden tracking-tight text-xl font-semibold text-gray-900 dark:text-white md:block">
           {{auction && auction.item.itemName}}
@@ -48,4 +55,5 @@
       <p>Highest bid: {{auction && (auction.currentHighestBid | currency:'GHS ') || 0 | currency:'GHS '}}</p>
     </div>
 </div>
+<app-loading-spinner *ngIf="isLoading" class="fixed top-0"></app-loading-spinner>
 <lib-toastify-toast-container></lib-toastify-toast-container>

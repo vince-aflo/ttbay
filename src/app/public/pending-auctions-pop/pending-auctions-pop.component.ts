@@ -11,7 +11,7 @@ export class PendingAuctionsPopComponent {
   constructor(private route : Router, private deleteAccountModal : DeleteAccountModalComponent){};
 
   routeToAuctionsPAge(){
-    this.route.navigateByUrl('auction');
+    this.route.navigateByUrl('sell');
   }
 
 }

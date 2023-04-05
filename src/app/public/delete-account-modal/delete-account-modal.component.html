@@ -1,5 +1,5 @@
 <div  class="flex-col overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
-  <app-pending-auctions-pop *ngIf = "showPendingAuctionModal"></app-pending-auctions-pop>    
+  <app-pending-auctions-pop  *ngIf = "showPendingAuctionModal"></app-pending-auctions-pop>    
 
     <lib-toastify-toast-container ></lib-toastify-toast-container>
    
@@ -37,7 +37,7 @@
           <p *ngIf="showEmptyFieldError" class= "ml-2 text-red  text-sm">Input field cannot be empty</p>
         </div>
 
-        <!--footer-->
+        
         <div class="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
           <button class="border-1  bg-white hover:bg-green hover:border-r-4  text-black active:bg-emerald-600 font-bold  text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" 
             (click)="closeModal()">

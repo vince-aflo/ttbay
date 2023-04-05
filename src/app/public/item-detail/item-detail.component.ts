@@ -4,6 +4,7 @@ import { ToastService } from 'angular-toastify';
 import { Item } from 'src/app/core/models/item.model';
 import { ItemService } from 'src/app/core/services/item.service';
 
+
 @Component({
   selector: 'app-item-detail',
   templateUrl: './item-detail.component.html',
@@ -31,6 +32,7 @@ export class ItemDetailComponent implements OnInit {
       }
     })
   }
+
 
   toggleAuctionFormVisibility(){
     this.showAuctionForm = !this.showAuctionForm;

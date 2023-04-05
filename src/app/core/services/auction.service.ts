@@ -28,6 +28,15 @@ export class AuctionService {
     return this.http.get<Auction>(`http://localhost:8080/api/v1/auctions/${id}`);
   }
 
+  
+  cancelAuctionWithBidCheck (id:number){
+    return this.http.delete(`http://localhost:8080/api/v1/auctions/cancelWithBidCheck/${id}`,{observe: 'response', responseType: 'text'});
+  }
+
+  cancelAuction(id: number ){
+    return this.http.delete(`http://localhost:8080/api/v1/auctions/cancel/${id}`,{observe: 'response', responseType: 'text'});
+  }
+  
   updateAuction(body:any){
     return this.http.put<Auction>('http://localhost:8080/api/v1/auctions', body)
   }
