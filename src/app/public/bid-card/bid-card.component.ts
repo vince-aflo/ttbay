@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { Auction } from 'src/app/core/models/auction.model';
 
 @Component({
-  selector: 'app-auction-card',
-  templateUrl: './auction-card.component.html',
-  styleUrls: ['./auction-card.component.scss']
+  selector: 'app-bid-card',
+  templateUrl: './bid-card.component.html',
+  styleUrls: ['./bid-card.component.scss']
 })
-export class AuctionCardComponent {
+export class BidCardComponent {
   @Input() auction!:Auction;
 
   constructor(private router:Router) {}

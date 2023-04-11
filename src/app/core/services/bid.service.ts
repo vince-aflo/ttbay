@@ -10,6 +10,10 @@ export class BidService {
   constructor(private http:HttpClient) { }
 
   makeBid(bid:Bid){
-    return this.http.post('http://localhost:8080/api/v1/bid', bid,{responseType:"text"});
+    return this.http.post('http://localhost:8080/api/v1/bids', bid,{responseType:"text"});
+  }
+
+  getAllBidsByUser(){
+    return this.http.get('http://localhost:8080/api/v1/bids/all-by-user')
   }
 }

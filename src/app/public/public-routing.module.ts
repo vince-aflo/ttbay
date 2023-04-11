@@ -12,6 +12,8 @@ import { AuctionListComponent } from './auction-list/auction-list.component';
 import { ItemListComponent } from './item-list/item-list.component';
 import { UserAuctionDetailComponent } from './user-auction-detail/user-auction-detail.component';
 import { AuctionDetailComponent } from './auction-detail/auction-detail.component';
+import { BidListComponent } from './bid-list/bid-list.component';
+import { CompletedAuctionDetailComponent } from './completed-auction-detail/completed-auction-detail.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -23,11 +25,13 @@ const routes: Routes = [
   {path: 'sell', component: SellingComponent, children: [
     {path: '', redirectTo: 'auctions', pathMatch: "full"},
     {path: 'auctions', component: AuctionListComponent},
-    {path: 'drafts', component: ItemListComponent}
+    {path: 'drafts', component: ItemListComponent},
+    {path: 'bids', component: BidListComponent}
   ]},
   {path: 'item-detail/:id', component: ItemDetailComponent},
   {path: 'auction-detail/:id', component: UserAuctionDetailComponent},
-  {path: 'live-auction-detail/:id', component: AuctionDetailComponent}
+  {path: 'live-auction-detail/:id', component: AuctionDetailComponent},
+  {path: 'completed-auction-detail/:id', component:CompletedAuctionDetailComponent}
 ];
 
 @NgModule({

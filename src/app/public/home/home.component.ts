@@ -20,7 +20,7 @@ export class HomeComponent {
   ngOnInit() {
     this.auctionService.getAllAuctions().subscribe({
       next: (value) => {
-        this.auctions = value;
+        this.auctions = value.filter((auction) => auction.status == 'LIVE');
       },
       error: (err) => {
         this.toastService.error('Failed to fetch auctions')

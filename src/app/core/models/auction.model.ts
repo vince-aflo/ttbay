@@ -8,7 +8,7 @@ export class Auction {
   reservedPrice: number;
   startDate: Date ;
   status: string;
-  auctioner_email : string;
+  auctioneerEmail : string;
   item : Item;
   winner : User|null;
 
@@ -19,7 +19,7 @@ export class Auction {
     reservedPrice: number, 
     startDate: Date, 
     status: string, 
-    auctioner_email : string, 
+    auctioneerEmail : string, 
     item : Item, 
     winner: User | null
     ) {
@@ -29,7 +29,7 @@ export class Auction {
     this.reservedPrice = reservedPrice;
     this.startDate = startDate;
     this.status = status;
-    this.auctioner_email = auctioner_email;
+    this.auctioneerEmail = auctioneerEmail;
     this.item = item;
     this.winner = winner;
   }

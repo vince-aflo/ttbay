@@ -21,6 +21,7 @@
         >{{ auction.reservedPrice | currency:'GHS ' }}</span
       >
       <span>Ending: {{auction.endDate | date:'medium'}}</span>
+      <span [ngClass]="auction.status == 'LIVE' ? 'text-green' : 'text-red'">{{auction.status | uppercase }}</span>
     </div>
   </div>
 </div>

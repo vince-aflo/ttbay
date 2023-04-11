@@ -35,6 +35,9 @@ import { AuctionDetailComponent } from './auction-detail/auction-detail.componen
 import { PendingBidsPopComponent } from './pending-bids-pop/pending-bids-pop.component';
 import { BidFormComponent } from './bid-form/bid-form.component';
 import { EditAuctionFormComponent } from './edit-auction-form/edit-auction-form.component';
+import { BidListComponent } from './bid-list/bid-list.component';
+import { BidCardComponent } from './bid-card/bid-card.component';
+import { CompletedAuctionDetailComponent } from './completed-auction-detail/completed-auction-detail.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,10 @@ import { EditAuctionFormComponent } from './edit-auction-form/edit-auction-form.
     AuctionDetailComponent,
     PendingBidsPopComponent,
     BidFormComponent,
-    EditAuctionFormComponent
+    EditAuctionFormComponent,
+    BidListComponent,
+    BidCardComponent,
+    CompletedAuctionDetailComponent
    
   ],
   imports: [

@@ -1,5 +1,5 @@
 <div class="mx-6">
-  <div *ngIf="items.length === 0" class="sm:flex-row flex flex-col justify-center items-center " >
+  <div *ngIf="items && items.length === 0" class="sm:flex-row flex flex-col justify-center items-center " >
     <img src="../../../assets/images/no drafts.avif" alt="">
     <p class="text-grey"> There are currently <span class="text-xl font-semibold">no items in drafts. </span>   </p>
   </div>

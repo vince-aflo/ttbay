@@ -40,6 +40,14 @@ export class SellingComponent implements OnInit{
     return this.router.url.includes('auctions')
   }
 
+  showDrafts(){
+    return this.router.url.includes('drafts')
+  }
+
+  showBids(){
+    return this.router.url.includes('bids')
+  }
+
   setSavedItem(item:Item){
     this.savedItem = item;
     this.showItemForm = false;

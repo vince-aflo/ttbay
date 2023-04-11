@@ -1,0 +1,27 @@
+<div (click)="showAuctionDetails()" class="w-full max-w-sm bg-white rounded-lg shadow">
+    <div class="relative aspect-square w-full">
+      <img
+        [src]="auction.item.imageList[0].imageUrl"
+        alt="Item image"
+        class="aspect-square w-full object-cover rounded-lg"
+      />
+      <div
+        class="absolute inset-0 rounded-lg"
+        style="mask-image: url(auction.item.imageUrl)"
+      ></div>
+    </div>
+  
+    <div class="px-5 py-4">
+      <h5 class="tracking-tight text-gray-900 dark:text-white">
+        {{ auction.item.itemName }}
+      </h5>
+  
+      <div class="flex flex-col justify-between">
+        <span class="text-xl font-semibold text-black"
+          >{{ auction.reservedPrice | currency:'GHS ' }}</span
+        >
+        <span>Ending: {{auction.endDate | date:'medium'}}</span>
+        <span [ngClass]="auction.status == 'LIVE' ? 'text-green' : 'text-red'">{{auction.status | uppercase }}</span>
+      </div>
+    </div>
+  </div>

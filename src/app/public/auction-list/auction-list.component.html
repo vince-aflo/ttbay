@@ -1,5 +1,5 @@
 <div class="mx-6">
-  <div *ngIf="auctions.length === 0" class="sm:flex-row flex flex-col justify-center items-center">
+  <div *ngIf="auctions && auctions.length === 0" class="sm:flex-row flex flex-col justify-center items-center">
     <img class="" src="../../../assets/images/no auctions.avif" alt="">
     <p class="text-grey"> There are currently <span class="text-xl font-semibold">no items on auction.</span>   </p>
   </div>
