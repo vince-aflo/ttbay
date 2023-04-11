@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { ToastService } from 'angular-toastify';
-import { Auction } from 'src/app/core/models/auction.model';
-import { AuctionService } from 'src/app/core/services/auction.service';
 import { BidService } from 'src/app/core/services/bid.service';
 
 @Component({

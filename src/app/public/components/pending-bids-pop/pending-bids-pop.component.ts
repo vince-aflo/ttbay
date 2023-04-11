@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ItemService } from '../../core/services/item.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ItemService } from 'src/app/core/services/item.service';
+import {  Router } from '@angular/router';
 import { ToastService } from 'angular-toastify';
 
 @Component({

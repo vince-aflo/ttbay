@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import {Auction} from '../../core/models/auction.model'
-import {AuctionService} from '../../core/services/auction.service'
-import {ItemService} from '../../core/services/item.service';
-import {Item} from '../../core/models/item.model'
+import {Auction} from 'src/app/core/models/auction.model'
+import {AuctionService} from 'src/app/core/services/auction.service'
 import { ToastService } from 'angular-toastify';
 
 @Component({

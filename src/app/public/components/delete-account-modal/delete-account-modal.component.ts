@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import { ToastService, AngularToastifyModule } from 'angular-toastify';
 import { UserService } from 'src/app/core/services/user.service';
-import {AccountSettingsComponent} from '../account-settings/account-settings.component'
-import {LoginService} from '../../core/services/login.service';
+import {AccountSettingsComponent} from '../../pages/account-settings/account-settings.component'
+import {LoginService} from '../../../core/services/login.service';
 import { AuctionService } from 'src/app/core/services/auction.service';
 
 

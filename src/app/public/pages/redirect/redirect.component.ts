@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
-import {LoadingSpinnerComponent} from '../loading-spinner/loading-spinner.component'
 
 @Component({
   selector: 'app-redirect',

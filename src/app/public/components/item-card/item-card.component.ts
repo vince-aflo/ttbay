@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Item } from '../../core/models/item.model';
+import { Item } from 'src/app/core/models/item.model';
 
 @Component({
   selector: 'app-item-card',

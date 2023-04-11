@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { LoginService } from 'src/app/core/services/login.service';
-import { LoginComponent } from '../login/login.component';
+import { LoginComponent } from '../pages/login/login.component';
 
 import { NavbarComponent } from './navbar.component';
 

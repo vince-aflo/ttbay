@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {Item} from '../../core/models/item.model';
+import { Component, OnInit } from '@angular/core';
+import {Item} from 'src/app/core/models/item.model';
 import { ItemService } from 'src/app/core/services/item.service';
-import { copyFileSync } from 'fs';
 import { ToastService } from 'angular-toastify';
 
 @Component({
@@ -18,7 +17,6 @@ export class ItemListComponent implements OnInit {
   ngOnInit(): void {
     this.itemService.getAllUserItems().subscribe({
       next:(data) => {
-        console.log(data)
         this.items = data.filter(datum => datum.onAuction === false );
       },
       error: (err) => {

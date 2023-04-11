@@ -1,19 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PublicComponent } from './public.component';
-import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component';
-import { HomeComponent } from './home/home.component';
-import {AccountSettingsComponent} from './account-settings/account-settings.component'
-import {RedirectComponent} from './redirect/redirect.component'
-import { SellingComponent } from './selling/selling.component';
-import { ItemDetailComponent } from './item-detail/item-detail.component';
-import { AuctionListComponent } from './auction-list/auction-list.component';
-import { ItemListComponent } from './item-list/item-list.component';
-import { UserAuctionDetailComponent } from './user-auction-detail/user-auction-detail.component';
-import { AuctionDetailComponent } from './auction-detail/auction-detail.component';
-import { BidListComponent } from './bid-list/bid-list.component';
-import { CompletedAuctionDetailComponent } from './completed-auction-detail/completed-auction-detail.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { HomeComponent } from './pages/home/home.component';
+import { AccountSettingsComponent } from './pages/account-settings/account-settings.component'
+import { RedirectComponent } from './pages/redirect/redirect.component'
+import { SellingComponent } from './pages/selling/selling.component';
+import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
+import { AuctionListComponent } from './pages/selling/auction-list/auction-list.component';
+import { ItemListComponent } from './pages/selling/item-list/item-list.component';
+import { UserAuctionDetailComponent } from './pages/user-auction-detail/user-auction-detail.component';
+import { AuctionDetailComponent } from './pages/auction-detail/auction-detail.component';
+import { BidListComponent } from './pages/selling/bid-list/bid-list.component';
+import { CompletedAuctionDetailComponent } from './pages/completed-auction-detail/completed-auction-detail.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
