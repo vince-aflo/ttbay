@@ -85,6 +85,7 @@ export class ItemFormComponent implements OnInit {
         this.itemService.addItem(this.itemForm.value).subscribe(response => {
           if (response) {
             this.savedItemComplete.emit(response);
+            this.toastService.success("Item saved successfully");
           } else {
             this.toastService.error("Something went wrong. Please try again!")
           }
