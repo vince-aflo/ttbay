@@ -16,4 +16,8 @@ export class BidService {
   getAllBidsByUser(){
     return this.http.get('http://localhost:8080/api/v1/bids/all-by-user')
   }
+
+  getBidCount(auctionId:number) {
+    return this.http.get(`http://localhost:8080/api/v1/bids/bid-count/${auctionId}`)
+  }
 }

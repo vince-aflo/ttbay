@@ -22,7 +22,7 @@
     </div>
     <div class="md:flex md:flex-col md:justify-center md:gap-4 md:min-h-[300px] md:max-h-[300px]">
       <h1 class="hidden tracking-tight text-xl font-semibold text-gray-900 dark:text-white md:block">
-        {{item && item.itemName}}
+        {{item && item.itemName | capitalizeFirstLetter }}
       </h1>
       <div class="py-4 md:py-0">
         <h2 class="text-lg font-semibold">Condition: {{item && (item.condition | categoryName)}}</h2>

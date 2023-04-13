@@ -1,17 +1,15 @@
-<app-navbar class=""></app-navbar>
+<app-navbar class="z-30"></app-navbar>
 <app-searchbar class="md:absolute md:min-w-fit md:top-0 md:inset-x-1/4"></app-searchbar>
 
 <div class="flex flex-col">
-    <div class="bg-green h-56 mb-6"></div>
-    <h1 class="text-3xl font-bold ml-6">Live Auctions</h1>
     <div class="mx-6 my-6">
         <div *ngIf="auctions && auctions.length === 0" class="sm:flex-row flex flex-col justify-center items-center">
             <img class="" src="../../../assets/images/no auctions.avif" alt="">
             <p class="text-grey"> There are currently <span class="text-xl font-semibold">no items on auction.</span></p>
         </div>
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-10">
-            <app-live-auction-card class="" *ngFor="let auction of auctions" [liveAuction]="auction"></app-live-auction-card>
+        <div class="grid grid-cols-1 justify-items-center gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6">
+            <app-live-auction-card class="w-full transition transform hover:cursor-pointer hover:scale-[1.025]" *ngFor="let auction of auctions" [liveAuction]="auction"></app-live-auction-card>
         </div>
     </div>
 </div>

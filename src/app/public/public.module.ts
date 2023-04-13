@@ -22,7 +22,7 @@ import { PendingAuctionsPopComponent } from './components/pending-auctions-pop/p
 import { SellingComponent } from './pages/selling/selling.component';
 import { ItemFormComponent } from './components/item-form/item-form.component';
 import { AuctionFormComponent } from './components/auction-form/auction-form.component';
-import { CategoryNamePipe } from '../core/pipes/category-name.pipe';
+import { CategoryNamePipe } from './pipes/category-name.pipe';
 import { ItemCardComponent } from './components/item-card/item-card.component';
 import { ItemListComponent } from './pages/selling/item-list/item-list.component';
 import { AuctionListComponent } from './pages/selling/auction-list/auction-list.component';
@@ -38,6 +38,7 @@ import { EditAuctionFormComponent } from './components/edit-auction-form/edit-au
 import { BidListComponent } from './pages/selling/bid-list/bid-list.component';
 import { BidCardComponent } from './components/bid-card/bid-card.component';
 import { CompletedAuctionDetailComponent } from './pages/completed-auction-detail/completed-auction-detail.component';
+import { CapitalizeFirstLetterPipe } from './pipes/capitalize-first-letter.pipe';
 
 @NgModule({
   declarations: [
@@ -72,8 +73,8 @@ import { CompletedAuctionDetailComponent } from './pages/completed-auction-detai
     EditAuctionFormComponent,
     BidListComponent,
     BidCardComponent,
-    CompletedAuctionDetailComponent
-   
+    CompletedAuctionDetailComponent,
+    CapitalizeFirstLetterPipe
   ],
   imports: [
     CommonModule,

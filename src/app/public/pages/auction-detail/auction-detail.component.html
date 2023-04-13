@@ -44,7 +44,7 @@
       <h1
         class="hidden tracking-tight text-xl font-semibold text-gray-900 dark:text-white md:block"
       >
-        {{ auction && auction.item.itemName }}
+        {{ auction && auction.item.itemName | capitalizeFirstLetter }}
       </h1>
       <div class="py-4 md:py-0">
         <h2 class="text-lg font-semibold">

@@ -6,7 +6,7 @@ import { ToastService } from 'angular-toastify';
 import { of } from 'rxjs';
 import { ImageUploadService } from 'src/app/core/services/image-upload.service';
 import { ItemService } from 'src/app/core/services/item.service';
-import { CategoryNamePipe } from '../pipes/category-name.pipe';
+import { CategoryNamePipe } from 'src/app/public/pipes/category-name.pipe';
 
 import { ItemFormComponent } from './item-form.component';
 
