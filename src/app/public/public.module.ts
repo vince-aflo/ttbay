@@ -39,6 +39,7 @@ import { BidListComponent } from './pages/selling/bid-list/bid-list.component';
 import { BidCardComponent } from './components/bid-card/bid-card.component';
 import { CompletedAuctionDetailComponent } from './pages/completed-auction-detail/completed-auction-detail.component';
 import { CapitalizeFirstLetterPipe } from './pipes/capitalize-first-letter.pipe';
+import {SearchModalComponent} from "./components/search-modal/search-modal.component"
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { CapitalizeFirstLetterPipe } from './pipes/capitalize-first-letter.pipe'
     BidListComponent,
     BidCardComponent,
     CompletedAuctionDetailComponent,
-    CapitalizeFirstLetterPipe
+    CapitalizeFirstLetterPipe, 
+    SearchModalComponent
   ],
   imports: [
     CommonModule,
