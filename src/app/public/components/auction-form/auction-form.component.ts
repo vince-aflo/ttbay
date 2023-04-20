@@ -26,7 +26,7 @@ export class AuctionFormComponent implements OnInit {
       price: new FormControl(null, [Validators.required, Validators.pattern('[0-9]*(\.[0-9]{0,2})?')]),
       startDate: new FormControl(null, [Validators.required, dateValidator()]),
       endDate: new FormControl(null, [Validators.required, dateValidator()]),
-      status: new FormControl('DRAFT')
+      status: new FormControl('SCHEDULED')
     })
   }
 
