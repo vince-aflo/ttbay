@@ -110,7 +110,6 @@ export class ProfileComponent implements OnInit {
         },
         error:(err) => {
           this.usernameNotTaken = false;
-          this.toastService.error('Username taken')
         }
       })
   }

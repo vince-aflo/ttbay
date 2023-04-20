@@ -26,13 +26,13 @@ export class AuctionCardComponent implements OnInit {
 
   showAuctionDetails(){
     if (this.auction.auctioneerEmail && this.auction.status == 'END'){
-      this.router.navigateByUrl(`/completed-auction-detail/${this.auction.auctionId}`)
+      this.router.navigateByUrl(`/dashboard/completed-auction-detail/${this.auction.auctionId}`)
     } else if (this.auction.auctioneerEmail == this.userEmail){
       this.router.navigateByUrl(`/auction-detail/${this.auction.auctionId}`)
     } else if (this.auction.status != 'END') {
       this.router.navigateByUrl(`/live-auction-detail/${this.auction.auctionId}`)
     } else {
-      this.router.navigateByUrl(`/completed-auction-detail/${this.auction.auctionId}`)
+      this.router.navigateByUrl(`/dashboard/completed-auction-detail/${this.auction.auctionId}`)
     }
   }
 }

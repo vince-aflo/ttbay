@@ -15,7 +15,7 @@ import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
             startCheckSession: false,
             silentRenew: false,
             silentRenewUrl: window.location.origin + '/silent-renew.html',
-            postLoginRoute: '/profile',
+            postLoginRoute: '/dashboard/profile',
             forbiddenRoute: '/login',
             unauthorizedRoute: '/login',
             logLevel: LogLevel.Debug,

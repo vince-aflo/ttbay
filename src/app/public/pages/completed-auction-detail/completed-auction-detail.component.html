@@ -1,89 +1,112 @@
-<!-- <div class="min-h-screen w-full"> -->
-    <div
-    *ngIf="showBidForm"
-    class="fixed backdrop-blur min-w-full min-h-full z-20 bg-transdark"
-  ></div>
-  <div class="flex flex-col gap-4 p-6 mb-4">
-    <div class="flex flex-col gap-2 min-h-full w-full mt-12 md:flex-row md:gap-6">
-      <app-navbar class="absolute top-0 left-0 z-10 w-full"></app-navbar>
-      <h1
-        class="tracking-tight mb-2 text-xl font-semibold text-gray-900 dark:text-white md:hidden"
-      >
-        {{ auction && auction.item.category }}
-      </h1>
-      <div
-        class="relative aspect-square w-full md:max-h-[300px] md:max-w-[300px]"
-      >
-        <img
-          src="{{
-            auction && auction.item.imageList[currentImagePosition].imageUrl
-          }}"
-          alt="Item image"
-          class="aspect-square w-full object-cover rounded-lg"
-        />
-        <img
-          (click)="previousImage()"
-          src="../../../assets/svg/icons/chevron-left-solid.svg"
-          class="absolute inset-y-1/2 left-2 p-2 w-10 h-10 object-fit bg-bg-blue rounded-full hover:bg-white"
-        />
-        <img
-          (click)="nextImage()"
-          src="../../../assets/svg/icons/chevron-right-solid.svg"
-          class="absolute inset-y-1/2 right-2 p-2 w-10 h-10 object-fit bg-bg-blue rounded-full hover:bg-white"
-        />
-      </div>
-      <div
-        class="md:flex md:flex-col md:justify-center md:gap-4 md:min-h-[300px] md:max-h-[300px]"
-      >
-        <h1
-          class="hidden tracking-tight text-xl font-semibold text-gray-900 dark:text-white md:block"
-        >
-          {{ auction && auction.item.itemName }}
-        </h1>
-        <div class="py-4 md:py-0">
-          <h2 class="text-lg font-semibold">
-            Condition: {{ auction && (auction.item.condition | categoryName) }}
-          </h2>
-          <h2 class="text-lg font-semibold">Description</h2>
-          <p class="overflow-y-auto truncate pb-2 max-w-[700px] md:max-h-[120px]">
-            {{ auction && auction.item.description }}
-          </p>
-        </div>
-        <div class="flex gap-2">
-          <app-button *ngIf="auction && auction.auctioneerEmail === userEmail"
-            [buttonText]="'Item given'"
-          ></app-button>
-          <app-button *ngIf="auction && auction.winner?.email === userEmail"
-          [buttonText]="'Item received'"
-        ></app-button>
-        <app-button *ngIf="userEmail != auction.auctioneerEmail && userEmail != auction.winner?.email"
-        [buttonText]="'Auction Completed'"
-      ></app-button>
-        </div>
-      </div>
+<div class="flex flex-col px-3 sm:px-6 gap-4 mb-4">
+  <!-- <div class="flex flex-col p-4 gap-4 sm:flex-row justify-between sm:p-12">      
+    <h1 class="tracking-tighter text-2xl lg:text-4xl">Welcome !</h1>
+    <app-secondary-button class="hidden sm:block" [disableButton]="false" [buttonText]="'List an item'"></app-secondary-button>
+  </div> -->
+  <!-- <ng-template #loading_welcome>
+    <div class="flex flex-col p-4 gap-4 sm:flex-row justify-between sm:p-12 ">      
+      <h1 class="text-2xl lg:text-4xl rounded-md bg-loading-grey text-loading-grey animate-pulse">Welcome, Dummy Name!</h1>
+      <div class="hidden sm:block h-10 rounded-md bg-loading-grey w-32 animate-pulse"></div>
     </div>
-    <div class="w-full min-h-64 bg-lightgrey p-4 rounded-md">
-      <h2 class="text-lg font-semibold">Details</h2>
-      <p class="px-1 py-2 mb-2 rounded-md bg-white" *ngIf="auction && auction.winner?.email === userEmail">Congratulations!!! You have won this auction. Kindly reach out to the seller via <strong>{{auction && auction.auctioneerEmail}}.</strong> 
-        Click the item received button when you have successfully received the item</p>
-      <p class="px-1 py-2 mb-2 rounded-md bg-white" *ngIf="auction && auction.auctioneerEmail === userEmail">
-            Congratulations!!! Your item has been sold. Kindly reach out to the buyer via 
-            <strong>{{auction && auction.winner!.email}}.</strong> 
-            Click the item given button when you have successfully given the item to the buyer.
-      </p>
-      <p>Description: {{ auction && auction.item.description }}</p>
-      <p>Category: {{ auction && auction.item.category }}</p>
-      <p>Ends on: {{ auction && auction.endDate | date : "medium" }}</p>
-      <p>
-        Reserved price: {{ auction && auction.reservedPrice | currency : "GHS " }}
-      </p>
-      <p>
-        Highest bid:
-        {{
-          auction && (auction.currentHighestBid || 0) | currency : "GHS "
-        }}
-      </p>
+  </ng-template> -->
+
+  <div class="flex flex-col gap-2 mt-2 sm:gap-4 min-h-full w-full sm:mt-6">
+    <!-- Heading -->
+    <h1 class="tracking-tight text-xl font-medium">
+        {{ auction && auction.item.itemName }}
+    </h1>
+    <!-- Images -->
+    <div class="grid gap-2 sm:h-80 sm:grid-cols-3 sm:grid-rows-2">
+      <img
+        src="{{
+          auction && auction.item.imageList[0].imageUrl
+        }}"
+        alt="Item image"
+        class="aspect-square sm:h-full w-full sm:col-span-2 sm:row-span-2 object-cover rounded-lg"/>
+      <img
+        src="{{
+          auction && auction.item.imageList[1].imageUrl
+        }}"
+        alt="Item image"
+        class="hidden sm:block sm:h-full w-full sm:col-span-1 sm:row-span-1 object-cover rounded-lg"/>
+      <img
+        src="{{
+          auction && auction.item.imageList[2].imageUrl
+        }}"
+        alt="Item image"
+        class="hidden sm:block sm:h-full w-full sm:col-span-1 sm:row-span-1 object-cover rounded-lg"/>
+    </div>
+    <div class="my-2 sm:hidden">
+      <app-secondary-button (click)="scroll(exchange)" [buttonText]="'View Exchange Details'"></app-secondary-button>
+    </div>
+    <!-- Details -->
+    <div class="grid gap-2 sm:grid-cols-3 sm:mt-2">
+      <div class="sm:col-span-2 p-2">
+        <!-- Heading -->
+        <div class="sm:py-2 border-b border-lightgrey">
+          <h1 class="tracking-tight text-xl font-medium">
+            {{ auction && auction.item.itemName }}
+          </h1>
+          <span class="pr-2">&#8226; Total Bids: {{bidCount}} </span>
+          <span class="pr-2 sm:hidden">&#8226; Closed: {{auction.endDate | date : 'short'}}</span>
+          <span class="hidden pr-2 sm:inline">&#8226; Closed: {{auction.endDate | date : 'medium'}}</span>
+        </div>
+        <!-- Key info -->
+        <div class="py-2 border-b border-lightgrey mt-3 sm:mt-6">
+          <div class="flex gap-4 items-start mb-3 sm:mb-6">
+            <img class="h-12" src="https://img.icons8.com/dotty/80/null/money.png" alt="cash icon">
+            <div class="">
+              <h3 class="font-medium text-grey -mb-1">Winning Bid</h3>
+              <span class="font-medium text-lg">&#8373; {{auction.currentHighestBid | currency : ' '}}</span>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start mb-3 sm:mb-6">
+            <img class="h-12" src="https://img.icons8.com/pastel-glyph/64/null/name.png" alt="cash icon">
+            <div class="">
+              <h3 class="font-medium text-grey -mb-1">Sold To</h3>
+              <span class="font-medium text">{{auction.winner != null ? auction.winner!.email : 'No winner'}}</span>
+            </div>
+          </div>
+        </div>
+        <!-- Other details -->
+        <div class="py-2 border-b border-lightgrey">
+          <h2 class="text-lg font-semibold mb-2">Details</h2>
+          <div class="grid grid-cols-2">
+            <p class="mb-2">
+              <span class="font-medium">Item Category</span><br> 
+              {{ auction && auction.item.category | lowercase | capitalizeFirstLetter }}
+            </p>
+            <p class="mb-2">
+              <span class="font-medium">Starting Price</span><br> 
+              {{ auction && auction.reservedPrice | currency : "GHS " }}
+            </p>
+            <p class="mb-2 col-span-2">
+              <span class="font-medium">Item Description </span><br> 
+              {{ auction && auction.item.description }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Exchange Info -->
+      <div #exchange class="p-3 h-fit rounded-md shadow-md">
+        <h2 class="text-lg font-semibold border-b border-lightgrey tracking-wide p-1 mb-3">Exchange Information</h2>
+        <p class="mb-3 rounded-md text-grey bg-white" *ngIf="auction && auction.winner?.email === userEmail">Congratulations!!! You have won this auction. Kindly reach out to the seller via <strong>{{auction && auction.auctioneerEmail}}.</strong> 
+          Click the item received button when you have successfully received the item</p>
+        <p class="mb-3 rounded-md text-grey bg-white" *ngIf="auction && auction.auctioneerEmail === userEmail">
+              Congratulations!!! Your item has been sold. Kindly reach out to the buyer via 
+              <strong>{{auction && auction.winner!.email}}.</strong> 
+              Click the item given button when you have successfully given the item to the buyer.
+        </p>
+        <!-- Buttons -->
+        <app-primary-button *ngIf="auction && auction.auctioneerEmail === userEmail"
+          [buttonText]="'Item given'"
+          ></app-primary-button>
+        <app-primary-button *ngIf="auction && auction.winner?.email === userEmail"
+          [buttonText]="'Item received'"
+          ></app-primary-button>
+      </div>
     </div>
   </div>
-  <lib-toastify-toast-container></lib-toastify-toast-container>
+</div>
+<lib-toastify-toast-container></lib-toastify-toast-container>
   

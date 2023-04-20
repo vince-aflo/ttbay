@@ -74,7 +74,7 @@ export class UserAuctionDetailComponent {
             this.showPendingBidPopUp = true
           }else{
             this.toastService.success("item deleted successfully")
-            this.router.navigateByUrl('/sell/auctions')
+            this.router.navigateByUrl('/dashboard/auctions')
           }
           
         },
@@ -99,7 +99,7 @@ export class UserAuctionDetailComponent {
         console.log(data);
 
         this.timerId = setTimeout(() => {
-          this.router.navigateByUrl('sell');
+          this.router.navigateByUrl('dashboard');
         }, 5000)
       
       },

@@ -56,7 +56,7 @@ export class AuctionFormComponent implements OnInit {
       .subscribe({
         next:(value) => {
           this.sendHideEvent()
-          this.router.navigateByUrl('/sell')
+          this.router.navigateByUrl('/dashboard')
         },
         error: (err) => {
           this.toastService.error('Could not create auction')

@@ -41,11 +41,8 @@
                 </select>
                 <small class="text-xs text-red" *ngIf="duration.value == '' && myauctionForm.submitted">This field cannot be empty</small>
             </div>
-
-
             <!-- Schedule button -->
-            <app-button class="mt-4" type="submit" [buttonText]="'Schedule'"></app-button>
-
+            <app-primary-button class="mt-4" type="submit" [buttonText]="'Schedule'"></app-primary-button>
         </form>
     </section>
 </div>

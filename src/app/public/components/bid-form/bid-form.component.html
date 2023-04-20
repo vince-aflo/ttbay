@@ -26,17 +26,17 @@
         </small>
       </div>
       <div class="flex justify-end gap-8">
-        <app-button
-          class="mt-4"
+        <app-secondary-button
+          class="mt-2"
           buttonText="Cancel"
           (click)="cancelForm()"
-        ></app-button>
-        <app-button
-          class="mt-4"
+        ></app-secondary-button>
+        <app-primary-button
+          class="mt-2"
           type="submit"
           buttonText="Make Bid"
-          [buttonDisabled]="!bidForm.get('bidAmount')!.valid"
-        ></app-button>
+          [disableButton]="!bidForm.get('bidAmount')!.valid"
+        ></app-primary-button>
       </div>
     </form>
   </section>

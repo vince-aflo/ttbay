@@ -1,3 +1,3 @@
 export enum AuctionStatus {
-    LIVE, CANCELLED, DRAFT
+    LIVE, CANCELLED, SCHEDULED
 }

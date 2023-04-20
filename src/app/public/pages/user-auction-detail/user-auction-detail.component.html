@@ -33,9 +33,9 @@
           <p class="overflow-y-auto truncate pb-2 max-w-[700px] md:max-h-[120px]">{{auction && auction.item.description}}</p>
         </div>
         <div class="flex gap-2">
-          <app-button *ngIf="auction && auction.status === 'LIVE'" (click)="toggleAuctionFormVisibility()" [buttonText]="'Edit'"></app-button>
-          <app-button *ngIf="auction && auction.status === 'LIVE'" [buttonText]="'Cancel'"></app-button>
-          <app-button *ngIf="auction && auction.status === 'LIVE'" (click)="deleteItemOnAuction()" [buttonText]="'Delete'"></app-button>
+          <app-primary-button *ngIf="auction && auction.status === 'LIVE'" (click)="toggleAuctionFormVisibility()" [buttonText]="'Edit'"></app-primary-button>
+          <app-secondary-button *ngIf="auction && auction.status === 'LIVE'" [buttonText]="'Cancel'"></app-secondary-button>
+          <app-danger-button *ngIf="auction && auction.status === 'LIVE'" (click)="deleteItemOnAuction()" [buttonText]="'Delete'"></app-danger-button>
         </div>
       </div>
 
