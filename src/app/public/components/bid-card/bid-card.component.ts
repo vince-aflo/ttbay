@@ -16,7 +16,7 @@ export class BidCardComponent {
     if (this.auction.status != 'END') {
       this.router.navigateByUrl(`/live-auction-detail/${this.auction.auctionId}`)
     } else {
-      this.router.navigateByUrl(`/completed-auction-detail/${this.auction.auctionId}`)
+      this.router.navigateByUrl(`/dashboard/completed-auction-detail/${this.auction.auctionId}`)
     }
   }
 }

@@ -53,8 +53,8 @@
         </div>
 
         <div class="flex gap-4">
-            <app-button (click)="saveItem()" [buttonText]="isSaving ? 'Saving...' : 'Save Item'"></app-button>
-            <app-button (click)="cancelProcess()" [buttonText]="'Cancel'"></app-button>
+            <app-primary-button  (click)="saveItem()" [buttonText]="isSaving ? 'Saving...' : 'Save Item'"></app-primary-button>
+            <app-secondary-button (click)="cancelProcess()" [buttonText]="'Cancel'"></app-secondary-button>
         </div>
     </form>
     <lib-toastify-toast-container></lib-toastify-toast-container>

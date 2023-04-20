@@ -1,28 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Profile } from '../models/profile.model';
-
+import { environment } from '../environments/environment';
+import { ApiPaths } from '../enums/api-paths';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
-  constructor(private http:HttpClient) { 
-  }
+
+  baseUrl = environment.baseUrl;
+
+  constructor(private http:HttpClient) { }
 
   async saveProfile(body: any) { 
-    return this.http.put<any>('http://localhost:8080/api/v1/profile', body, {observe: 'response', responseType: 'json'})
+    return this.http.put<any>(`${this.baseUrl}${ApiPaths.GetProfile}`, body, {observe: 'response', responseType: 'json'});
   }
 
-  async getProfile(path:string){
-    return this.http.get<Profile>('http://localhost:8080/api/v1/profile/' + path)
+  async getProfile(path:string) {
+    return this.http.get<Profile>(`${this.baseUrl}${ApiPaths.GetProfile}/${path}`);
   }
 
-  checkUsernameAvailability(path:string){
-    return this.http.get('http://localhost:8080/api/v1/profile/username/' + path, {observe: 'response', responseType: 'text'})
+  checkUsernameAvailability(path:string) {
+    return this.http.get(`${this.baseUrl}${ApiPaths.CheckUsernameAvailability}/${path}`, {observe: 'response', responseType: 'text'});
   }
 
-  deleteAccount(email:string){
-    return this.http.delete('http://localhost:8080/api/v1/account/user/' + email, { observe: 'response', responseType: 'json'})
+  deleteAccount(email:string) {
+    return this.http.delete(`${this.baseUrl}${ApiPaths.DeleteAccount}/${email}`, { observe: 'response', responseType: 'json'});
   }
 }

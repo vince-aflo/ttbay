@@ -4,6 +4,7 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { ToastService } from 'angular-toastify';
 import { Auction } from 'src/app/core/models/auction.model';
 import { AuctionService } from 'src/app/core/services/auction.service';
+import { BidService } from 'src/app/core/services/bid.service';
 
 @Component({
   selector: 'app-completed-auction-detail',
@@ -13,29 +14,34 @@ import { AuctionService } from 'src/app/core/services/auction.service';
 export class CompletedAuctionDetailComponent {
   auction!:Auction;
   userEmail!:string;
-  currentImagePosition:number = 0;
-  showAuctionForm:boolean = false;
-  showBidForm:boolean = false;
+  bidCount!:number;
+  id!:number;
 
   constructor(private auctionService: AuctionService,
     private router:Router,
     private toastService: ToastService,
-    private oidcSecurityService: OidcSecurityService){}
+    private oidcSecurityService: OidcSecurityService,
+    private bidService: BidService){}
 
   ngOnInit(): void {
     const routeInfo = this.router.url.split('/');
     const id = parseInt(routeInfo[routeInfo.length - 1])
+
     this.oidcSecurityService.getUserData().subscribe({
       next: (data) => {
         this.userEmail = data.email
-        console.log(this.userEmail)
-
       }
     })
+
+    this.bidService.getBidCount(id).subscribe({
+      next:(data) => {
+        this.bidCount = Number(data)
+      }
+    })
+
     this.auctionService.getAuction(id).subscribe({
       next:(data) => {
         this.auction = data;
-        console.log(this.auction)
       },
       error:(err) => {
         this.toastService.error('Could not fetch item info')
@@ -44,16 +50,7 @@ export class CompletedAuctionDetailComponent {
     })
   }
 
-  toggleAuctionFormVisibility(){
-    this.showAuctionForm = !this.showAuctionForm;
+  scroll(el: HTMLElement) {
+    el.scrollIntoView();
   }
-
-  previousImage(){
-    if(this.currentImagePosition > 0) this.currentImagePosition--
-  }
-
-  nextImage(){
-    if(this.currentImagePosition < this.auction.item!.imageList.length - 1) this.currentImagePosition++
-  }
-
 }

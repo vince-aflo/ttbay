@@ -30,9 +30,9 @@
         <p class="overflow-y-auto truncate pb-2 max-w-[700px] md:max-h-[120px]">{{item && item.description}}</p>
       </div>
       <div class="flex gap-2">
-        <app-button (click)="toggleAuctionFormVisibility()" [buttonText]="'Auction'"></app-button>
-        <app-button [buttonText]="'Edit'"></app-button>
-        <app-button  [buttonText]="'Delete'"></app-button>
+        <app-primary-button (click)="toggleAuctionFormVisibility()" [buttonText]="'Auction'"></app-primary-button>
+        <app-secondary-button [buttonText]="'Edit'"></app-secondary-button>
+        <app-danger-button  [buttonText]="'Delete'"></app-danger-button>
       </div>
     </div>
   </div>

@@ -1,6 +1,5 @@
-<app-navbar class="sticky top-0 z-20"></app-navbar>
 <div class="flex flex-col items-center p-2 md:mx-auto md:mt-4 lg:flex-row lg:items-start lg:justify-center">
-    <h1 class="text-2xl font-bold p-2 bg-black text-white w-11/12 max-w-md rounded-sm lg:absolute lg:top-24 lg:left-28 lg:w-fit lg:rounded-md lg:p-4">Profile Details</h1>
+    <h1 class="text-2xl font-bold p-2 bg-tt-black text-white w-11/12 max-w-md rounded-sm lg:absolute lg:top-24 lg:left-28 lg:w-fit lg:rounded-md lg:p-4">Profile Details</h1>
     <div class="w-11/12 flex flex-col items-center lg:w-6/12">
     <!-- Image section -->
         <div class="flex justify-center items-center image-upload w-[170px] h-[170px] rounded-full relative my-6">
@@ -76,7 +75,7 @@
                 </fieldset>
                 <small *ngIf="!profileForm.get('officeDays')!.valid" class="text-grey self-end pr-2">at least one day must be selected</small>
             </div>
-            <button type="submit" (click)="saveProfile(profileForm)" class="bg-black w-full h-[35px] mt-6 text-white font-bold rounded-sm hover:bg-green hover:text-black md:max-w-md">Save</button>
+            <app-primary-button class="w-full" (click)="saveProfile(profileForm)"  [disableButton]="false" [buttonText]="'Save'"></app-primary-button>
 
         </form>
     </div>

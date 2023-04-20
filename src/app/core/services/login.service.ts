@@ -1,28 +1,32 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
-import { HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { firstValueFrom } from 'rxjs';
+import { Router } from '@angular/router';
+import { environment } from '../environments/environment';
+import { ApiPaths } from '../enums/api-paths';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class LoginService{
-  constructor(private http:HttpClient, private oidcSecurityService: OidcSecurityService) { 
+export class LoginService {
 
-  }
+  baseUrl = environment.baseUrl;
 
-  async login(){
+  constructor(private http:HttpClient, 
+    private oidcSecurityService: OidcSecurityService,
+    private router:Router) { }
+
+  async login() {
     const token = await firstValueFrom(this.oidcSecurityService.getIdToken());
-
-    sessionStorage.setItem('id_token', token)
-
-    return this.http.get('http://localhost:8080/api/v1/register');
+    sessionStorage.setItem('id_token', token);
+    return this.http.get(`${this.baseUrl}${ApiPaths.Login}`);
   }
 
-  logout(){
+  logout() {
     sessionStorage.removeItem('id_token');
-    return this.oidcSecurityService.logoffLocal();
+    this.oidcSecurityService.logoffLocal();
+    this.router.navigateByUrl('/login');
   }
 }

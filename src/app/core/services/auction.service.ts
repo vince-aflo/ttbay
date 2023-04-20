@@ -2,42 +2,44 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {Auction} from "../models/auction.model"
+import { environment } from '../environments/environment';
+import { ApiPaths } from '../enums/api-paths';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuctionService {
 
-  private apiUrl = 'http://localhost:8080/api/v1/auctions/all-by-user';
+  baseUrl = environment.baseUrl;
 
   constructor(private http:HttpClient) { }
 
   getAllAuctionsByUser(): Observable<Auction[]> {
-    return this.http.get<Auction[]>(this.apiUrl);
+    return this.http.get<Auction[]>(`${this.baseUrl}${ApiPaths.GetAllAuctionsByUser}`);
   }
 
-  createAuction(body:any){
-    return this.http.post('http://localhost:8080/api/v1/auctions/add', body, {observe: 'response', responseType: 'text'})
+  createAuction(body:any) {
+    return this.http.post(`${this.baseUrl}${ApiPaths.CreateAuction}`, body, {observe: 'response', responseType: 'text'});
   }
 
-  getAllAuctions(){
-    return this.http.get<Auction[]>('http://localhost:8080/api/v1/auctions/all')
+  getAllAuctions() {
+    return this.http.get<Auction[]>(`${this.baseUrl}${ApiPaths.GetAllAuctions}`);
   }
 
-  getAuction(id:number){
-    return this.http.get<Auction>(`http://localhost:8080/api/v1/auctions/${id}`);
-  }
-
-  
-  cancelAuctionWithBidCheck (id:number){
-    return this.http.delete(`http://localhost:8080/api/v1/auctions/cancelWithBidCheck/${id}`,{observe: 'response', responseType: 'text'});
-  }
-
-  cancelAuction(id: number ){
-    return this.http.delete(`http://localhost:8080/api/v1/auctions/cancel/${id}`,{observe: 'response', responseType: 'text'});
+  getAuction(id:number) {
+    return this.http.get<Auction>(`${this.baseUrl}${ApiPaths.GetAuction}/${id}`);
   }
   
-  updateAuction(body:any){
-    return this.http.put<Auction>('http://localhost:8080/api/v1/auctions', body)
+  cancelAuctionWithBidCheck (id:number) {
+    return this.http.delete(`${this.baseUrl}${ApiPaths.CancelAuctionWithBidCheck}/${id}`,{observe: 'response', responseType: 'text'});
+  }
+
+  cancelAuction(id: number) {
+    return this.http.delete(`${this.baseUrl}/${ApiPaths.CancelAuction}${id}`,{observe: 'response', responseType: 'text'});
+  }
+  
+  updateAuction(body:any) {
+    return this.http.put<Auction>(`${this.baseUrl}${ApiPaths.UpdateAuction}`, body);
   }
 }

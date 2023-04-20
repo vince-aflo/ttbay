@@ -1,26 +1,32 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { ToastService } from 'angular-toastify';
 import { Auction } from 'src/app/core/models/auction.model';
 
 import { Item } from 'src/app/core/models/item.model';
 import { AuctionService } from 'src/app/core/services/auction.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
-  selector: 'app-selling',
-  templateUrl: './selling.component.html',
-  styleUrls: ['./selling.component.scss']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
 
-export class SellingComponent implements OnInit{
+export class DashboardComponent implements OnInit{
   showItemForm:boolean = false;
   showAuctionForm:boolean = false;
   savedItem!:Item;
   userAuctions!:Auction[];
+  email:string = '' 
+  name:string = ''
 
   constructor(private router:Router,
     private auctionService:AuctionService,
-    private toastService: ToastService){
+    private toastService: ToastService,
+    private oidcSecurityService: OidcSecurityService,
+    private userService: UserService){
     
   }
 
@@ -33,6 +39,17 @@ export class SellingComponent implements OnInit{
         this.toastService.error('Could not fetch user auctions')
         console.error(err)
       }
+    })
+    
+    this.oidcSecurityService.checkAuth().subscribe(({ userData }) => {
+      this.email = userData.email;
+      this.userService.getProfile(this.email).then(data => {
+        data.subscribe({
+          next:(value) => {
+            this.name = value.fullName;
+          }
+        })
+      })
     })
   }
 
