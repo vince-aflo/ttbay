@@ -40,7 +40,7 @@ export class NavbarComponent {
 
   setSwitchButton(){
     if(this.id==="sell"){
-      this.landing = "Switch back"
+      this.landing = "Switch to Home"
       this.navigateTo = "/home"
       this.showHomeIcon =true;} 
   }
