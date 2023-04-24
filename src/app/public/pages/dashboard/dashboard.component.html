@@ -9,10 +9,10 @@
   </app-auction-form>
 
   <!-- Welcome message and secondary button -->
-  <!-- <div *ngIf="name; else loading_welcome" class="flex flex-col p-4 gap-4 sm:flex-row justify-between sm:p-12">      
+  <div *ngIf="name; else loading_welcome" class="flex flex-col p-4 gap-4 sm:flex-row justify-between sm:p-12">      
       <h1 class="tracking-tighter text-2xl lg:text-4xl">Welcome, {{name}}!</h1>
       <app-secondary-button class="hidden sm:block" (click)="revealItemForm()" [disableButton]="false" [buttonText]="'List an item'"></app-secondary-button>
-  </div> -->
+  </div>
 
   <ng-template #loading_welcome>
     <div class="flex flex-col p-4 gap-4 sm:flex-row justify-between sm:p-12 ">      

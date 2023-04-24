@@ -1,6 +1,6 @@
 export enum ApiPaths {
     GetAllAuctionsByUser = '/auctions/all-by-user',
-    CreateAuction = '/auctions/all',
+    CreateAuction = '/auctions/add',
     GetAllAuctions = '/auctions/all',
     GetAuction = '/auctions',
     CancelAuctionWithBidCheck = '/auctions/cancelWithBidCheck',

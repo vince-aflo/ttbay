@@ -34,7 +34,7 @@
         </div>
         <div class="flex gap-2">
           <app-primary-button *ngIf="auction && auction.status === 'LIVE'" (click)="toggleAuctionFormVisibility()" [buttonText]="'Edit'"></app-primary-button>
-          <app-secondary-button *ngIf="auction && auction.status === 'LIVE'" [buttonText]="'Cancel'"></app-secondary-button>
+          <app-secondary-button *ngIf="auction && auction.status === 'LIVE'" (click)="cancelAuction()" [buttonText]="'Cancel'"></app-secondary-button>
           <app-danger-button *ngIf="auction && auction.status === 'LIVE'" (click)="deleteItemOnAuction()" [buttonText]="'Delete'"></app-danger-button>
         </div>
       </div>

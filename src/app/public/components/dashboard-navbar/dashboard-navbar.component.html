@@ -1,4 +1,4 @@
-<div (click)="showMenu ? showMenu = false : showMenu" class="h-12 px-3 sm:px-6 shadow flex text-grey justify-between items-center text-lg font-medium w-full">
+<div (click)="showMenu ? showMenu = false : showMenu" class="h-[80px] px-3 sm:px-6 shadow flex text-grey justify-between items-center text-lg font-medium w-full">
     <h1 routerLink="/home" class="text-2xl sm:text-3xl font-bold cursor-default ">
         <span class="text-tt-black">tt</span>
         <span class="text-green">Bay</span>
@@ -7,7 +7,12 @@
     <ul class="hidden sm:flex gap-6">
         <li *ngFor="let primaryLink of primaryLinks" routerLink="{{primaryLink.link}}" routerLinkActive="border-green text-tt-black" class="transition py-1 border-b-2 border-white hover:border-lightgrey hover:cursor-pointer">{{primaryLink.label}}</li>
     </ul>
-    <div>
+    <div class="flex flex-row ">
+        <div routerLink="/home"  class="cursor-pointer p-3  rounded-full mr-8 hidden lg:inline-flex hover:bg-lightgrey flex flex-row">
+            <img class=" h-5 w-5 mr-2 "   src="../../../../assets/images/home.png" alt="home">    
+            <a class="text-lg text-sm " > Switch to Home</a>       
+        </div>
+
         <div (click)="toggleMenu($event)" class="hover:shadow-md hover:ring-grey focus:shadow-md flex gap-2 items-center justify-between ring-1 rounded-full ring-lightgrey p-1 hover:scale-110 transition-transform duration-300">
             <img class="h-4 ml-2 hover:rotate-180 transition-transform duration-300" src="https://img.icons8.com/external-others-inmotus-design/256/external-Menu-basic-elements-others-inmotus-design.png" alt="">
             <img class="h-7 rounded-full" [src]="profileImage" alt="picture">

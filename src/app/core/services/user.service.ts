@@ -15,7 +15,7 @@ export class UserService {
   constructor(private http:HttpClient) { }
 
   async saveProfile(body: any) { 
-    return this.http.put<any>(`${this.baseUrl}${ApiPaths.GetProfile}`, body, {observe: 'response', responseType: 'json'});
+    return this.http.put<any>(`${this.baseUrl}${ApiPaths.SaveProfile}`, body, {observe: 'response', responseType: 'json'});
   }
 
   async getProfile(path:string) {

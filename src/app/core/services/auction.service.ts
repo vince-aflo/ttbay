@@ -36,7 +36,7 @@ export class AuctionService {
   }
 
   cancelAuction(id: number) {
-    return this.http.delete(`${this.baseUrl}/${ApiPaths.CancelAuction}${id}`,{observe: 'response', responseType: 'text'});
+    return this.http.delete(`${this.baseUrl}/${ApiPaths.CancelAuction}/${id}`,{observe: 'response', responseType: 'text'});
   }
   
   updateAuction(body:any) {

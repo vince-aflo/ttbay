@@ -56,7 +56,9 @@ export class NavbarComponent {
       this.userService.getProfile(email).then(data => {
         data.subscribe({
           next: (response) => {
-             this.profileImage =  response.profileUrl;         
+            if (response.profileUrl) {
+              this.profileImage = response.profileUrl;         
+            }       
           }
         })
       })
@@ -66,9 +68,10 @@ export class NavbarComponent {
  
 
   options = [
-    { label: 'Profile', icon: 'https://img.icons8.com/metro/256/gender-neutral-user.png' },
-    { label: 'Help', icon: 'https://img.icons8.com/metro/256/help.png' },
-    { label: 'Logout', icon: "https://img.icons8.com/glyph-neue/256/power-off-button.png" },
+    { label: 'Profile', link: '/dashboard/profile', icon: 'https://img.icons8.com/metro/256/gender-neutral-user.png' },
+    { label: 'Settings', link: '/dashboard/account-settings', icon: 'https://img.icons8.com/ios-filled/256/null/settings.png' },
+    { label: 'Help', link: '/help', icon: 'https://img.icons8.com/metro/256/help.png' },
+    { label: 'Logout', link: '/logout', icon: 'https://img.icons8.com/glyph-neue/256/power-off-button.png' },
   ];
   
   routeTo(option : string){
