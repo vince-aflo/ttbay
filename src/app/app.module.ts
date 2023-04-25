@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { PublicModule } from './public/public.module';
 import { AuthConfigModule } from './core/auth/auth-config.module';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
+import { AuthGuard } from './core/guards/auth.guard';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
     AuthConfigModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi:true }
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi:true },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

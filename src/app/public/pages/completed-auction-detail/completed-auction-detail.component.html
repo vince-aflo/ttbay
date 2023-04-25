@@ -16,7 +16,7 @@
       <div *ngIf="auction.item.imageList.length < 4" class="hidden lg:flex aspect-square h-full border border-dashed border-grey bg-lightgrey rounded-lg"></div>
     </div>
     <div *ngIf="auction" class="my-2 sm:hidden">
-      <app-secondary-button (click)="scroll(exchange)" [buttonText]="'View Exchange Details'"></app-secondary-button>
+      <app-secondary-button (click)="scroll(exchange)" [buttonText]="auction.currentHighestBid ? 'Exchange Details' : 'Details'"></app-secondary-button>
     </div>
     <!-- Details -->
     <div class="grid gap-2 sm:grid-cols-3 sm:mt-2">
@@ -36,14 +36,15 @@
             <img class="h-12" src="https://img.icons8.com/dotty/80/null/money.png" alt="cash icon">
             <div class="">
               <h3 class="font-medium text-grey -mb-1">Winning Bid</h3>
-              <span class="font-medium text-lg">&#8373; {{auction.currentHighestBid | currency : ' '}}</span>
+              <span *ngIf="auction.currentHighestBid" class="font-medium text-lg">&#8373; {{auction.currentHighestBid | currency : ' '}}</span>
+              <span *ngIf="auction.currentHighestBid == null" class="font-medium">None</span>
             </div>
           </div>
           <div class="flex gap-4 items-start mb-3 sm:mb-6 lg:-ml-2">
             <img class="h-12" src="https://img.icons8.com/pastel-glyph/64/null/name.png" alt="cash icon">
             <div class="">
               <h3 class="font-medium text-grey -mb-1">Sold To</h3>
-              <span class="font-medium text">{{auction.winner != null ? auction.winner!.email : 'No winner'}}</span>
+              <span class="font-medium">{{auction.winner != null ? auction.winner!.email : 'No winner'}}</span>
             </div>
           </div>
         </div>
@@ -68,21 +69,29 @@
       </div>
       <!-- Exchange Info -->
       <div #exchange class="p-3 h-fit rounded-md shadow-md">
-        <h2 class="text-lg font-semibold border-b border-lightgrey tracking-wide p-1 mb-3">Exchange Information</h2>
+        <h2 *ngIf="auction && auction.currentHighestBid" class="text-lg font-semibold border-b border-lightgrey tracking-wide p-1 mb-3">Exchange Information</h2>
         <p class="mb-3 rounded-md text-grey bg-white" *ngIf="auction && auction.winner?.email === userEmail">Congratulations!!! You have won this auction. Kindly reach out to the seller via <strong>{{auction && auction.auctioneerEmail}}.</strong> 
           Click the item received button when you have successfully received the item</p>
-        <p class="mb-3 rounded-md text-grey bg-white" *ngIf="auction && auction.auctioneerEmail === userEmail">
+        <p class="mb-3 rounded-md text-grey bg-white" *ngIf="auction && (auction.auctioneerEmail === userEmail && auction.currentHighestBid)">
               Congratulations!!! Your item has been sold. Kindly reach out to the buyer via 
               <strong>{{auction && auction.winner!.email}}.</strong> 
               Click the item given button when you have successfully given the item to the buyer.
         </p>
+        <p *ngIf="auction && auction.currentHighestBid == null" class="mb-3 rounded-md text-grey bg-white">Sorry! Your auction closed without any bids.
+           You can give your item a better chance by adjusting starting price, using clear photos and improving the item description.<br>
+           You can <strong>view</strong> your item, <strong>edit</strong> it and put it on <strong>auction</strong> again.
+        </p>
         <!-- Buttons -->
-        <app-primary-button *ngIf="auction && auction.auctioneerEmail === userEmail"
+        <div class="flex flex-col gap-3">
+          <app-primary-button *ngIf="auction && (auction.auctioneerEmail === userEmail && auction.currentHighestBid)"
           [buttonText]="'Item given'"
           ></app-primary-button>
         <app-primary-button *ngIf="auction && auction.winner?.email === userEmail"
           [buttonText]="'Item received'"
           ></app-primary-button>
+        <app-primary-button routerLink="/dashboard/item-detail/{{auction.item.itemId}}" *ngIf="auction.currentHighestBid == null" [buttonText]="'View Item'"></app-primary-button>
+        <!-- <app-danger-button *ngIf="auction.currentHighestBid == null" [buttonText]="'Delete Auction'"></app-danger-button> -->
+        </div>
       </div>
     </div>
   </div>

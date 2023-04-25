@@ -13,12 +13,13 @@ import { UserAuctionDetailComponent } from './pages/user-auction-detail/user-auc
 import { AuctionDetailComponent } from './pages/auction-detail/auction-detail.component';
 import { BidListComponent } from './pages/dashboard/bid-list/bid-list.component';
 import { CompletedAuctionDetailComponent } from './pages/completed-auction-detail/completed-auction-detail.component';
+import { AuthGuard } from '../core/guards/auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'home', component: HomeComponent},
-  {path: 'redirect', component: RedirectComponent},
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: 'redirect', component: RedirectComponent, canActivate: [AuthGuard]},
   {path: 'dashboard', component: DashboardComponent, children: [
     {path: '', redirectTo: 'auctions', pathMatch: "full"},
     {path: 'auctions', component: AuctionListComponent},
@@ -26,11 +27,11 @@ const routes: Routes = [
     {path: 'bids', component: BidListComponent},
     {path: 'account-settings', component: AccountSettingsComponent},
     {path: 'profile', component: ProfileComponent},
-    {path: 'completed-auction-detail/:id', component:CompletedAuctionDetailComponent}
-  ]},
-  {path: 'item-detail/:id', component: ItemDetailComponent},
-  {path: 'auction-detail/:id', component: UserAuctionDetailComponent},
-  {path: 'live-auction-detail/:id', component: AuctionDetailComponent},
+    {path: 'completed-auction-detail/:id', component:CompletedAuctionDetailComponent},
+    {path: 'item-detail/:id', component: ItemDetailComponent}
+  ], canActivate: [AuthGuard]},
+  {path: 'auction-detail/:id', component: UserAuctionDetailComponent, canActivate: [AuthGuard]},
+  {path: 'live-auction-detail/:id', component: AuctionDetailComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
