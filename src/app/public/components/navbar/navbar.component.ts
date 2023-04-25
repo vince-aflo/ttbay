@@ -17,7 +17,7 @@ export class NavbarComponent {
   searchModalIsOpen = false;
   showMenu:boolean = false;
   landing = "Switch to Dashboard";
-  navigateTo =  "/sell"
+  navigateTo =  "/dashboard"
   showHomeIcon :boolean = false;
   routeInfo = this.router.url.split('/');
   id = this.routeInfo[1];
