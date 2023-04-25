@@ -26,9 +26,9 @@ const routes: Routes = [
     {path: 'bids', component: BidListComponent},
     {path: 'account-settings', component: AccountSettingsComponent},
     {path: 'profile', component: ProfileComponent},
-    {path: 'completed-auction-detail/:id', component:CompletedAuctionDetailComponent}
+    {path: 'completed-auction-detail/:id', component:CompletedAuctionDetailComponent},
+    {path: 'item-detail/:id', component: ItemDetailComponent}
   ]},
-  {path: 'item-detail/:id', component: ItemDetailComponent},
   {path: 'auction-detail/:id', component: UserAuctionDetailComponent},
   {path: 'live-auction-detail/:id', component: AuctionDetailComponent},
 ];
