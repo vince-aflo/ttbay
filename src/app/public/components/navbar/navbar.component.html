@@ -1,4 +1,4 @@
-<div class="z-50 flex px-4 sm:px-10 h-[80px] bg-white sm:border-b-2 justify-between items-center border-lightgrey sm:drop-shadow-sm">
+<div class=" flex px-4 sm:px-10 h-[80px] bg-white sm:border-b-2 justify-between items-center border-lightgrey sm:drop-shadow-sm">
     <!--Logo-->
     <h1 routerLink="/home" class="w-20 cursor-default hover:scale-110 transition-transform duration-300">
         <!-- <span class="xl">tt</span>
@@ -6,7 +6,7 @@
         <img  src="../../../../assets/images/logo.png" alt="">
      </h1>
                 
-        <app-searchbar class="hidden sm:block"></app-searchbar>
+        <app-searchbar class=" justify-center hidden sm:block"></app-searchbar>
      
         <img class="w-8 ml-[160px] static sm:hidden hover:scale-110 hover:rotate-90 duration-300" (click)="showSearchModal()" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEMAAABDCAYAAADHyrhzAAAACXBIWXMAAAsTAAALEwEAmpwYAAAGDElEQVR4nN2ceWxUVRSHT1m0IIrirkGi4BIjMaIoYESJuyFuqEGjKJqQqDEGJSCiATGamIjGhCBG/jCBBEEJhmBteffOAJUKKVBWWdpSRJTFsrS0tHT7zJ0yk5l2pu3M3LeUX3L+aeee+8435y7vLiPis35HLsxHBhQil4DkyLmuPOQiBxmrkNkKWaKQEoWc0AhJrFYhpQpZqZEvNTIhHxko3VkaGaSQGQpZr5DGFIF32QwgjcwNIyOkO2gm0kMhz2kkrJHmbAF0YHsUMtU0MQmaliI9HeRVhexyEUCybDmukU9MfyNBkEKGaWSDlxCS2DGFvGsy0xcIK5C+GvnW5eaQrhVqZLCnIMLILRrZGoDgk1mVQsZ7AiKEjNNITQCC7szmuNpsFPKajWHSK1PIsjCS6waIaX4HlyGQgjzkfGsgQsgkv4PKEsgvZvjPGoRCntZIk98BWQAyLysQYWSI6Z39DsSiTcwURK5GNgcgAJvZUaeR29OGoZCv/H54l2zbRqR3l0E4yNDuNIRmYFO6BAIkRyHrAvDAblqtWWLoFIZGng3Aw7puCvmuUxgKKXbrAcLkUsLD7OINypjGbt5iK2NZQ38/YDQ4yHUpQYSQR92ouIghHGIhTZwimZo5QyV5FDPCayDfdNREltutMId9zKSFBrqmFv7lB8L08QpIVRHSpx2IfGSARuptVRSiJ0dYkjLsRqpS/q+KDazhYq+AvJCsr3jbZiUH+Lrdt36UnynhEVbTN/KZMOexkZEcZF677DlGfgSo2zDMKnyyJpJnq4ISHmqTBSfZwmMdltnAUE5TnlBuL5O9gFGX0FTCSC+FVNupIIdqNiV0jpu4r0tl1zGIMxyJlW2g0pORRiFjYjAcZKQtx8UMT/h2K/gsrfI7eDGh/J9M9ALGp/FN5B1bjiuYHddLNLKWy9LOrDr2x3wcZbnrMEwXEQ9jri3HR1kWNyr8kZGPg8yP+ahlrxcwyuNhOLYcn6QoFshhFmfkw8xOo2qixgsYzbG1UrNdpy05PsGaWCBH+CkjH+V8HAej2gsYmIWs6BzjkC2nh/kxFsgptmXkw0zdPW4mOMgd0cyoseW0lCkJo4F5L0nvG8qNDKlRGTBewNDI6CiMZltOTfDxOsSitMqXMTWh/Hae9wSGQh6Pwqi16biSlRnNFTYyimbqY+XqOECI3p7AcJAHojAO23S8ntsS3jVaaKaM6YTolbLMDl5q94q/g/GegDibGcOiHWipbee7mJQQWGtnuCcybG7kXooYHJmt7ubNyHwkmf5hgWcwHOSmaGaE3aignA8jeZGNyvnIi6xoMUcsojDmu1XRVp6inoNdCtxMsOKn4q1qYScvuw3kr/gZ6GQ3KzPrF6W8TzXFSTPFANjP5xRyNesYGOk442XefDczxs3MKIhf+7zf7VSM2louj/QVW3iCTYyOBN/2M+u5lQaOJQBp5Hjk7y491xcxGEuR82wPr9laMfdEmk1iBlVQyFXW6zIL4W2X/ZTfANqa2UYwywDxMgtHq+lns54zBcgFCTAc5D2/g09mpvNs289U8muHc5Y0zUm2IHxlUPdXy5nRrtMt4wNb/ie0g2Gkkd/8DjyV/c3cBBgnWGvDb03KU8YKecbvoFNZiB4cYantzPheOtmB3x5cIL0iL33bGBdZK83SX9Mq5MaUMIw08orfQXtki6QzhVv3ULYE4GFd3TiKLfN1JoXcHbAz4bZtlqQjjSw4R7OiLOnOeyfNpZ/X90c8ANGgkVGSiZzWg26n/Q7Cok0WC4fnWwIQSLa22MrtSI1MD0Aw2VjI6mF6jcwJQFCZ2AZXLvapbnbNQiHa3KkVtxRCJgX17baNLTSLVuK2HGS4RvYFIOBkVm9uMroOIV4Ocqm59hSA4ONtZ2wD2Q+FkAcVsttnCGb9dpbVESNTmemtOalv82hDGk1iXiB/OCCM5J49T7rTTQgK+c/8gsIq5BrpDgojd5mz2QqpsATguPm5CY08mdblmaCpALleI6+baw1mX7cLzanq7O2GRab5GbBWbh8GVSuQvgXIFQ5yQwi5UyM3K+RaB+nv10P9D1M8p/K7ILZTAAAAAElFTkSuQmCC">
 
@@ -16,13 +16,13 @@
             <a class="text-lg text-sm " > Switch to Dashboard</a>       
         </div>
 
-        <div (click)="toggleMenu()" data-testid="menuIcon" class="hover:shadow-md focus:shadow-md inline-flex gap-2 justify-between ring-1 rounded-full ring-lightgrey pl-3 pr-2 py-1 hover:scale-110 transition-transform duration-300">
+        <div (click)="toggleMenu($event)" data-testid="menuIcon" class="hover:shadow-md focus:shadow-md inline-flex gap-2 justify-between ring-1 rounded-full ring-lightgrey pl-3 pr-2 py-1 hover:scale-110 transition-transform duration-300">
             <img class="h-[15px] mt-2  hover:rotate-180 transition-transform duration-300" src="https://img.icons8.com/external-others-inmotus-design/256/external-Menu-basic-elements-others-inmotus-design.png" alt="">
             <img class="h-[30px] rounded-full" src={{profileImage}}>
         </div>
         
         <!--Menu items-->          
-        <ul (click)="toggleMenu()" *ngIf="showMenu" class="mt-4 z-50 absolute top-[41px] right-0 w-[120px] shadow-lg text-center text-grey rounded-b-md bg-transwhite">     
+        <ul (click)="toggleMenu($event)" *ngIf="showMenu" class=" z-50 mt-4  absolute top-[41px] right-0 w-[120px] shadow-lg text-center text-grey rounded-b-md bg-transwhite">     
             
             <!-- switch button -->
             <div routerLink={{navigateTo}} class=" flex flex-row cursor-pointer hover:bg-lightgrey">
@@ -30,7 +30,7 @@
                 <p>switch </p>
             </div>
 
-            <li *ngFor="let option of options"  routerLink="{{option.link}}" routerLinkActive="text-tt-black" class="text-sm hover:bg-lightgrey cursor-pointer flex gap-1 items-center px-4 py-2">
+            <li *ngFor="let option of options"  routerLink="{{option.link}}" (click)= "ifLogout(option.label)" routerLinkActive="text-tt-black" class="text-sm hover:bg-lightgrey cursor-pointer flex gap-1 items-center px-4 py-2">
                 <img [src]="option.icon" class="w-4 h-4 mr-2  hover:rotate-90 transition-transform duration-300" alt="{{ option.label }}">
                 <span class="">{{ option.label }}</span>
             </li>

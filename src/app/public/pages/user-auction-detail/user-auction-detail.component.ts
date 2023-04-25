@@ -95,9 +95,10 @@ export class UserAuctionDetailComponent {
     this.auctionService.cancelAuctionWithBidCheck(this.id).subscribe(
       {
       next:(data) =>{
-        this.toastService.success(data.body!);
+        
+        if (data.body === 'Auction has bid(s), cannot be cancelled') {this.showPendingBidPopUp= true; }
+        else{ this.toastService.success(data.body!);} 
         console.log(data);
-
         this.timerId = setTimeout(() => {
           this.router.navigateByUrl('dashboard');
         }, 5000)

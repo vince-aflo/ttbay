@@ -50,8 +50,8 @@ export class DashboardNavbarComponent implements OnInit {
     e.stopPropagation();
   }
 
-  setActiveTab(body:string){
-    if(body == 'Logout') this.loginService.logout()
+  setActiveTab(body:string){ if(body == 'Logout') this.loginService.logout()
+   
     this.activeTab = body;
     this.showMenu = false;
   }

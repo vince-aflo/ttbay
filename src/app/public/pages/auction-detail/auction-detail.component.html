@@ -1,17 +1,19 @@
 <!-- <div class="min-h-screen w-full"> -->
-<div
+<!-- <div
   *ngIf="showBidForm"
   class="fixed backdrop-blur min-w-full min-h-full z-20 bg-transdark"
-></div>
-<div class="flex flex-col gap-4 p-6 mb-4">
-  <app-bid-form
+></div> -->
+<app-navbar class="sticky absolute top-0 left-0 z-10 w-full"></app-navbar>
+<div class="flex flex-col gap-4 px-6 mb-4">
+  <!-- <app-bid-form
     [currentAuction]="auction"
     (cancel)="toggleBidForm()"
     *ngIf="showBidForm"
     class="absolute z-30 h-full pt-8 top-0 left-0 right-0 mx-auto"
-  ></app-bid-form>
-  <div class="flex flex-col gap-2 min-h-full w-full mt-12 md:flex-row md:gap-6">
-    <app-navbar class="absolute top-0 left-0 z-10 w-full"></app-navbar>
+  ></app-bid-form> -->
+
+<!-- 
+  <div class="flex flex-col gap-2 min-h-full w-full mt-12 md:flex-row md:gap-6"> 
     <h1
       class="tracking-tight mb-2 text-xl font-semibold text-gray-900 dark:text-white md:hidden">
       {{ auction && auction.item.category }}
@@ -37,9 +39,7 @@
         class="absolute inset-y-1/2 right-2 p-2 w-10 h-10 object-fit bg-bg-blue rounded-full hover:bg-white"
       />
     </div>
-    <div
-      class="md:flex md:flex-col md:justify-center md:gap-4 md:min-h-[300px] md:max-h-[300px]"
-    >
+    <div class="md:flex md:flex-col md:justify-center md:gap-4 md:min-h-[300px] md:max-h-[300px]">
       <h1
         class="hidden tracking-tight text-xl font-semibold text-gray-900 dark:text-white md:block"
       >
@@ -61,7 +61,9 @@
         ></app-primary-button>
       </div>
     </div>
-  </div>
+  </div> -->
+
+<!--   
   <div class="w-full h-64 bg-lightgrey p-4 rounded-md">
     <h2 class="text-lg font-semibold">Details</h2>
     <p>Description: {{ auction && auction.item.description }}</p>
@@ -76,6 +78,10 @@
         auction && (auction.currentHighestBid || 0) | currency : "GHS "
       }}
     </p>
-  </div>
+  </div> -->
+
+
+
+  
 </div>
 <lib-toastify-toast-container></lib-toastify-toast-container>

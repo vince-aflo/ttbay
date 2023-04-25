@@ -1,4 +1,5 @@
-<app-navbar class="z-50"></app-navbar>
+
+<app-navbar class="z-10 sticky"></app-navbar>
 
 <div class="z-0 flex flex-col">
     <div class="mx-6 my-6">
@@ -11,6 +12,8 @@
             <app-live-auction-card class="w-full transition transform hover:cursor-pointer hover:scale-[1.025] shadow-lg  " *ngFor="let auction of auctions" [liveAuction]="auction"></app-live-auction-card>
         </div>
     </div>
-</div>
+
 
 <lib-toastify-toast-container></lib-toastify-toast-container>
+
+</div>
