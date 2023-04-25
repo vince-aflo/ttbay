@@ -17,7 +17,7 @@ export class NavbarComponent {
   searchModalIsOpen = false;
   showMenu:boolean = false;
   landing = "Switch to Dashboard";
-  navigateTo =  "/sell"
+  navigateTo =  "/dashboard/auctions"
   showHomeIcon :boolean = false;
   routeInfo = this.router.url.split('/');
   id = this.routeInfo[1];
@@ -71,7 +71,7 @@ export class NavbarComponent {
     { label: 'Profile', link: '/dashboard/profile', icon: 'https://img.icons8.com/metro/256/gender-neutral-user.png' },
     { label: 'Settings', link: '/dashboard/account-settings', icon: 'https://img.icons8.com/ios-filled/256/null/settings.png' },
     { label: 'Help', link: '/help', icon: 'https://img.icons8.com/metro/256/help.png' },
-    { label: 'Logout', link: '/logout', icon: 'https://img.icons8.com/glyph-neue/256/power-off-button.png' },
+    { label: 'Logout', link: '/logout', icon: 'https://img.icons8.com/glyph-neue/256/power-off-button.png' }
   ];
   
   routeTo(option : string){

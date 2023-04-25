@@ -7,16 +7,16 @@
     />
 
     <!-- Text section  -->
-    <div class="flex flex-col justify-between">
+    <div class="flex flex-col justify-between p-4 pl-6">
       <span class="-mb-1 font-medium">{{ liveAuction.item.itemName | capitalizeFirstLetter }}</span>
       <!-- Bid and countdown -->
       <span class="-mb-1">
         {{bidCount}} bids &#8226;
-        <span *ngIf="daysLeft && daysLeft > 0" class="-mb-1 opacity-70">{{ daysLeft }} {{daysLeft == 1 ? 'day' : 'days'}} {{hoursLeft > 0 ? hoursLeft : ''}} {{ hoursLeft > 0 ? (hoursLeft == 1 ? 'hour' : 'hours') : ''}} left</span>
-        <span *ngIf="secCount && daysLeft < 1" class="-mb-1 opacity-70 text-red">{{hourCount > 0 ? hourCount + 'h' : ''}} {{minCount > 0 ? minCount + 'm' : ''}} {{secCount > 0 ? secCount + 's' : ''}} left</span>
+        <span *ngIf="daysLeft && daysLeft > 0" class="-mb-1 opacity-50">{{ daysLeft }} {{daysLeft == 1 ? 'day' : 'days'}} {{hoursLeft > 0 ? hoursLeft : ''}} {{ hoursLeft > 0 ? (hoursLeft == 1 ? 'hour' : 'hours') : ''}} left</span>
+        <span *ngIf="secCount && daysLeft < 1" class="-mb-1 opacity-50 text-red">{{hourCount > 0 ? hourCount + 'h' : ''}} {{minCount > 0 ? minCount + 'm' : ''}} {{secCount > 0 ? secCount + 's' : ''}} left</span>
       </span>
       <!-- End date -->
-      <span class="opacity-70">{{ liveAuction.endDate | date:'mediumDate'}} &#8226; {{ liveAuction.endDate | date:'shortTime'}}</span>
+      <span class="opacity-50">{{ liveAuction.endDate | date:'mediumDate'}} &#8226; {{ liveAuction.endDate | date:'shortTime'}}</span>
       <!-- Price -->
       <span class="font-semibold">  	
         &#8373; {{liveAuction && (liveAuction.currentHighestBid || liveAuction.reservedPrice ) | currency:' '}}

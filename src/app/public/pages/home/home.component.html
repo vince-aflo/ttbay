@@ -1,6 +1,6 @@
-<app-navbar class="z-30"></app-navbar>
+<app-navbar class="z-50"></app-navbar>
 
-<div class="flex flex-col">
+<div class="z-0 flex flex-col">
     <div class="mx-6 my-6">
         <div *ngIf="auctions && auctions.length === 0" class="sm:flex-row flex flex-col justify-center items-center">
             <img class="" src="../../../assets/images/no auctions.avif" alt="">
@@ -8,7 +8,7 @@
         </div>
         
         <div class="grid grid-cols-1 justify-items-center gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6">
-            <app-live-auction-card class="w-full transition transform hover:cursor-pointer hover:scale-[1.025]" *ngFor="let auction of auctions" [liveAuction]="auction"></app-live-auction-card>
+            <app-live-auction-card class="w-full transition transform hover:cursor-pointer hover:scale-[1.025] shadow-lg  " *ngFor="let auction of auctions" [liveAuction]="auction"></app-live-auction-card>
         </div>
     </div>
 </div>

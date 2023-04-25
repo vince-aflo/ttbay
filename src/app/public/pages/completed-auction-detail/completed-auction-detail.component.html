@@ -16,7 +16,7 @@
         {{ auction && auction.item.itemName }}
     </h1>
     <!-- Images -->
-    <div class="grid gap-2 sm:h-80 sm:grid-cols-3 sm:grid-rows-2">
+    <div class="grid gap-2 sm:h-[500px] sm:grid-cols-3 sm:grid-rows-2">
       <img
         src="{{
           auction && auction.item.imageList[0].imageUrl
@@ -28,7 +28,7 @@
           auction && auction.item.imageList[1].imageUrl
         }}"
         alt="Item image"
-        class="hidden sm:block sm:h-full w-full sm:col-span-1 sm:row-span-1 object-cover rounded-lg"/>
+        class="hidden sm:block sm:h-full w-full sm:col-span-1 sm:row-span-1 object-fit rounded-lg"/>
       <img
         src="{{
           auction && auction.item.imageList[2].imageUrl
@@ -98,10 +98,10 @@
               Click the item given button when you have successfully given the item to the buyer.
         </p>
         <!-- Buttons -->
-        <app-primary-button *ngIf="auction && auction.auctioneerEmail === userEmail"
+        <app-primary-button class="text-white"  *ngIf="auction && auction.auctioneerEmail === userEmail"
           [buttonText]="'Item given'"
           ></app-primary-button>
-        <app-primary-button *ngIf="auction && auction.winner?.email === userEmail"
+        <app-primary-button class="text-white" *ngIf="auction && auction.winner?.email === userEmail"
           [buttonText]="'Item received'"
           ></app-primary-button>
       </div>
