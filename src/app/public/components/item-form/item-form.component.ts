@@ -12,9 +12,11 @@ import { ItemService } from 'src/app/core/services/item.service';
 })
 export class ItemFormComponent implements OnInit {
   images:any[] = []
+  tags:string[]=[]
   categories!:string[]
   itemForm!:FormGroup;
   invalidForm:boolean = false;
+  tagInput: string = '';
 
   isSaving:boolean = false;
 
@@ -117,5 +119,19 @@ export class ItemFormComponent implements OnInit {
     this.itemForm.get('description')!.valid &&
     this.itemForm.get('condition')!.valid &&
     this.images.length > 2
+  }
+
+  removeTag(tag: string) {
+    this.tags = this.tags.filter(t => t !== tag);
+  }
+
+  addTag() {
+    const tag = this.tagInput.trim();
+  
+    if (tag && !this.tags.includes(tag)) {
+      this.tags.push(tag);
+    }
+
+     this.tagInput = '';
   }
 }

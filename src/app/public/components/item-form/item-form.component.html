@@ -35,6 +35,19 @@
                 cannot be empty
             </small>
         </div>
+        <!--tags--> 
+        <div id="tag-container" class="flex flex-wrap">
+        <div *ngFor="let tag of tags" class="tag">
+            <div class="material-icons p-2 m-1  bg-lightgrey">
+                <span class="material-icons">{{tag }}</span>
+                <button type="button" class="remove ml-2 mr-2" (click)="removeTag(tag)">x</button>
+            </div>
+        </div>
+    </div>
+        <div class="h-[120px]">
+            <label for="name">Add tags to this item </label><br>
+            <input (keydown.enter)="addTag()" type="text" [(ngModel)]="tagInput" class="h-[30px] w-full border pl-2 rounded-md" type="text" formControlName="name">
+        </div>
 
         <!-- images section to be added-->
         <div class="flex flex-col h-[100px]">
@@ -53,8 +66,8 @@
         </div>
 
         <div class="flex gap-4">
-            <app-primary-button  (click)="saveItem()" [buttonText]="isSaving ? 'Saving...' : 'Save Item'"></app-primary-button>
-            <app-secondary-button (click)="cancelProcess()" [buttonText]="'Cancel'"></app-secondary-button>
+            <app-button (click)="saveItem()" [buttonText]="isSaving ? 'Saving...' : 'Save Item'"></app-button>
+            <app-button (click)="cancelProcess()" [buttonText]="'Cancel'"></app-button>
         </div>
     </form>
     <lib-toastify-toast-container></lib-toastify-toast-container>

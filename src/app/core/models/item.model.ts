@@ -2,6 +2,7 @@ export class Item {
     itemId:number;
     itemName: string;
     imageList: {id: number, imageUrl:string}[];
+    tag: {id:number,tags:string}[];
     category: string;
     condition: string;
     description: string;
@@ -15,7 +16,9 @@ export class Item {
         condition: string, 
         description: string,
         onAuction: boolean,
+        tag:{id:number,tags:string}[],
         isSold: boolean) {
+          this.tag = tag;
           this.itemId = itemId;
           this.itemName = itemName;
           this.imageList = imageList;
