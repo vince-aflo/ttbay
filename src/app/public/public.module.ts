@@ -11,7 +11,6 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { HomeComponent } from './pages/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
-import { ButtonComponent } from './components/button/button.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AccountSettingsComponent } from './pages/dashboard/account-settings/account-settings.component';
 import { AngularToastifyModule } from 'angular-toastify';
@@ -54,7 +53,6 @@ import { SearchModalComponent } from "./components/search-modal/search-modal.com
     HomeComponent,
     NavbarComponent,
     SearchbarComponent,
-    ButtonComponent,
     FooterComponent,
     AccountSettingsComponent,
     DeleteAccountModalComponent,

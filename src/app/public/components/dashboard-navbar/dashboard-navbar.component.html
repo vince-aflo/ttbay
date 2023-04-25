@@ -1,11 +1,14 @@
-<div (click)="showMenu ? showMenu = false : showMenu" class="h-[80px] px-3 sm:px-6 shadow flex text-grey justify-between items-center text-lg font-medium w-full">
+<div (click)="showMenu ? showMenu = false : showMenu" class="h-12 px-3 sm:px-6 flex text-grey justify-between items-center text-lg font-medium w-full max-w-[1400px] mx-auto">
     <h1 routerLink="/home" class="text-2xl sm:text-3xl font-bold cursor-default ">
         <span class="text-tt-black">tt</span>
         <span class="text-green">Bay</span>
     </h1>
     <h1 class="border-b-2 border-tt-black text-tt-black sm:hidden">{{activeTab | capitalizeFirstLetter }}</h1>
     <ul class="hidden sm:flex gap-6">
-        <li *ngFor="let primaryLink of primaryLinks" routerLink="{{primaryLink.link}}" routerLinkActive="border-green text-tt-black" class="transition py-1 border-b-2 border-white hover:border-lightgrey hover:cursor-pointer">{{primaryLink.label}}</li>
+        <li *ngFor="let primaryLink of primaryLinks" 
+            routerLink="{{primaryLink.link}}" routerLinkActive="text-tt-black underline decoration-2 underline-offset-[12px]" 
+            class="transition py-1 border-b-2 border-white hover:border-lightgrey hover:cursor-pointer">{{primaryLink.label}}
+        </li>
     </ul>
     <div class="flex flex-row ">
         <div routerLink="/home"  class="cursor-pointer p-3  rounded-full mr-8 hidden lg:inline-flex hover:bg-lightgrey flex flex-row">
@@ -19,8 +22,11 @@
         </div>
         
         <!--Menu items-->          
-        <ul *ngIf="showMenu" class="z-50 absolute top-14 right-2 w-32 shadow-lg text-center text-grey rounded-b-md bg-transwhite">     
-            <li *ngFor="let primaryLink of primaryLinks" (click)="setActiveTab(primaryLink.label)" routerLink="{{primaryLink.link}}" routerLinkActive="text-tt-black" class="sm:hidden text-sm hover:bg-lightgrey cursor-pointer flex gap-1 items-center px-4 py-2">
+        <ul *ngIf="showMenu" class="z-50 absolute top-14 -ml-14 w-32 shadow-lg text-center text-grey rounded-b-md bg-transwhite">     
+            <li *ngFor="let primaryLink of primaryLinks" 
+            (click)="setActiveTab(primaryLink.label)" routerLink="{{primaryLink.link}}" 
+            routerLinkActive="text-tt-black" 
+            class="sm:hidden text-sm hover:bg-lightgrey cursor-pointer flex gap-1 items-center px-4 py-2">
                 <img [src]="primaryLink.icon" class="w-4 h-4 mr-2  hover:rotate-90 transition-transform duration-300" alt="{{ primaryLink.label }}">
                 <span class="">{{ primaryLink.label }}</span>
             </li>
