@@ -29,7 +29,9 @@ export class LoginComponent implements OnInit {
           .then((data) => {
             data.subscribe({
               next: (value) => {
-                const {hasFilledUserProfile}:any = value;
+                // console.log(value)
+                const {hasFilledUserProfile, fullName }:any = value;
+                sessionStorage.setItem('fullName', fullName)
                 if (hasFilledUserProfile) {
                   this.router.navigateByUrl('/home');
                 } else {

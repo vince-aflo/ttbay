@@ -20,7 +20,6 @@
             <small *ngIf="!itemForm.get('category')!.valid && itemForm.get('category')!.touched" class="text-red self-end pr-2">
                 cannot be empty
             </small>
-
         </div>
 
         <!-- condition -->
@@ -40,7 +39,7 @@
         <div class="flex flex-col h-[100px]">
             <label for="images">Let's choose all the great pictures</label>
             <input (change)="loadImages($event)" class="" type="file" name="" id="" multiple>
-            <small *ngIf="images.length < 3" class="text-grey  w-full self-end pr-2">at least 3 images must be selected</small>
+            <small *ngIf="images.length < 4" class="text-grey  w-full self-end pr-2">at least 4 images must be selected</small>
         </div>
 
         <!-- description -->
@@ -53,7 +52,7 @@
         </div>
 
         <div class="flex gap-4">
-            <app-primary-button  (click)="saveItem()" [buttonText]="isSaving ? 'Saving...' : 'Save Item'"></app-primary-button>
+            <app-primary-button  (click)="saveItem()" [disableButton]="isSaving" [buttonText]="isSaving ? 'Saving...' : 'Save Item'"></app-primary-button>
             <app-secondary-button (click)="cancelProcess()" [buttonText]="'Cancel'"></app-secondary-button>
         </div>
     </form>

@@ -10,11 +10,16 @@ import { ToastService } from 'angular-toastify';
 })
 export class ItemListComponent implements OnInit {
   items:Item[] = [];
+  fullName!:string | null;
+  showItemForm:boolean = false;
+  showAuctionForm:boolean = false;
+  savedItem!:Item;
 
   constructor(private itemService: ItemService,
     private toastService: ToastService){}
 
   ngOnInit(): void {
+    this.fullName = sessionStorage.getItem('fullName')
     this.itemService.getAllUserItems().subscribe({
       next:(data) => {
         this.items = data.filter(datum => datum.onAuction === false );
@@ -24,6 +29,21 @@ export class ItemListComponent implements OnInit {
         console.error(err);
       }
     })
+  }
 
+  revealItemForm(){
+    this.showItemForm = true;
+  }
+
+  hideAllForms() {
+    this.showItemForm = false;
+    this.showAuctionForm = false;
+    window.location.reload();
+  }
+
+  setSavedItem(item:Item){
+    this.savedItem = item;
+    this.showItemForm = false;
+    this.showAuctionForm = !this.showItemForm;
   }
 }
