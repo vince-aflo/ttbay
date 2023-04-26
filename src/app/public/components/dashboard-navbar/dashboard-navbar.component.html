@@ -1,5 +1,5 @@
 <div (click)="showMenu ? showMenu = false : showMenu" class="h-12 px-3 sm:px-6 flex text-grey justify-between items-center text-lg font-medium w-full max-w-[1400px] mx-auto">
-    <h1 routerLink="/home" class="text-2xl sm:text-3xl font-bold cursor-default ">
+    <h1 routerLink="/home" class="text-2xl z-10 sm:text-3xl font-bold cursor-default ">
         <span class="text-tt-black">tt</span>
         <span class="text-green">Bay</span>
     </h1>
@@ -22,7 +22,7 @@
         </div>
         
         <!--Menu items-->          
-        <ul *ngIf="showMenu" class="z-50 absolute top-14 -ml-14 w-32 shadow-lg text-center text-grey rounded-b-md bg-transwhite">     
+        <ul *ngIf="showMenu" class="z-30 absolute top-14 -ml-14 w-32 shadow-lg text-center text-grey rounded-b-md bg-transwhite">     
             <li *ngFor="let primaryLink of primaryLinks" 
             (click)="setActiveTab(primaryLink.label)" routerLink="{{primaryLink.link}}" 
             routerLinkActive="text-tt-black" 

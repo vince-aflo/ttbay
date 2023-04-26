@@ -15,7 +15,6 @@ export class ItemFormComponent implements OnInit {
   categories!:string[]
   itemForm!:FormGroup;
   invalidForm:boolean = false;
-
   isSaving:boolean = false;
 
   @Output() savedItemComplete: EventEmitter<Item> = new EventEmitter<Item>();
@@ -32,7 +31,7 @@ export class ItemFormComponent implements OnInit {
       name: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z0-9 .]{5,}')]),
       category: new FormControl(null, [Validators.required]),
       condition: new FormControl(null, [Validators.required]),
-      imageList: new FormArray([], [Validators.required, this.minLengthArray(3)]),
+      imageList: new FormArray([], [Validators.required, this.minLengthArray(4)]),
       description: new FormControl(null, [Validators.required, Validators.minLength(50)])
     })
 
@@ -116,6 +115,6 @@ export class ItemFormComponent implements OnInit {
     this.itemForm.get('category')!.valid &&
     this.itemForm.get('description')!.valid &&
     this.itemForm.get('condition')!.valid &&
-    this.images.length > 2
+    this.images.length > 3
   }
 }

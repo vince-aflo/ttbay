@@ -1,12 +1,12 @@
 <div class="flex flex-col relative min-h-screen w-full mb-12">
-  <div class="shadow w-full">
-    <app-dashboard-navbar class="sticky top-0 z-50 w-full bg-white"></app-dashboard-navbar>
+  <div class="shadow w-full sticky top-0 bg-white z-10">
+    <app-dashboard-navbar class="sticky top-0 w-full bg-white"></app-dashboard-navbar>
   </div>
-  <div *ngIf="showItemForm || showAuctionForm" class="fixed backdrop-blur min-w-full min-h-full z-20 bg-transdark"></div>
-  <app-item-form class="absolute z-30 h-full pt-8 top-0 left-0 right-0 mx-auto " 
+  <div *ngIf="showItemForm || showAuctionForm" class="fixed backdrop-blur min-w-full min-h-full z-[90] bg-transdark"></div>
+  <app-item-form class="absolute z-[100] h-full pt-8 top-0 left-0 right-0 mx-auto " 
     (cancel)="hideAllForms()" (savedItemComplete)="setSavedItem($event)" *ngIf="showItemForm">
   </app-item-form>
-  <app-auction-form class="absolute z-30 h-full  pt-8 top-0 left-0 right-0 mx-auto"  
+  <app-auction-form class="absolute z-[100] h-full  pt-8 top-0 left-0 right-0 mx-auto"  
     [itemToAuction]="savedItem" (setToFalse)="hideAllForms()" *ngIf="showAuctionForm">
   </app-auction-form>
 
