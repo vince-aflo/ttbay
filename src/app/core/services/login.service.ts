@@ -26,6 +26,7 @@ export class LoginService {
 
   logout() {
     sessionStorage.removeItem('id_token');
+    sessionStorage.removeItem('fullName');
     this.oidcSecurityService.logoffLocal();
     this.router.navigateByUrl('/login');
   }
