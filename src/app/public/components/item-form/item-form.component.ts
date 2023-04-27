@@ -12,7 +12,7 @@ import { ItemService } from 'src/app/core/services/item.service';
 })
 export class ItemFormComponent implements OnInit {
   images:any[] = []
-  tags:string[]=[]
+  tags:any[]= []
   categories!:string[]
   itemForm!:FormGroup;
   invalidForm:boolean = false;
@@ -35,7 +35,8 @@ export class ItemFormComponent implements OnInit {
       category: new FormControl(null, [Validators.required]),
       condition: new FormControl(null, [Validators.required]),
       imageList: new FormArray([], [Validators.required, this.minLengthArray(3)]),
-      description: new FormControl(null, [Validators.required, Validators.minLength(50)])
+      description: new FormControl(null, [Validators.required, Validators.minLength(50)]),
+      tags: new FormArray([], [Validators.required, Validators.minLength(3)])
     })
 
     this.itemService.getCategories().subscribe({
@@ -74,6 +75,9 @@ export class ItemFormComponent implements OnInit {
     this.isSaving = true;
 
     if (this.validateForm()) {
+      this.tags.forEach((tag) => {
+        (<FormArray>this.itemForm.get('tags')).push(new FormControl({name: tag}));
+      })
       //upload images, TODO: this feature should be moved to the backend for better security.
       const setURLs = () => {
         return this.images.map((e) => this.imageUploadService.uploadImage(e).then((data) => {
@@ -97,6 +101,7 @@ export class ItemFormComponent implements OnInit {
         this.sendHideEvent()
       })
     } else {
+      console.log(this.itemForm)
       this.toastService.error("Invalid form");
       this.isSaving = false;
       this.invalidForm = true;
@@ -118,20 +123,18 @@ export class ItemFormComponent implements OnInit {
     this.itemForm.get('category')!.valid &&
     this.itemForm.get('description')!.valid &&
     this.itemForm.get('condition')!.valid &&
-    this.images.length > 2
+    this.images.length > 2 && this.tags.length <= 3
   }
 
   removeTag(tag: string) {
     this.tags = this.tags.filter(t => t !== tag);
   }
 
-  addTag() {
-    const tag = this.tagInput.trim();
-  
-    if (tag && !this.tags.includes(tag)) {
+  addTag(event:any) {
+    const tag = event.target.value.trim().toLowerCase();
+    if (tag && !this.tags.includes(tag) && this.tags.length < 3) {
       this.tags.push(tag);
     }
-
-     this.tagInput = '';
+     event.target.value = '';
   }
 }
