@@ -91,15 +91,15 @@
       </div>
     </div>
     <div class="h-[120px]">
-      <label for="name">Add tags to this item </label><br />
+      <label for="tags">Add tags to this item </label><br />
       <input
         (keydown.tab)="addTag($event)"
         type="text"
         class="h-[30px] w-full border pl-2 rounded-md"
         type="text"
       />
-      <small *ngIf="tags.length > 3" class="text-grey w-full self-end pr-2"
-      >at most 3 tags must be inputed</small
+      <small *ngIf="tags.length < 3 " class="text-grey w-full self-end pr-2"
+      >you can add {{3-tags.length}} more tag(s)</small
     >
     </div>
 

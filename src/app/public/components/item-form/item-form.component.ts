@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ElementRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastService } from 'angular-toastify';
 import { Item } from 'src/app/core/models/item.model';
@@ -11,12 +11,13 @@ import { ItemService } from 'src/app/core/services/item.service';
   styleUrls: ['./item-form.component.scss']
 })
 export class ItemFormComponent implements OnInit {
+  @ViewChild('tagInput', { static: false }) tagInput!: ElementRef;
   images:any[] = []
   tags:any[]= []
   categories!:string[]
   itemForm!:FormGroup;
   invalidForm:boolean = false;
-  tagInput: string = '';
+
 
   isSaving:boolean = false;
 
@@ -123,7 +124,7 @@ export class ItemFormComponent implements OnInit {
     this.itemForm.get('category')!.valid &&
     this.itemForm.get('description')!.valid &&
     this.itemForm.get('condition')!.valid &&
-    this.images.length > 2 && this.tags.length <= 3
+    this.images.length > 2 && this.tags.length > 0
   }
 
   removeTag(tag: string) {
@@ -136,5 +137,6 @@ export class ItemFormComponent implements OnInit {
       this.tags.push(tag);
     }
      event.target.value = '';
+     this.tagInput.nativeElement.focus();
   }
 }
