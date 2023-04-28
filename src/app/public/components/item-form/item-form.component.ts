@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ElementRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastService } from 'angular-toastify';
 import { Item } from 'src/app/core/models/item.model';
@@ -11,10 +11,14 @@ import { ItemService } from 'src/app/core/services/item.service';
   styleUrls: ['./item-form.component.scss']
 })
 export class ItemFormComponent implements OnInit {
+  @ViewChild('tagInput', { static: false }) tagInput!: ElementRef;
   images:any[] = []
+  tags:any[]= []
   categories!:string[]
   itemForm!:FormGroup;
   invalidForm:boolean = false;
+
+
   isSaving:boolean = false;
 
   @Output() savedItemComplete: EventEmitter<Item> = new EventEmitter<Item>();
@@ -31,8 +35,9 @@ export class ItemFormComponent implements OnInit {
       name: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z0-9 .]{5,}')]),
       category: new FormControl(null, [Validators.required]),
       condition: new FormControl(null, [Validators.required]),
-      imageList: new FormArray([], [Validators.required, this.minLengthArray(4)]),
-      description: new FormControl(null, [Validators.required, Validators.minLength(50)])
+      imageList: new FormArray([], [Validators.required, this.minLengthArray(3)]),
+      description: new FormControl(null, [Validators.required, Validators.minLength(50)]),
+      tags: new FormArray([], [Validators.required, Validators.minLength(3)])
     })
 
     this.itemService.getCategories().subscribe({
@@ -71,6 +76,9 @@ export class ItemFormComponent implements OnInit {
     this.isSaving = true;
 
     if (this.validateForm()) {
+      this.tags.forEach((tag) => {
+        (<FormArray>this.itemForm.get('tags')).push(new FormControl({name: tag}));
+      })
       //upload images, TODO: this feature should be moved to the backend for better security.
       const setURLs = () => {
         return this.images.map((e) => this.imageUploadService.uploadImage(e).then((data) => {
@@ -115,6 +123,19 @@ export class ItemFormComponent implements OnInit {
     this.itemForm.get('category')!.valid &&
     this.itemForm.get('description')!.valid &&
     this.itemForm.get('condition')!.valid &&
-    this.images.length > 3
+    this.images.length > 2 && this.tags.length > 0
+  }
+
+  removeTag(tag: string) {
+    this.tags = this.tags.filter(t => t !== tag);
+  }
+
+  addTag(event:any) {
+    const tag = event.target.value.trim().toLowerCase();
+    if (tag && !this.tags.includes(tag) && this.tags.length < 3) {
+      this.tags.push(tag);
+    }
+     event.target.value = '';
+     this.tagInput.nativeElement.focus();
   }
 }
