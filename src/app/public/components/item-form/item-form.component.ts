@@ -102,7 +102,6 @@ export class ItemFormComponent implements OnInit {
         this.sendHideEvent()
       })
     } else {
-      console.log(this.itemForm)
       this.toastService.error("Invalid form");
       this.isSaving = false;
       this.invalidForm = true;
