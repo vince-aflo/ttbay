@@ -55,6 +55,7 @@ export class AuctionDetailComponent {
     })
 
 
+    // if (this.auction.auctioneerEmail == )
     //get bid
     this.bidService.getBidCount(this.id).subscribe({
       next:(data) => {
@@ -115,9 +116,7 @@ export class AuctionDetailComponent {
     }, 1000)
   }
 
-  scrollToLocation(): void {
-    this.locationToScrollTo.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+  
 
 
   placeBid(){
@@ -132,7 +131,7 @@ export class AuctionDetailComponent {
         this.toastService.success("Bid has been successfully made")
         setTimeout(()=>{
           window.location.reload()
-        },300)
+        },3000)
   
       },
       error: (err) => {
@@ -146,4 +145,7 @@ export class AuctionDetailComponent {
   }
   }
  
+  scroll(el: HTMLElement) {
+    el.scrollIntoView();
+  }
 }

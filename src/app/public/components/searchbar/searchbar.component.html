@@ -4,16 +4,16 @@
 <div class="cursor-pointer hover:scale-110 focus:scale-110 transition-transform duration-300 focus-shadow-md flex justify-center gap-1 items-center md:flex shadow-sm hover-md rounded-full pl-8 pr-2 h-[48px] border-lightgrey border-[1px] ">
  
         <!-- category -->
-        <div class="cursor-pointer ">
+        <div (mouseenter)="toggleDropdown()"  (mouseleave)="closeDropdown()" class="cursor-pointer ">
             <div >
-                <div (click)="toggleDropdown()"  class="mr-6 inline-flex justify-center text-sm"  aria-expanded="true" aria-haspopup="true">
+                <div   class="mr-6 inline-flex justify-center text-sm"  aria-expanded="true" aria-haspopup="true">
                  
                   <img class= "h-[20px] ml-2 mt-1 hover:rotate-180 transition-transform duration-300" src={{selectedIcon}} alt="">
                 </div>
             </div>
     
                 <!-- dropdown -->
-               <div *ngIf="dropdownOpen"  class="absolute mt-6 rounded-md shadow-lg bg-white  ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+               <div *ngIf="dropdownOpen"  class="absolute mt-0 rounded-md shadow-lg bg-white  ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                     <ul class="py-1">
                       <li *ngFor="let option of options" (click)="selectOption(option)" class="text-sm hover:bg-lightgrey cursor-pointer flex items-center px-4 py-2">
                         <img [src]="option.icon" class="w-4 h-4 mr-2  hover:rotate-90 transition-transform duration-300" alt="{{ option.label }}">
