@@ -4,7 +4,7 @@
   class="fixed backdrop-blur min-w-full min-h-full z-20 bg-transdark"
 ></div> -->
 <app-navbar class="sticky absolute top-0 left-0 z-10 w-full"></app-navbar>
-<div class="flex flex-col gap-4 px-6 mb-4">
+<div class="gap-4 px-4 sm:px-10 pt-2 sm:py-4 mb-4">
   <!-- <app-bid-form
     [currentAuction]="auction"
     (cancel)="toggleBidForm()"
@@ -81,7 +81,131 @@
   </div> -->
 
 
+<!-- Heading -->
+<div class="pb-2">
+  <h1 class="tracking-tight capitalize text-2xl sm:text-3xl font-semibold">{{ auction && auction.item.itemName }}</h1> 
+  <div class="flex flex-row gap-1 items-center ">
+    <span class="text-[13px] pl-1">{{ auction && auction.item.category }}</span>
+    &#8226; <span class="text-[13px] pl-1 ">{{ auction && auction.item.condition }}</span>
+  </div>
+</div>
 
+<!-- Images -->
+<div *ngIf="auction && auction.item" class="flex h-80 gap-2 overflow-x-auto">
+  <img *ngFor="let image of auction.item.imageList"
+    src="{{auction && image.imageUrl}}"
+    alt="Item image"
+    class="aspect-square h-full object-cover rounded-lg"/>
+  <div *ngIf="auction.item.imageList.length < 4" class="hidden lg:flex aspect-square h-full border border-dashed border-grey bg-lightgrey rounded-lg"></div>
+</div>
+
+<div class="sm:flex sm:flex-row sm:gap-[90px] pt-6 sm:mt-0 xl:gap-[117px]">
+<!-- Auction details -->
+<div class="sm:py-3 w-fit">
+ 
+  <div class="flex flex-row border-b border-lightgrey">
+      <div *ngIf="auction" class="tracking-tight sm:pb-3  items-center ">
+        <div class="flex flex-row">
+        <h1 class="text-xl  sm:text-2xl font-medium">Auction hosted by {{this.auctioneer && auctioneer.fullName}}</h1>
+      </div>
+    
+      <div class="my-4 font-thin text-medium gap-1 sm:flex sm:flex-row flex-col  small:bg-lightgrey small:rounded-full w-fit ">
+        <!-- bid -->
+        <div class="flex flex-row bg-lightgrey gap-1 rounded-lg p-3 w-fit">
+          <img class="h-5 " src="https://img.icons8.com/external-glyph-andi-nur-abdillah/256/external-Bid-auction-(glyph)-glyph-andi-nur-abdillah.png" alt="bid">
+          <p class="pr-2">  {{bidCount}} {{bidCount==1? 'bid' : 'bids'}}  </p>
+        </div>
+        <!-- closing time -->
+        <div class="flex flex-row bg-lightgrey gap-1 rounded-lg p-3 justify-center mt-1 sm:mt-0">
+          <img class="h-5" src="https://img.icons8.com/ios-glyphs/256/clock.png" alt="ending">
+          <p class=" pr-2 sm:inline"> {{auction && auction.endDate | date : 'medium'}}</p>
+        </div>
+      </div>
+    </div>
+    <!-- auctioneer's image -->
+    <div>
+      <img class= "h-10 lg:h-12  ml-4 lg:ml-[252px] rounded-full" src={{this.auctioneer.profileUrl}} alt="auctioneerImage">
+    </div>
   
+  </div>
+
+<!-- Key info -->
+<div *ngIf="auction" class="block py-2 border-b border-lightgrey mt-3 sm:mt-6 lg:grid lg:grid-cols-2">
+  <div class="flex gap-4 items-start mb-3 sm:mb-6">
+    <img class="h-12" src="https://img.icons8.com/?size=512&id=gAvq1EaVzbAL&format=png" alt="cash icon">
+    <div class="">
+      <h3 class="font-medium text-grey -mb-1">Works from </h3>
+      <span  class="font-medium text-lg">{{auctioneer.officeLocation}}</span>
+      
+    </div>
+  </div>
+  <!-- <div class="flex gap-4 items-start mb-3 sm:mb-6 lg:-ml-2">
+    <img class="h-12" src="https://img.icons8.com/pastel-glyph/64/null/name.png" alt="cash icon">
+    <div class="">
+      <h3 class="font-medium text-grey -mb-1">Sold To</h3>
+      <span class="font-medium">{{auction.winner != null ? auction.winner!.email : 'No winner'}}</span>
+    </div>
+  </div> -->
+</div>
+
+
+<div class="  gap-5 flex flex-col">
+  <!--item description -->
+  <div class=" py-8 border-b border-lightgrey">
+    <p class=" text-lg font-semibold py-2">Item Description</p>
+    <p class="capitalize">{{ auction && auction.item.description }}</p>
+  </div>
+
+  <!-- disclaimer -->
+  <div>
+    <p class="bg-tt-danger p-3 rounded-lg text-white ">Disclaimer</p>
+    <p>Please carefully consider the item's description and any applicable fees before submitting a bid.</p>  
+  </div>
+</div>
+
+</div>
+
+<!-- bid section -->
+<div class="sm:w-[50%] h-fit p-8 mt-10 border-lightgrey border-2 rounded-2xl sticky shadow-2xl">
+  <div class="flex flex-col gap-5 tracking-tight">
+    <p class="flex flex-col text-sm ">Highest Bid: 
+      <span class="text-xl  sm:text-2xl font-medium"> Gh¢ {{this.auction && auction.currentHighestBid?this.auction.currentHighestBid: '0'}}</span> 
+    </p>
+    <p class="flex flex-col text-sm ">Reserved Price: 
+      <span class="text-xl  sm:text-2xl font-medium">Gh¢ {{this.auction && auction.reservedPrice}}</span>
+    </p>
+  </div>
+
+  <button onclick="buttonHandler()" title="Make Bid"
+  class="fixed z-90 bottom-10 right-8 bg-green w-20 h-20 rounded-full drop-shadow-lg flex justify-center items-center text-white text-2xl  hover:drop-shadow-2xl hover:animate-bounce duration-300">
+  Bid</button>
+  
+  
+  <p>
+    <span *ngIf="daysLeft && daysLeft > 0" class="-mb-1 opacity-50">{{ daysLeft }} {{daysLeft == 1 ? 'day' : 'days'}} {{hoursLeft > 0 ? hoursLeft : ''}} {{ hoursLeft > 0 ? (hoursLeft == 1 ? 'hour' : 'hours') : ''}} left</span>
+    <span *ngIf="secCount && daysLeft < 1" class="-mb-1 opacity-50 text-red">{{hourCount > 0 ? hourCount + 'h' : ''}} {{minCount > 0 ? minCount + 'm' : ''}} {{secCount > 0 ? secCount + 's' : ''}} left</span>
+  </p>
+
+ 
+
+  <div class="mt-5 mb-8 w-full">
+    <p class="text-sm my-2">Enter amount </p>
+    <div class="md:flex md:items-center">
+          <input  [(ngModel)]="bidInput"  class=" h-[50px] bg-lightgrey appearance-none rounded-lg border-2 border-lightgrey  w-full p-2 text-gray-700 leading-tight focus:outline-none 
+          focus:bg-white focus:border-black" placeholder="" required>
+      </div>
+
+      <p *ngIf="showEmptyFieldError" class= "ml-2 text-red  text-xs">Input field cannot be empty</p>
+    </div>
+
+  <app-primary-button
+    [buttonText]="'Place Bid'"
+    (click)="placeBid()">
+  </app-primary-button>
+
+
+</div>
+
+</div>
 </div>
 <lib-toastify-toast-container></lib-toastify-toast-container>

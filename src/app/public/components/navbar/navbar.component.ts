@@ -34,8 +34,6 @@ export class NavbarComponent {
   ngOnInit(){
       this.setSwitchButton();
       this.loadProfileImage();
-
-  
   }  
 
   setSwitchButton(){
