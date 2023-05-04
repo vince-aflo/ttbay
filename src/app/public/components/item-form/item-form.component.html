@@ -1,61 +1,159 @@
-<div class="flex flex-col text-lg gap-6 w-[90%] max-w-[450px] border border-lightgrey bg-white shadow-sm mx-auto my-6 p-4 rounded-md">
-    <h1 class="text-2xl font-semibold self-center pb-2 border-b">Let's add a new item</h1>
+<div
+  class="flex flex-col text-lg gap-6 w-[90%] max-w-[450px] border border-lightgrey bg-white shadow-sm mx-auto my-6 p-4 rounded-md"
+>
+  <h1 class="text-2xl font-semibold self-center pb-2 border-b">
+    Let's add a new item
+  </h1>
 
-    <form class="flex flex-col" [formGroup]="itemForm">
-        <!-- name -->
-        <div class="h-[120px]">
-            <label for="name">What words will people search when looking for this item?</label><br>
-            <input class="h-[30px] w-full border pl-2 rounded-md" type="text" formControlName="name">
-            <small *ngIf="!itemForm.get('name')!.valid && itemForm.get('name')!.touched" class="text-red text-xs self-end pr-2">
-                must be at least 5 alphanumeric characters
-            </small>
-        </div>
-        <!-- category -->
-        <div class="h-[90px]">
-            <label for="category">Choose a category for your item</label>
-            <select class="h-[30px] w-full border pl-2 rounded-md" name="" id="" formControlName="category">
-                <option id="categoryname" *ngFor="let category of categories" value="{{category}}">{{ category | categoryName }}</option>
-                <!-- <option id="categoryname" value="ELECTRONICS">Electronics</option> -->
-            </select>
-            <small *ngIf="!itemForm.get('category')!.valid && itemForm.get('category')!.touched" class="text-red self-end pr-2">
-                cannot be empty
-            </small>
-        </div>
+  <form class="flex flex-col" [formGroup]="itemForm">
+    <!-- name -->
+    <div class="h-[120px]">
+      <label for="name"
+        >What words will people search when looking for this item?</label
+      ><br />
+      <input
+        class="h-[30px] w-full border pl-2 rounded-md"
+        type="text"
+        formControlName="name"
+      />
+      <small
+        *ngIf="!itemForm.get('name')!.valid && itemForm.get('name')!.touched"
+        class="text-red text-xs self-end pr-2"
+      >
+        must be at least 5 alphanumeric characters
+      </small>
+    </div>
+    <!-- category -->
+    <div class="h-[90px]">
+      <label for="category">Choose a category for your item</label>
+      <select
+        class="h-[30px] w-full border pl-2 rounded-md"
+        name=""
+        id=""
+        formControlName="category"
+      >
+        <option
+          id="categoryname"
+          *ngFor="let category of categories"
+          value="{{ category }}"
+        >
+          {{ category | categoryName }}
+        </option>
+        <!-- <option id="categoryname" value="ELECTRONICS">Electronics</option> -->
+      </select>
+      <small
+        *ngIf="
+          !itemForm.get('category')!.valid && itemForm.get('category')!.touched
+        "
+        class="text-red self-end pr-2"
+      >
+        cannot be empty
+      </small>
+    </div>
 
-        <!-- condition -->
-        <div class="h-[90px]">
-            <label for="condition">What's the condition of the item?</label>
-            <select class="h-[30px] w-full border pl-2 rounded-md" name="" id="" formControlName="condition">
-                <option value="NEW">New</option>
-                <option value="USED">Used</option>
-                <option value="REFURBISHED">Refurbished</option>
-            </select>
-            <small *ngIf="!itemForm.get('condition')!.valid && itemForm.get('condition')!.touched" class="text-red self-end pr-2">
-                cannot be empty
-            </small>
+    <!-- condition -->
+    <div class="h-[90px]">
+      <label for="condition">What's the condition of the item?</label>
+      <select
+        class="h-[30px] w-full border pl-2 rounded-md"
+        name=""
+        id=""
+        formControlName="condition"
+      >
+        <option value="NEW">New</option>
+        <option value="USED">Used</option>
+        <option value="REFURBISHED">Refurbished</option>
+      </select>
+      <small
+        *ngIf="
+          !itemForm.get('condition')!.valid &&
+          itemForm.get('condition')!.touched
+        "
+        class="text-red self-end pr-2"
+      >
+        cannot be empty
+      </small>
+    </div>
+    <!--tags-->
+    <div id="tag-container" class="flex flex-wrap">
+      <div *ngFor="let tag of tags" class="tag">
+        <div
+          class="material-icons py-1 m-1 items-center flex gap-2 px-2 rounded-md bg-lightgrey"
+        >
+          <span class="material-icons">{{ tag }}</span>
+          <img
+            class="w-4 h-4 p-1 bg-grey rounded-full hover:bg-red"
+            src="../../../assets/svg/icons/xmark-solid.svg"
+            alt=""
+            (click)="removeTag(tag)"
+          />
         </div>
+      </div>
+    </div>
+    <div class="h-[120px]">
+      <label for="tags">Add tags to this item </label><br />
+      <input
+        (keydown.tab)="addTag($event)"
+        type="text"
+        class="h-[30px] w-full border pl-2 rounded-md"
+        type="text"
+      />
+      <small *ngIf="tags.length < 3 " class="text-grey w-full self-end pr-2"
+      >you can add {{3-tags.length}} more tag(s)</small
+    >
+    </div>
 
-        <!-- images section to be added-->
-        <div class="flex flex-col h-[100px]">
-            <label for="images">Let's choose all the great pictures</label>
-            <input (change)="loadImages($event)" class="" type="file" name="" id="" multiple>
-            <small *ngIf="images.length < 4" class="text-grey  w-full self-end pr-2">at least 4 images must be selected</small>
-        </div>
+    <!-- images section to be added-->
+    <div class="flex flex-col h-[100px]">
+      <label for="images">Let's choose all the great pictures</label>
+      <input
+        (change)="loadImages($event)"
+        class=""
+        type="file"
+        name=""
+        id=""
+        multiple
+      />
+      <small *ngIf="images.length < 3" class="text-grey w-full self-end pr-2"
+        >at least 3 images must be selected</small
+      >
+    </div>
 
-        <!-- description -->
-        <div class="h-[240px]">
-            <label for="description">Tell buyers about features and flaws</label>
-            <textarea class="w-full border p-2 rounded-md" name="" id="" cols="30" rows="5" formControlName="description"></textarea>
-            <small *ngIf="!itemForm.get('description')!.valid && itemForm.get('description')!.touched" class="text-red self-end pr-2">
-                cannot be less than 50 characters</small>
-            <small *ngIf="invalidForm" class="text-red self-center p-2">Some fields are invalid</small>
-        </div>
+    <!-- description -->
+    <div class="h-[240px]">
+      <label for="description">Tell buyers about features and flaws</label>
+      <textarea
+        class="w-full border p-2 rounded-md"
+        name=""
+        id=""
+        cols="30"
+        rows="5"
+        formControlName="description"
+      ></textarea>
+      <small
+        *ngIf="
+          !itemForm.get('description')!.valid &&
+          itemForm.get('description')!.touched
+        "
+        class="text-red self-end pr-2"
+      >
+        cannot be less than 50 characters</small
+      >
+      <small *ngIf="invalidForm" class="text-red self-center p-2"
+        >Some fields are invalid</small
+      >
+    </div>
 
-        <div class="flex gap-4">
-            <app-primary-button  (click)="saveItem()" [disableButton]="isSaving" [buttonText]="isSaving ? 'Saving...' : 'Save Item'"></app-primary-button>
-            <app-secondary-button (click)="cancelProcess()" [buttonText]="'Cancel'"></app-secondary-button>
-        </div>
-    </form>
-    <lib-toastify-toast-container></lib-toastify-toast-container>
+    <div class="flex gap-4">
+      <app-primary-button
+        (click)="saveItem()"
+        [buttonText]="isSaving ? 'Saving...' : 'Save Item'"
+      ></app-primary-button>
+      <app-secondary-button
+        (click)="cancelProcess()"
+        [buttonText]="'Cancel'"
+      ></app-secondary-button>
+    </div>
+  </form>
+  <lib-toastify-toast-container></lib-toastify-toast-container>
 </div>
-

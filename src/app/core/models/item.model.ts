@@ -7,6 +7,7 @@ export class Item {
     description: string;
     onAuction: boolean;
     isSold: boolean;
+    tags: {id: number, name:string}[];
   
     constructor (
         itemId: number, itemName: string, 
@@ -15,6 +16,7 @@ export class Item {
         condition: string, 
         description: string,
         onAuction: boolean,
+        tags: {id: number, name:string}[],
         isSold: boolean) {
           this.itemId = itemId;
           this.itemName = itemName;
@@ -24,5 +26,6 @@ export class Item {
           this.description = description;
           this.onAuction = onAuction;
           this.isSold = isSold;
+          this.tags = tags;
       }
 }
